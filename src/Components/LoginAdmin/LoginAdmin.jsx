@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirigir
-import '../Login/Login.css'; // Importamos los estilos
+import '../LoginAdmin/LoginAdmin.css'; // Importamos los estilos
 
 const Login = () => {
   const [username, setUsername] = useState('');
