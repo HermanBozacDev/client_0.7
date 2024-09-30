@@ -1,0 +1,33 @@
+.ticket-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fefefe;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Ajusta el ancho según sea necesario */
+  font-family: 'Arial', sans-serif;
+}
+
+.ticket-info {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.ticket-info h2 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.ticket-info p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.ticket-qr img {
+  width: 80px; /* Ajusta el tamaño del QR */
+  height: 80px; /* Ajusta el tamaño del QR */
+}
+

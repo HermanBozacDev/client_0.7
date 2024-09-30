@@ -1,0 +1,21 @@
+.guiaDeCompraContainer {
+    background-color: #000000;
+    padding: 1vmax 15vmax;
+    text-align: center;
+    margin-top: 5vmax;
+    
+   
+ 
+    
+}
+
+.tituloGuia {
+    color: rgb(255, 255, 255);
+  
+    
+}
+
+.desarrollo {
+    color: white;
+    font-size: 1.4vmax;
+}

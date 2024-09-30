@@ -1,0 +1,133 @@
+.DetailContainer {
+    background-color: black;
+    margin-top: 10vmax;
+}
+
+.rowDetail {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 85%;
+    margin: 5vmax auto;
+    border: none;
+    padding: 1vmax;
+    border-radius: 15px;
+    background-color: rgba(39, 38, 38, 0.719);
+}
+
+.imagenDetailContainer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.imgDetail {
+    width: 40vmax;
+    border-radius: 10px;
+}
+
+.textoDetail {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2vmax;
+    margin-top: 1vmax;
+}
+
+.textoDetail h2 {
+    font-size: 3vmax;
+    color: white;
+    margin-bottom: 1vmax;
+}
+
+.textoDetail p {
+    font-size: 1.4vmax;
+    color: white;
+    text-align: center;
+}
+
+
+
+
+.precioCountDiv {
+    display: flex;
+    flex-flow:column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1vmax;
+}
+
+/* formulario mail */
+
+.emailFormContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    gap: 1vmax;
+
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+    margin-bottom: 0.5vmax;
+    text-align: center;
+
+}
+
+.formGroup label {
+    color: white;
+}
+
+.disabledButton {
+    background-color: #f78bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 1vmax;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width:18vmax;
+}
+
+.activeButton {
+    background-color: #b60098;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 3.4vmax;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width:18vmax;
+}
+
+.imput {
+    width:40vmax; 
+    height: 3vmax;
+    border-radius: 10px;
+    border: none;
+
+}
+
+
+
+/* Estilos para el placeholder */
+input::placeholder {
+    color: #888; /* Cambia el color del placeholder */
+    font-style: italic; /* Puedes ponerlo en cursiva si lo deseas */
+    font-size: 14px; /* Cambia el tamaño de fuente */
+    padding-left: 1vmax;
+}

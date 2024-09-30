@@ -1,0 +1,13 @@
+.panelAdminEvento  {
+	margin-top: 10vmax;
+      
+}
+input, textarea {
+  width: 100px; /* Hacer que el ancho sea uniforme */
+  heigh: 32px;
+  padding: 0.5rem; /* Añadir relleno para un mejor aspecto */
+  margin-bottom: 1rem; /* Separar los elementos */
+  font-size: 1rem; /* Ajustar el tamaño del texto */
+  box-sizing: border-box; /* Asegurar que el padding no altere el tamaño */
+}
+

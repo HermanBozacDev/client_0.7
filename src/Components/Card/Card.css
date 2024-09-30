@@ -1,0 +1,43 @@
+.card {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    width: 40vmax;
+    height: 25vmax;
+    text-align: center;
+    background-color: #f9f9f9;
+   
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fotoBanda {
+    width: 20vmax;
+    border-radius: 10px;
+}
+
+.titulo {
+    margin-bottom: 0.5vmax;
+    color: black;
+}
+
+/* Estilos del botón */
+.buy-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 30%;
+    text-decoration: none;
+}
+  
+.buy-button:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,12 @@
+.Controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmax;
+    width: 15vmax;
+}
+
+.ButtonContador {
+    padding: 0.5vmax 0.8vmax;
+}
