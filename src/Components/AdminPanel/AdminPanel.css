@@ -1,9 +1,3 @@
-.formHer  {
-	margin-top: 10vmax;
-      
-}
-
-
 * {
   margin: 0;
   padding: 0;
@@ -54,7 +48,7 @@ body {
 }
 
 .header {
-  margin-top: 10vmax;
+  margin-top: 5vmax;
   display: flex;
   justify-content: space-between;
   align-items: center;
