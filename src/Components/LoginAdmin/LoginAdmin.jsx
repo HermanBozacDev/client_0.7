@@ -11,19 +11,12 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://www.imperioticket.com/api/login', {
+      const response = await axios.post('https://www.imperioticket.com/api/loginAdmin', {
         username,
         password,
       });
 
-      // Aquí asumes que el token se envía en la respuesta y lo guardas
-      const { token } = response.data; // Asegúrate de que esto coincide con tu respuesta
-
-      // Guardar el token en el almacenamiento local
-      localStorage.setItem('token', token);
-
-      // Redirigir a la página protegida
-      navigate('/panelAdminEvento'); // Redirige a la página de administración
+      navigate('/panelAdmin'); // Redirige a la página de administración
     } catch (error) {
       alert(error.response?.data?.message || 'Error al iniciar sesión');
     }
