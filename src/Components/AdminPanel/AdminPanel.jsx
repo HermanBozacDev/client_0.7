@@ -54,7 +54,7 @@ const AdminPanel = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('superadmin');
     if (!token) {
       console.error('Token no encontrado');
       return;
