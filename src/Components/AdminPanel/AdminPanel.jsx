@@ -9,14 +9,24 @@ const AdminPanel = () => {
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
 
-  // Obtener los usuarios cuando la página activa sea "Users"
-  useEffect(() => {
-    if (activePage === 'Users') {
-      axios.get('/adminUsers')
-        .then(response => setUsers(response.data))
-        .catch(error => console.error('Error al obtener los usuarios:', error));
-    }
-  }, [activePage]);
+useEffect(() => {
+  if (activePage === 'Users') {
+    axios.get('/adminUsers')
+      .then(response => {
+        console.log('Respuesta de la API:', response.data); // Verifica aquí la respuesta
+        if (Array.isArray(response.data)) {
+          setUsers(response.data);
+        } else {
+          setUsers([]);
+          console.error('La respuesta no es un array', response.data);
+        }
+      })
+      .catch(error => {
+        setUsers([]); // Asegúrate de que users siempre sea un array
+        console.error('Error al obtener los usuarios:', error);
+      });
+  }
+}, [activePage]);
 
   // Función para manejar el formulario de registro de un nuevo usuario
   const handleInputChange = (e) => {
