@@ -1,15 +1,79 @@
-import React, { useState } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Para hacer las peticiones HTTP
 import './AdminPanel.css';
 
 const AdminPanel = () => {
   const [activePage, setActivePage] = useState('Dashboard');
+  const [users, setUsers] = useState([]);
+  const [newUser, setNewUser] = useState({ username: '', password: '' });
+
+  // Obtener los usuarios cuando la página activa sea "Users"
+  useEffect(() => {
+    if (activePage === 'Users') {
+      axios.get('/adminUsers')
+        .then(response => setUsers(response.data))
+        .catch(error => console.error('Error al obtener los usuarios:', error));
+    }
+  }, [activePage]);
+
+  // Función para manejar el formulario de registro de un nuevo usuario
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewUser({ ...newUser, [name]: value });
+  };
+
+  // Función para registrar un nuevo usuario desde el panel
+  const handleRegister = (e) => {
+    e.preventDefault();
+    axios.post('/registerAdmin', newUser)
+      .then(response => {
+        console.log('Usuario registrado:', response.data);
+        setUsers([...users, newUser]); // Añadir el nuevo usuario a la lista
+        setNewUser({ username: '', password: '' }); // Limpiar el formulario
+      })
+      .catch(error => console.error('Error al registrar el usuario:', error));
+  };
+
+  const renderUsers = () => (
+    <div>
+      <h2>Lista de Usuarios</h2>
+      <ul>
+        {users.map((user, index) => (
+          <li key={index}>{user.username}</li>
+        ))}
+      </ul>
+
+      <h2>Registrar Nuevo Usuario</h2>
+      <form onSubmit={handleRegister}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Nombre de usuario"
+          value={newUser.username}
+          onChange={handleInputChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          value={newUser.password}
+          onChange={handleInputChange}
+          required
+        />
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+  );
 
   const renderContent = () => {
     switch (activePage) {
       case 'Dashboard':
         return <h2>Dashboard</h2>;
       case 'Users':
-        return <h2>Users</h2>;
+        return renderUsers();
       case 'Settings':
         return <h2>Settings</h2>;
       default:
