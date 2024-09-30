@@ -11,9 +11,12 @@ const AdminPanel = () => {
   const [activePage, setActivePage] = useState('Dashboard');
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
+  console.log(localStorage.getItem('token'))
 
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   useEffect(() => {
+    
+
     const token = localStorage.getItem('token'); // Verificar si el token está presente
     if (!token) {
       // Si no hay token, redirigir al usuario a la página de login
