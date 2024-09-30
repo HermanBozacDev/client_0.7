@@ -124,7 +124,7 @@ const AdminPanel = () => {
   );
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('superadmin');
     navigate('/loginAdmin');
   };
 
