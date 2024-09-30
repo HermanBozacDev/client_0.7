@@ -22,7 +22,7 @@ const Login = () => {
       const { token } = response.data; // Asegúrate de que esto coincide con tu respuesta
 
       // Guardar el token en el almacenamiento local
-      localStorage.setItem('token', token);
+      localStorage.setItem('superadmin', token);
       
       console.log('[handleLogin] - Respuesta del servidor:', response.data);
       navigate('/panelAdmin'); // Redirige a la página de administración
