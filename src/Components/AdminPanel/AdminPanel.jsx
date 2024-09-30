@@ -17,7 +17,7 @@ const AdminPanel = () => {
     if (!token) {
       navigate('/loginAdmin'); // Redirigir si no hay token
     } else if (activePage === 'Users') {
-      console.log('[useEffect] Obteniendo usuarios...');
+      console.log('[useEffect] Obteniendo usuarios...',token);
       
       // Realizar la solicitud GET para obtener usuarios
       axios.get('https://www.imperioticket.com/api/adminUsers', {
