@@ -10,14 +10,18 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log('[handleLogin] - Intentando iniciar sesión con:', { username, password });
+    
     try {
       const response = await axios.post('https://www.imperioticket.com/api/loginAdmin', {
         username,
         password,
       });
-
+      
+      console.log('[handleLogin] - Respuesta del servidor:', response.data);
       navigate('/panelAdmin'); // Redirige a la página de administración
     } catch (error) {
+      console.error('[handleLogin] - Error al iniciar sesión:', error);
       alert(error.response?.data?.message || 'Error al iniciar sesión');
     }
   };
@@ -28,13 +32,19 @@ const Login = () => {
         type="text"
         placeholder="Username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => {
+          console.log('[Input] - Cambiando username a:', e.target.value);
+          setUsername(e.target.value);
+        }}
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          console.log('[Input] - Cambiando password a:', e.target.value);
+          setPassword(e.target.value);
+        }}
       />
       <button type="submit">Login</button>
     </form>
