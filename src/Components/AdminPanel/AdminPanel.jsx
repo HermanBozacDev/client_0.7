@@ -12,34 +12,39 @@ const AdminPanel = () => {
   console.log(localStorage.getItem('token'));
 
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
+  
+  // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/loginAdmin');
+      navigate('/loginAdmin'); // Redirigir si no hay token
     } else if (activePage === 'Users') {
       console.log('[useEffect] Obteniendo usuarios...');
+      
+      // Realizar la solicitud GET para obtener usuarios
       axios.get('https://www.imperioticket.com/api/adminUsers', {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Incluir el token en las cabeceras
         },
       })
-        .then(response => {
-          console.log('[useEffect] Respuesta de la API:', response.data);
-          if (Array.isArray(response.data)) {
-            console.log('[useEffect] La respuesta es un array. Usuarios encontrados:', response.data.length);
-            setUsers(response.data);
-          } else {
-            console.error('[useEffect] La respuesta no es un array:', response.data);
-            setUsers([]);
-          }
-        })
-        .catch(error => {
-          console.error('[useEffect] Error al obtener los usuarios:', error);
-          setUsers([]);
-        });
+      .then(response => {
+        console.log('[useEffect] Respuesta de la API:', response.data);
+        if (Array.isArray(response.data)) {
+          console.log('[useEffect] Usuarios encontrados:', response.data.length);
+          setUsers(response.data); // Guardar los usuarios en el estado
+        } else {
+          console.error('[useEffect] Respuesta no válida:', response.data);
+          setUsers([]); // Limpiar el estado si no es un array
+        }
+      })
+      .catch(error => {
+        console.error('[useEffect] Error al obtener usuarios:', error);
+        setUsers([]); // Limpiar el estado en caso de error
+      });
     }
   }, [activePage, navigate]);
 
+  
   // Función para manejar el formulario de registro de un nuevo usuario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
