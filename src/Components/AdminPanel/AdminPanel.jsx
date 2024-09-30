@@ -37,36 +37,41 @@ const AdminPanel = () => {
   };
 
   const renderUsers = () => (
-    <div>
-      <h2>Lista de Usuarios</h2>
+  <div>
+    <h2>Lista de Usuarios</h2>
+    {Array.isArray(users) && users.length > 0 ? (
       <ul>
         {users.map((user, index) => (
           <li key={index}>{user.username}</li>
         ))}
       </ul>
+    ) : (
+      <p>No hay usuarios disponibles.</p>
+    )}
 
-      <h2>Registrar Nuevo Usuario</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Nombre de usuario"
-          value={newUser.username}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          value={newUser.password}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit">Registrar</button>
-      </form>
-    </div>
-  );
+    <h2>Registrar Nuevo Usuario</h2>
+    <form onSubmit={handleRegister}>
+      <input
+        type="text"
+        name="username"
+        placeholder="Nombre de usuario"
+        value={newUser.username}
+        onChange={handleInputChange}
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Contraseña"
+        value={newUser.password}
+        onChange={handleInputChange}
+        required
+      />
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
+);
+
 
   const renderContent = () => {
     switch (activePage) {
