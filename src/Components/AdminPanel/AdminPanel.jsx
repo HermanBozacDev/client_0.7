@@ -40,7 +40,7 @@ const AdminPanel = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('[handleRegister] Registrando nuevo usuario:', newUser);
-    axios.post('/registerAdmin', newUser)
+    axios.post('https://www.imperioticket.com/api/registerAdmin', newUser)
       .then(response => {
         console.log('[handleRegister] Usuario registrado con éxito:', response.data);
         setUsers([...users, newUser]); // Añadir el nuevo usuario a la lista
