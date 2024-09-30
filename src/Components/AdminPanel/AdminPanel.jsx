@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Para hacer las peticiones HTTP
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import axios from 'axios';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
+  const navigate = useNavigate(); // Inicializar useNavigate
   const [activePage, setActivePage] = useState('Dashboard');
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
 
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   useEffect(() => {
-    if (activePage === 'Users') {
+    const token = localStorage.getItem('token'); // Verificar si el token está presente
+    if (!token) {
+      // Si no hay token, redirigir al usuario a la página de login
+      navigate('/loginAdmin');
+    } else if (activePage === 'Users') {
       console.log('[useEffect] Obteniendo usuarios...');
-      axios.get('https://www.imperioticket.com/api/adminUsers')
+      axios.get('https://www.imperioticket.com/api/adminUsers', {
+        headers: {
+          Authorization: `Bearer ${token}`, // Incluir el token en las cabeceras
+        },
+      })
         .then(response => {
           console.log('[useEffect] Respuesta de la API:', response.data);
           if (Array.isArray(response.data)) {
@@ -27,7 +37,7 @@ const AdminPanel = () => {
           setUsers([]); // Asegúrate de que users siempre sea un array
         });
     }
-  }, [activePage]);
+  }, [activePage, navigate]);
 
   // Función para manejar el formulario de registro de un nuevo usuario
   const handleInputChange = (e) => {
@@ -40,7 +50,12 @@ const AdminPanel = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('[handleRegister] Registrando nuevo usuario:', newUser);
-    axios.post('https://www.imperioticket.com/api/registerAdmin', newUser)
+    const token = localStorage.getItem('token');
+    axios.post('https://www.imperioticket.com/api/registerAdmin', newUser, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Incluir el token en las cabeceras
+      },
+    })
       .then(response => {
         console.log('[handleRegister] Usuario registrado con éxito:', response.data);
         setUsers([...users, newUser]); // Añadir el nuevo usuario a la lista
@@ -87,6 +102,13 @@ const AdminPanel = () => {
     </div>
   );
 
+  const handleLogout = () => {
+    // Eliminar el token del localStorage
+    localStorage.removeItem('token');
+    // Redirigir al usuario a la página de login
+    navigate('/login');
+  };
+
   const renderContent = () => {
     console.log('[renderContent] Renderizando página activa:', activePage);
     switch (activePage) {
@@ -110,11 +132,11 @@ const AdminPanel = () => {
           <li onClick={() => setActivePage('Users')}>Users</li>
           <li onClick={() => setActivePage('Settings')}>Settings</li>
         </ul>
+        <button className="logout-button" onClick={handleLogout}>Logout</button> {/* Botón para cerrar sesión */}
       </div>
       <div className="main-content">
         <div className="header">
           <h1>{activePage}</h1>
-          <button className="logout-button">Logout</button>
         </div>
         <div className="content">{renderContent()}</div>
       </div>
