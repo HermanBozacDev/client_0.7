@@ -9,7 +9,7 @@ const AdminPanel = () => {
   const [activePage, setActivePage] = useState('Dashboard');
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
-  console.log(localStorage.getItem('token'));
+  console.log(localStorage.getItem('superadmin',token));
 
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   
