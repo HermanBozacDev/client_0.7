@@ -12,8 +12,6 @@ const AdminPanel = () => {
   console.log(localStorage.getItem('superadmin'));
 
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
-  
-  // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   useEffect(() => {
     const token = localStorage.getItem('superadmin');
     if (!token) {
