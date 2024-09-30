@@ -17,6 +17,12 @@ const Login = () => {
         username,
         password,
       });
+
+      // Aquí asumes que el token se envía en la respuesta y lo guardas
+      const { token } = response.data; // Asegúrate de que esto coincide con tu respuesta
+
+      // Guardar el token en el almacenamiento local
+      localStorage.setItem('token', token);
       
       console.log('[handleLogin] - Respuesta del servidor:', response.data);
       navigate('/panelAdmin'); // Redirige a la página de administración
