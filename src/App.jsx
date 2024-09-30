@@ -17,6 +17,8 @@ import Banner from './Components/Banner/Banner';
 
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
+import LoginAdmin from './Components/LoginAdmin/LoginAdmin';
+import PanelAdmin from './Components/AdminPanel/AdminPanel';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
 
 
