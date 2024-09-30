@@ -120,7 +120,7 @@ const AdminPanel = () => {
       case 'Users':
         return renderUsers();
       case 'Settings':
-        return <h2>Settings</h2>;
+        return <Register />;
       default:
         return <h2>Dashboard</h2>;
     }
