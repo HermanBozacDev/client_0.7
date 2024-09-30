@@ -10,7 +10,7 @@ const Register = () => {
 
   // Verificar el token de admin al montar el componente
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Obtenemos el token desde localStorage
+    const token = localStorage.getItem('superadmin'); // Obtenemos el token desde localStorage
     console.log('[useEffect] Token encontrado:', token);
 
     if (!token) {
