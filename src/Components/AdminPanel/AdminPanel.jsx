@@ -11,7 +11,7 @@ const AdminPanel = () => {
   useEffect(() => {
     if (activePage === 'Users') {
       console.log('[useEffect] Obteniendo usuarios...');
-      axios.get('/adminUsers')
+      axios.get('https://www.imperioticket.com/api/adminUsers')
         .then(response => {
           console.log('[useEffect] Respuesta de la API:', response.data);
           if (Array.isArray(response.data)) {
