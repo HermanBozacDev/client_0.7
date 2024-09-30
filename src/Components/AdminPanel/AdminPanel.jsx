@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import axios from 'axios';
 import './AdminPanel.css';
+import Register from '../Components/Register/Register'; // Ajusta la ruta según la estructura de tu proyecto
+
+
 
 const AdminPanel = () => {
   const navigate = useNavigate(); // Inicializar useNavigate
