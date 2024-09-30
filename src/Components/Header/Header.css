@@ -862,6 +862,11 @@
     font-size: 5vmax;
   } 
 
+   .titulo2 {
+    
+    font-size: 4vmax;
+  }  
+
   .logoFloat {
     width: 14vmax;
     left: 2vmax;
