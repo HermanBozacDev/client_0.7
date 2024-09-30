@@ -15,7 +15,7 @@ const AdminPanel = () => {
   
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('superadmin',token);
     if (!token) {
       navigate('/loginAdmin'); // Redirigir si no hay token
     } else if (activePage === 'Users') {
