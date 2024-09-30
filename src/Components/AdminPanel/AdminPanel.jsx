@@ -11,13 +11,15 @@ const AdminPanel = () => {
   const [newUser, setNewUser] = useState({ username: '', password: '' });
   console.log(localStorage.getItem('superadmin'));
 
-  // Hook para obtener usuarios cuando se selecciona la página de 'Users'
+  // Hook para verificar el token y obtener usuarios
   useEffect(() => {
     const token = localStorage.getItem('superadmin');
+    
+    // Verificar si hay token al montar el componente
     if (!token) {
       navigate('/loginAdmin'); // Redirigir si no hay token
     } else if (activePage === 'Users') {
-      console.log('[useEffect] Obteniendo usuarios...',token);
+      console.log('[useEffect] Obteniendo usuarios...', token);
       
       // Realizar la solicitud GET para obtener usuarios
       axios.get('https://www.imperioticket.com/api/adminUsers', {
@@ -40,9 +42,8 @@ const AdminPanel = () => {
         setUsers([]); // Limpiar el estado en caso de error
       });
     }
-  }, [activePage, navigate]);
+  }, [navigate]); // Eliminar activePage de la lista de dependencias
 
-  
   // Función para manejar el formulario de registro de un nuevo usuario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
