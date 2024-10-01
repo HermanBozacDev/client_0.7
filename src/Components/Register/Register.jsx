@@ -18,12 +18,6 @@ const Register = () => {
       console.log('[useEffect] No se encontró token, redirigiendo a /loginAdmin...');
       navigate('/loginAdmin');
     } else {
-      // Opcionalmente, podrías verificar aquí la validez del token con una petición al servidor
-      axios.get('https://www.imperioticket.com/api/verifyToken', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
         .then(response => {
           console.log('[useEffect] Respuesta de verificación del token:', response.data);
           if (!response.data.valid) {
