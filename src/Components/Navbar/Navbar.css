@@ -50,7 +50,7 @@
 }
 
 .nav-item .nav-link:hover {
-    color: #FE7247; /* Color de texto al pasar el cursor */
+    color: #FE7247;
 }
 
 .nav-item .nav-link::after {

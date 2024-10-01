@@ -1,5 +1,5 @@
 /*import React from "react";
-import '../Banner/Banner.css'
+/* import '../Banner/Banner.css'
 
 
 export const Banner = () => {
@@ -19,4 +19,5 @@ export const Banner = () => {
   )
 }
 
-export default Banner  */
+export default Banner  
+ */

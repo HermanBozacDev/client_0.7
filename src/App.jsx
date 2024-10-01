@@ -13,7 +13,7 @@ import Success from './Components/Success/Success';
 import Error from './Components/Error/Error';
 import Pending from './Components/Pending/Pending';
 import Notifications from './Components/Notifications/Notifications';
-import Banner from './Components/Banner/Banner';
+// import Banner from './Components/Banner/Banner';
 
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
