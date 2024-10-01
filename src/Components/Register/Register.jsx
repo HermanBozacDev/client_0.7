@@ -46,6 +46,7 @@ const Register = () => {
       const response = await axios.post('https://www.imperioticket.com/api/register', {
         username,
         password,
+        role: "productor",
       });
 
       console.log('[handleRegister] Respuesta de la API:', response.data);
