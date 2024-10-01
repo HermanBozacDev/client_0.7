@@ -17,24 +17,6 @@ const Register = () => {
       // Si no hay token, redirigimos al usuario a la página de login
       console.log('[useEffect] No se encontró token, redirigiendo a /loginAdmin...');
       navigate('/loginAdmin');
-    } else {
-      // Hacer una petición para verificar la validez del token
-      axios.post('https://www.imperioticket.com/api/verify-token', { token })
-        .then(response => {
-          console.log('[useEffect] Respuesta de verificación del token:', response.data);
-          if (!response.data.valid) {
-            console.log('[useEffect] Token inválido, redirigiendo a /loginAdmin...');
-            localStorage.removeItem('superadmin'); // Remover el token si no es válido
-            navigate('/loginAdmin'); // Redirigir a la página de login
-          } else {
-            console.log('[useEffect] Token válido.');
-          }
-        })
-        .catch(error => {
-          console.error('[useEffect] Error al verificar el token:', error);
-          localStorage.removeItem('superadmin'); // Remover el token si hay error en la verificación
-          navigate('/loginAdmin'); // Redirigir a la página de login en caso de error
-        });
     }
   }, [navigate]);
 
