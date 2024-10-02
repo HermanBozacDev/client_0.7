@@ -8,64 +8,50 @@ import RegisterAdmin from '../RegisterAdmin/RegisterAdmin.jsx';
 const AdminPanel = () => {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('Dashboard');
-  const [adminUsers, setAdminUsers] = useState([]); // Usuarios administradores
-  const [producerUsers, setProducerUsers] = useState([]); // Usuarios productores
+  const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
   console.log(localStorage.getItem('superadmin'));
 
-  // Hook para obtener usuarios administradores cuando se selecciona la página de 'Users'
+  // Hook para obtener usuarios cuando se selecciona la página de 'Users'
   useEffect(() => {
     const token = localStorage.getItem('superadmin');
     if (!token) {
       navigate('/loginAdmin'); // Redirigir si no hay token
     } else if (activePage === 'Users') {
-      console.log('[useEffect] Obteniendo usuarios administradores...', token);
+      console.log('[useEffect] Obteniendo usuarios...',token);
+      
+      // Realizar la solicitud GET para obtener usuarios
       axios.get('https://www.imperioticket.com/api/adminUsers', {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Incluir el token en las cabeceras
         },
       })
       .then(response => {
         console.log('[useEffect] Respuesta de la API:', response.data);
         if (Array.isArray(response.data)) {
-          setAdminUsers(response.data); // Guardar los usuarios administradores
+          console.log('[useEffect] Usuarios encontrados:', response.data.length);
+          setUsers(response.data); // Guardar los usuarios en el estado
         } else {
           console.error('[useEffect] Respuesta no válida:', response.data);
-          setAdminUsers([]);
+          setUsers([]); // Limpiar el estado si no es un array
         }
       })
       .catch(error => {
         console.error('[useEffect] Error al obtener usuarios:', error);
-        setAdminUsers([]);
-      });
-    } else if (activePage === 'Settings') {
-      console.log('[useEffect] Obteniendo usuarios productores...', token);
-      axios.get('https://www.imperioticket.com/api/producerUsers', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(response => {
-        console.log('[useEffect] Respuesta de la API:', response.data);
-        if (Array.isArray(response.data)) {
-          setProducerUsers(response.data); // Guardar los usuarios productores
-        } else {
-          console.error('[useEffect] Respuesta no válida:', response.data);
-          setProducerUsers([]);
-        }
-      })
-      .catch(error => {
-        console.error('[useEffect] Error al obtener productores:', error);
-        setProducerUsers([]);
+        setUsers([]); // Limpiar el estado en caso de error
       });
     }
   }, [activePage, navigate]);
 
+  
+  // Función para manejar el formulario de registro de un nuevo usuario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(`[handleInputChange] Cambiando valor de ${name}:`, value);
     setNewUser({ ...newUser, [name]: value });
   };
 
+  // Función para registrar un nuevo usuario desde el panel
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -75,32 +61,42 @@ const AdminPanel = () => {
       return;
     }
 
+    console.log('[handleRegister] Registrando nuevo usuario:', newUser);
+
+    // Realizar la solicitud para registrar un nuevo admin user
     axios.post('https://www.imperioticket.com/api/registerAdmin', newUser, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(response => {
-      console.log('[handleRegister] Usuario registrado con éxito:', response.data);
-      setAdminUsers([...adminUsers, newUser]);
-      setNewUser({ username: '', password: '' });
-    })
-    .catch(error => {
-      console.error('[handleRegister] Error al registrar el usuario:', error);
-    });
+      .then(response => {
+        console.log('[handleRegister] Usuario registrado con éxito:', response.data);
+        // Aquí puedes recibir el token del nuevo usuario si el backend lo genera
+        const newAdminToken = response.data.token;
+
+        // (Opcional) Si necesitas guardar el token del nuevo admin en algún lugar:
+        // localStorage.setItem('newAdminToken', newAdminToken);
+
+        // Actualizar la lista de usuarios y limpiar el formulario
+        setUsers([...users, newUser]);
+        setNewUser({ username: '', password: '' }); // Limpiar el formulario
+      })
+      .catch(error => {
+        console.error('[handleRegister] Error al registrar el usuario:', error);
+      });
   };
 
   const renderUsers = () => (
     <div>
-      <h2>Lista de Usuarios Administradores</h2>
-      {Array.isArray(adminUsers) && adminUsers.length > 0 ? (
+      <h2>Lista de Usuarios</h2>
+      {Array.isArray(users) && users.length > 0 ? (
         <ul>
-          {adminUsers.map((user, index) => (
+          {users.map((user, index) => (
             <li key={index}>{user.username}</li>
           ))}
         </ul>
       ) : (
-        <p>No hay usuarios administradores disponibles.</p>
+        <p>No hay usuarios disponibles.</p>
       )}
 
       <h2>Registrar Nuevo Admin</h2>
@@ -121,23 +117,8 @@ const AdminPanel = () => {
           onChange={handleInputChange}
           required
         />
-        <button type="submit">Registrar Admin</button>
+        <button type="submit">Registrar Admin?</button>
       </form>
-    </div>
-  );
-
-  const renderProducers = () => (
-    <div>
-      <h2>Lista de Usuarios Productores</h2>
-      {Array.isArray(producerUsers) && producerUsers.length > 0 ? (
-        <ul>
-          {producerUsers.map((user, index) => (
-            <li key={index}>{user.username}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No hay usuarios productores disponibles.</p>
-      )}
     </div>
   );
 
@@ -147,13 +128,14 @@ const AdminPanel = () => {
   };
 
   const renderContent = () => {
+    console.log('[renderContent] Renderizando página activa:', activePage);
     switch (activePage) {
       case 'Dashboard':
         return <h2>Dashboard</h2>;
       case 'Users':
         return renderUsers();
       case 'Settings':
-        return renderProducers(); // Mostrar lista de productores en Settings
+        return <Register />;
       default:
         return <h2>Dashboard</h2>;
     }
