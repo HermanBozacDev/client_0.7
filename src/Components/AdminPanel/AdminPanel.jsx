@@ -7,7 +7,7 @@ import ProducerManagement from './ProducerManagement/ProducerManagement';
 import AdminManagement from './AdminManagement/AdminManagement';
 
 import VerifyToken from './VerifyToken/VerifyToken';
-
+import AdminUsers from './AdminUsers/AdminUsers';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -22,25 +22,14 @@ const AdminPanel = () => {
     const token = VerifyToken(navigate);
     if (!token) return;
     if (activePage === 'Users') {
-      console.log('[useEffect] Obteniendo usuarios administradores...', token);
-
-      axios.get('https://www.imperioticket.com/api/adminUsers', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(response => {
-        console.log('[useEffect] Respuesta de la API:', response.data);
-        if (Array.isArray(response.data)) {
-          setAdminUsers(response.data); // Guardar los usuarios administradores
-        } else {
-          console.error('[useEffect] Respuesta no válida:', response.data);
-          setAdminUsers([]); // Limpiar el estado si no es un array
-        }
-      })
-      .catch(error => {
-        console.error('[useEffect] Error al obtener usuarios administradores:', error);
-        setAdminUsers([]);
-      });
+    AdminUsers(token, setAdminUsers); // Llamar la función para obtener admins
     } else if (activePage === 'Settings') {
+    ProducerUsers(token, setProducerUsers); // Llamar la función para obtener productores
+    }
+  }, [activePage, navigate]);
+    
+    
+    else if (activePage === 'Settings') {
       console.log('[useEffect] Obteniendo usuarios productores...', token);
 
       axios.get('https://www.imperioticket.com/api/productorUsers', {
