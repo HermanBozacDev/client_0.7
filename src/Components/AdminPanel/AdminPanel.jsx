@@ -6,6 +6,8 @@ import Register from '../Register/Register.jsx';
 import RegisterAdmin from '../RegisterAdmin/RegisterAdmin.jsx';
 
 import ProductorDelete from './ProductorDelete/ProductorDelete';
+
+import AdminRegister from './AdminRegister/AdminRegister';
 import AdminDelete from './AdminDelete/AdminDelete';
 
 
@@ -72,14 +74,7 @@ const AdminPanel = () => {
     }
     
   }, [activePage, navigate]);
-
-
-
-
-
-
-
-  
+ 
   // Función para manejar el formulario de registro de un nuevo usuario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -87,44 +82,6 @@ const AdminPanel = () => {
     setNewUser({ ...newUser, [name]: value });
   };
 
-  // Función para registrar un nuevo usuario desde el panel
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    const token = localStorage.getItem('superadmin');
-    if (!token) {
-      console.error('Token no encontrado');
-      return;
-    }
-
-    console.log('[handleRegister] Registrando nuevo usuario:', newUser);
-
-    // Realizar la solicitud para registrar un nuevo admin user
-    //ACA TENGO QUE REVISAR PORQUE YO ESTOY MANDANDO ESTO ACA PERO TENGO UN COMPONENTE REGISTERADMIN QUE CREO Q NO LO LLAMO
-    axios.post('https://www.imperioticket.com/api/adminRegister', newUser, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(response => {
-        console.log('[handleRegister] Usuario registrado con éxito:', response.data);
-        // Aquí puedes recibir el token del nuevo usuario si el backend lo genera
-        const newAdminToken = response.data.token;
-
-        // (Opcional) Si necesitas guardar el token del nuevo admin en algún lugar:
-        // localStorage.setItem('newAdminToken', newAdminToken);
-
-        // Actualizar la lista de usuarios y limpiar el formulario
-        setUsers([...users, newUser]);
-        setNewUser({ username: '', password: '' }); // Limpiar el formulario
-      })
-      .catch(error => {
-        console.error('[handleRegister] Error al registrar el usuario:', error);
-      });
-  };
-  
-  
-  
   const renderUsers = () => (
     <div>
       <h2>Lista de Usuarios</h2>
@@ -137,27 +94,10 @@ const AdminPanel = () => {
       ) : (
         <p>No hay usuarios disponibles.</p>
       )}
+      
+      {/* Usamos el subcomponente AdminRegister */}
+      <AdminRegister users={users} setUsers={setUsers} />
 
-      <h2>Registrar Nuevo Admin</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Nombre de usuario"
-          value={newUser.username}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          value={newUser.password}
-          onChange={handleInputChange}
-          required
-        />
-        <button type="submit">Registrar Admin</button>
-      </form>
       {/* Usamos el subcomponente AdminDelete */}
       <AdminDelete users={users} setUsers={setUsers} />
   
