@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
 // Función para obtener usuarios productores
 const ProductorUsers = (token, setProducerUsers) => {
   console.log('[ProductorUsers] Obteniendo usuarios productores...', token);
