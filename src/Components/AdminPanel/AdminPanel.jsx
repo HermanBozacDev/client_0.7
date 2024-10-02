@@ -5,6 +5,8 @@ import './AdminPanel.css';
 import Register from '../Register/Register.jsx';
 import RegisterAdmin from '../RegisterAdmin/RegisterAdmin.jsx';
 
+import ProductorDelete from './ProductorDelete/ProductorDelete';
+
 const AdminPanel = () => {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('Dashboard');
@@ -119,28 +121,7 @@ const AdminPanel = () => {
   };
   
   
-  // Función para manejar la eliminación de un productor
-  const handleDelete = (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem('superadmin');
 
-    // Cuerpo de la solicitud con el username del productor a eliminar
-    const body = { username: deleteUsername }; // Asumiendo que deleteUsername contiene el username
-
-    axios.delete('https://www.imperioticket.com/api/productorDelete', {
-      headers: { Authorization: `Bearer ${token}` },
-      data: body, // Enviar el username en el cuerpo
-    })
-    .then(response => {
-      console.log('[handleDelete] Productor eliminado con éxito:', response.data);
-      // Actualizar la lista de productores
-      setProducerUsers(producerUsers.filter(user => user.username !== deleteUsername)); // Filtrar el usuario eliminado
-      setDeleteUsername(''); // Limpiar el campo de entrada
-    })
-    .catch(error => {
-      console.error('[handleDelete] Error al eliminar el productor:', error);
-    });
-  };
 
 
   // Función para manejar la eliminación de un administrador
@@ -231,16 +212,8 @@ const AdminPanel = () => {
       <Register />
       
       <h2>Eliminar Productor</h2>
-      <form onSubmit={handleDelete}>
-        <input
-          type="text"
-          placeholder="Nombre del productor a eliminar"
-          value={deleteUsername}
-          onChange={(e) => setDeleteUsername(e.target.value)}
-          required
-        />
-        <button type="submit">Eliminar Productor</button>
-      </form>
+      {/* Usamos el subcomponente ProductorDelete */}
+      <ProductorDelete producerUsers={producerUsers} setProducerUsers={setProducerUsers} /> 
     </div>
   );
 
