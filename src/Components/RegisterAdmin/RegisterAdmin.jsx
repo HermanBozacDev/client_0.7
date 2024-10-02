@@ -25,10 +25,10 @@ const RegisterAdmin = () => {
     console.log('[handleRegister] Intentando registrar usuario:', { username, password });
 
     try {
-      const response = await axios.post('https://www.imperioticket.com/api/register', {
+      const response = await axios.post('https://www.imperioticket.com/api/adminRegister', {
         username,
         password,
-        role: "productor",
+        role: "superadmin",
       });
 
       console.log('[handleRegister] Respuesta de la API:', response.data);
