@@ -8,6 +8,7 @@ import AdminManagement from './AdminManagement/AdminManagement';
 
 import VerifyToken from './VerifyToken/VerifyToken';
 import AdminUsers from './AdminUsers/AdminUsers';
+import ProductorUsers from './ProductorUsers/ProductorUsers';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
