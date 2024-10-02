@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate para la redirección
 import axios from 'axios';
 import '../Register/Register.css'; // Importamos los estilos
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Inicializamos useNavigate
 
   // Verificar el token de admin al montar el componente
   useEffect(() => {
@@ -16,7 +18,7 @@ const Register = () => {
       console.log('[useEffect] No se encontró token, redirigiendo a /loginAdmin...');
       navigate('/loginAdmin');
     }
-  });
+  }, [navigate]);
 
   const handleRegister = async (e) => {
     e.preventDefault();
