@@ -12,6 +12,7 @@ const AdminPanel = () => {
   const [producerUsers, setProducerUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
   const [deleteUsername, setDeleteUsername] = useState('');
+  const [deleteAdminUsername, setDeleteAdminUsername] = useState('');
   
   console.log(localStorage.getItem('superadmin'));
 
@@ -66,6 +67,12 @@ const AdminPanel = () => {
     }
     
   }, [activePage, navigate]);
+
+
+
+
+
+
 
   
   // Función para manejar el formulario de registro de un nuevo usuario
@@ -135,7 +142,27 @@ const AdminPanel = () => {
   };
 
 
+  // Función para manejar la eliminación de un administrador
+  const handleAdminDelete = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('superadmin');
 
+    const body = { username: deleteAdminUsername }; // Cuerpo con el username del admin a eliminar
+
+    axios.delete('https://www.imperioticket.com/api/adminDelete', {
+      headers: { Authorization: `Bearer ${token}` },
+      data: body, // Enviar el username en el cuerpo
+    })
+    .then(response => {
+      console.log('[handleAdminDelete] Administrador eliminado con éxito:', response.data);
+      // Actualizar la lista de usuarios
+      setUsers(users.filter(user => user.username !== deleteAdminUsername));
+      setDeleteAdminUsername(''); // Limpiar el campo de entrada
+    })
+    .catch(error => {
+      console.error('[handleAdminDelete] Error al eliminar el administrador:', error);
+    });
+  };
   
   const renderUsers = () => (
     <div>
@@ -168,7 +195,19 @@ const AdminPanel = () => {
           onChange={handleInputChange}
           required
         />
-        <button type="submit">Registrar Admin?</button>
+        <button type="submit">Registrar Admin</button>
+      </form>
+
+      <h2>Eliminar Admin</h2>
+      <form onSubmit={handleAdminDelete}>
+        <input
+          type="text"
+          placeholder="Nombre del admin a eliminar"
+          value={deleteAdminUsername}
+          onChange={(e) => setDeleteAdminUsername(e.target.value)}
+          required
+        />
+        <button type="submit">Eliminar Admin</button>
       </form>
     </div>
   );
