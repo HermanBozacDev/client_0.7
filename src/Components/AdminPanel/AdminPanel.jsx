@@ -95,7 +95,8 @@ const AdminPanel = () => {
     console.log('[handleRegister] Registrando nuevo usuario:', newUser);
 
     // Realizar la solicitud para registrar un nuevo admin user
-    axios.post('https://www.imperioticket.com/api/registerAdmin', newUser, {
+    //ACA TENGO QUE REVISAR PORQUE YO ESTOY MANDANDO ESTO ACA PERO TENGO UN COMPONENTE REGISTERADMIN QUE CREO Q NO LO LLAMO
+    axios.post('https://www.imperioticket.com/api/adminRegister', newUser, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
