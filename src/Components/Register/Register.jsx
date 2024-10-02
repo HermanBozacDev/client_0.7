@@ -6,6 +6,7 @@ import '../Register/Register.css'; // Importamos los estilos
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(''); // Estado para el mensaje de éxito
   const navigate = useNavigate(); // Inicializamos useNavigate
 
   // Verificar el token de admin al montar el componente
@@ -37,11 +38,11 @@ const Register = () => {
 
       console.log('[handleRegister] Respuesta de la API:', response.data);
 
-      // Si el registro es exitoso, guardar el token y redirigir
       if (response.status === 201) {
-        console.log('[handleRegister] Registro exitoso, guardando token y redirigiendo...');
-        localStorage.setItem('token', response.data.token); // Guardar el token en localStorage
-        window.location.href = response.data.redirectUrl; // Redirigir a la URL recibida
+        console.log('[handleRegister] Registro exitoso');
+        setMessage('Usuario registrado exitosamente'); // Mostrar mensaje de éxito
+        setUsername(''); // Limpiar el campo de username
+        setPassword(''); // Limpiar el campo de password
       } else {
         console.error('[handleRegister] Error en el registro:', response.data.message);
         alert(response.data.message);
@@ -53,23 +54,26 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleRegister} className="formHerR">
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Register</button>
-    </form>
+    <div>
+      <form onSubmit={handleRegister} className="formHerR">
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Register</button>
+      </form>
+      {message && <p>{message}</p>} {/* Mostrar mensaje de éxito */}
+    </div>
   );
 };
 
