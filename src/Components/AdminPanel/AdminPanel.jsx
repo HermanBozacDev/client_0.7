@@ -210,8 +210,6 @@ const AdminPanel = () => {
       
       <h2>Registrar Nuevo Productor</h2>
       <Register />
-      
-      <h2>Eliminar Productor</h2>
       {/* Usamos el subcomponente ProductorDelete */}
       <ProductorDelete producerUsers={producerUsers} setProducerUsers={setProducerUsers} /> 
     </div>
