@@ -9,6 +9,7 @@ const AdminPanel = () => {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('Dashboard');
   const [users, setUsers] = useState([]);
+  const [producerUsers, setProducerUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
   console.log(localStorage.getItem('superadmin'));
 
