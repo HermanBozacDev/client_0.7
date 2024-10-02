@@ -2,13 +2,13 @@ import React from 'react';
 import AdminRegister from '../AdminRegister/AdminRegister';
 import AdminDelete from '../AdminDelete/AdminDelete';
 
-const AdminManagement = ({ users, setUsers }) => {
+const AdminManagement = ({ adminUsers, setAdminUsers }) => {
   return (
     <div>
-      <h2>Lista de Usuarios</h2>
-      {Array.isArray(users) && users.length > 0 ? (
+      <h2>Lista de Usuarios Administradores</h2>
+      {Array.isArray(adminUsers) && adminUsers.length > 0 ? (
         <ul>
-          {users.map((user, index) => (
+          {adminUsers.map((user, index) => (
             <li key={index}>{user.username}</li>
           ))}
         </ul>
@@ -17,10 +17,10 @@ const AdminManagement = ({ users, setUsers }) => {
       )}
 
       {/* Usamos el subcomponente AdminRegister */}
-      <AdminRegister users={users} setUsers={setUsers} />
+      <AdminRegister users={adminUsers} setUsers={setAdminUsers} />
 
       {/* Usamos el subcomponente AdminDelete */}
-      <AdminDelete users={users} setUsers={setUsers} />
+      <AdminDelete users={adminUsers} setUsers={setAdminUsers} />
     </div>
   );
 };
