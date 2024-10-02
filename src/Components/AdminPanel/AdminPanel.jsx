@@ -146,21 +146,22 @@ const AdminPanel = () => {
 
 
   const renderProducers = () => (
-      <div>
-        <h2>Lista de Usuarios Productores</h2>
-        {Array.isArray(producerUsers) && producerUsers.length > 0 ? (
-          <ul>
-            {producerUsers.map((user, index) => (
-              <li key={index}>{user.username}</li>
-            ))}
-          </ul>
-          <Register />
-        ) : (
-          <p>No hay usuarios productores disponibles.</p>
-        )}
-      </div>
-    );
-
+    <div>
+      <h2>Lista de Usuarios Productores</h2>
+      {Array.isArray(producerUsers) && producerUsers.length > 0 ? (
+        <ul>
+          {producerUsers.map((user, index) => (
+            <li key={index}>{user.username}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No hay usuarios productores disponibles.</p>
+      )}
+      
+      <h2>Registrar Nuevo Productor</h2>
+      <Register /> {/* Instanciar el componente Register */}
+    </div>
+  );
 
 
   
