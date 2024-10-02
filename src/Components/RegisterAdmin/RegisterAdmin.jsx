@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Importar useNavigate para la 
 import axios from 'axios';
 import '../RegisterAdmin/RegisterAdmin.css'; // Importamos los estilos
 
-const Register = () => {
+const RegisterAdmin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Inicializamos useNavigate
@@ -64,9 +64,9 @@ const Register = () => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Register</button>
+      <button type="submit">Register Admin</button>
     </form>
   );
 };
 
-export default Register;
+export default RegisterAdmin;
