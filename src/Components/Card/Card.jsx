@@ -1,18 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../Button/Button'; // Importamos el componente del botón
 import '../Card/Card.css'; // Importamos los estilos
 import { Link } from 'react-router-dom';
 
 
-const Card = ({ title, price, image, id }) => {
+const Card = ({ title, price, image, image2, dia, fecha, hora, lugar, description }) => {
+  const [backgroundImage, setBackgroundImage] = useState(image); // Imagen por defecto
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Cambia la imagen si el ancho de la pantalla es menor o igual a 768px
+      if (window.innerWidth <= 768) {
+        setBackgroundImage(image2); // Imagen para móviles
+      } else {
+        setBackgroundImage(image);  // Imagen para pantallas grandes
+      }
+    };
+
+    // Ejecutamos al montar el componente
+    handleResize();
+
+    // Escuchamos cambios en el tamaño de la ventana
+    window.addEventListener('resize', handleResize);
+
+    // Limpiamos el listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [image, image2]); // Se re-ejecuta si cambian las imágenes
+
   return (
-    <div className="card">
+    <div className="card"
+    style={{
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: 'cover', // La imagen cubrirá todo el contenedor
+      backgroundPosition: 'center', // Centramos la imagen
+      backgroundRepeat: 'no-repeat', // Evitamos que la imagen se repita
+    }}
+    >
 
-      <img src={image} alt='foto Banda' className='fotoBanda' />
-      <h2 className='titulo'>{title}</h2>
-      <p className='titulo'>Precio: ${price}</p>
-      <Link to={`/CardDetail`}  state={{ image, title, price, }}  className='buy-button'>Comprar</Link>
+      
+     
+      <div className='datosContainer'>
+        <div className='renglon'>
+          <p className='dia texto'>{dia}</p>
+          <p className='fecha texto'>{fecha}</p>
+          <p className='hora texto'>{hora}</p>
+        </div>
+        <p className='lugar texto'>{lugar}</p>
+      </div>
+      <Link to={`/CardDetail`}  state={{ image, image2, title, price, dia, fecha, hora, lugar, description }}  className='buy-button'>Comprar Entrada</Link>
 
+      
+        
+      
+      
     </div>
   );
 };
