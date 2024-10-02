@@ -109,24 +109,30 @@ const AdminPanel = () => {
         console.error('[handleRegister] Error al registrar el usuario:', error);
       });
   };
-
-
+  
+  
   const handleDelete = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('superadmin');
-    axios.delete(`https://www.imperioticket.com/api/deleteProducer/${deleteUsername}`, {
+  
+    // Cuerpo de la solicitud con el ID del productor a eliminar
+    const body = { id: deleteUsername }; // Asumiendo que deleteUsername contiene el ID
+  
+    axios.delete('https://www.imperioticket.com/api/deleteProducer', {
       headers: { Authorization: `Bearer ${token}` },
+      data: body, // Enviar el ID en el cuerpo
     })
     .then(response => {
       console.log('[handleDelete] Productor eliminado con éxito:', response.data);
       // Actualizar la lista de productores
-      setProducerUsers(producerUsers.filter(user => user.username !== deleteUsername));
+      setProducerUsers(producerUsers.filter(user => user._id !== deleteUsername)); // Asegúrate de usar el campo correcto
       setDeleteUsername(''); // Limpiar el campo de entrada
     })
     .catch(error => {
       console.error('[handleDelete] Error al eliminar el productor:', error);
     });
   };
+
 
 
 
