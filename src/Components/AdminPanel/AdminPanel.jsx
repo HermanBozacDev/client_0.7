@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
 import Register from '../Register/Register.jsx';
+import RegisterAdmin from '../RegisterAdmin/RegisterAdmin.jsx';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -98,7 +99,7 @@ const AdminPanel = () => {
         <p>No hay usuarios disponibles.</p>
       )}
 
-      <h2>Registrar Nuevo Usuario</h2>
+      <h2>Registrar Nuevo Admin</h2>
       <form onSubmit={handleRegister}>
         <input
           type="text"
@@ -116,7 +117,7 @@ const AdminPanel = () => {
           onChange={handleInputChange}
           required
         />
-        <button type="submit">Registrar</button>
+        <button type="submit">Registrar Admin?</button>
       </form>
     </div>
   );
@@ -134,7 +135,7 @@ const AdminPanel = () => {
       case 'Users':
         return renderUsers();
       case 'Settings':
-        return <Register />;
+        return <RegisterAdmin />;
       default:
         return <h2>Dashboard</h2>;
     }
