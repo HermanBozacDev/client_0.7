@@ -41,7 +41,28 @@ const AdminPanel = () => {
         console.error('[useEffect] Error al obtener usuarios:', error);
         setUsers([]); // Limpiar el estado en caso de error
       });
+    }else if (activePage === 'Settings') {
+      console.log('[useEffect] Obteniendo usuarios productores...', token);
+      axios.get('https://www.imperioticket.com/api/producerUsers', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(response => {
+        console.log('[useEffect] Respuesta de la API:', response.data);
+        if (Array.isArray(response.data)) {
+          setProducerUsers(response.data); // Guardar los usuarios productores
+        } else {
+          console.error('[useEffect] Respuesta no válida:', response.data);
+          setProducerUsers([]);
+        }
+      })
+      .catch(error => {
+        console.error('[useEffect] Error al obtener productores:', error);
+        setProducerUsers([]);
+      });
     }
+    
   }, [activePage, navigate]);
 
   
