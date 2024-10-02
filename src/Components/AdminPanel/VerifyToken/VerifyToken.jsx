@@ -1,4 +1,4 @@
-const verifyToken = (navigate) => {
+const VerifyToken = (navigate) => {
   const token = localStorage.getItem('superadmin');
   if (!token) {
     navigate('/loginAdmin'); // Redirigir si no hay token
@@ -6,3 +6,4 @@ const verifyToken = (navigate) => {
   }
   return token; // Retornar el token si existe
 };
+export default VerifyToken
