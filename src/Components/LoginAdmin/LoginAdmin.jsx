@@ -13,7 +13,7 @@ const Login = () => {
     console.log('[handleLogin] - Intentando iniciar sesión con:', { username, password });
     
     try {
-      const response = await axios.post('https://www.imperioticket.com/api/loginAdmin', {
+      const response = await axios.post('https://www.imperioticket.com/api/adminLogin', {
         username,
         password,
       });
