@@ -111,28 +111,28 @@ const AdminPanel = () => {
   };
   
   
+  // Función para manejar la eliminación de un productor
   const handleDelete = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('superadmin');
-  
-    // Cuerpo de la solicitud con el ID del productor a eliminar
-    const body = { id: deleteUsername }; // Asumiendo que deleteUsername contiene el ID
-  
-    axios.delete('https://www.imperioticket.com/api/productorDelete', {
+
+    // Cuerpo de la solicitud con el username del productor a eliminar
+    const body = { username: deleteUsername }; // Asumiendo que deleteUsername contiene el username
+
+    axios.delete('https://www.imperioticket.com/api/deleteProducer', {
       headers: { Authorization: `Bearer ${token}` },
-      data: body, // Enviar el ID en el cuerpo
+      data: body, // Enviar el username en el cuerpo
     })
     .then(response => {
       console.log('[handleDelete] Productor eliminado con éxito:', response.data);
       // Actualizar la lista de productores
-      setProducerUsers(producerUsers.filter(user => user._id !== deleteUsername)); // Asegúrate de usar el campo correcto
+      setProducerUsers(producerUsers.filter(user => user.username !== deleteUsername)); // Filtrar el usuario eliminado
       setDeleteUsername(''); // Limpiar el campo de entrada
     })
     .catch(error => {
       console.error('[handleDelete] Error al eliminar el productor:', error);
     });
   };
-
 
 
 
