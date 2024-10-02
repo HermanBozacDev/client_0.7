@@ -6,6 +6,9 @@ import './AdminPanel.css';
 import ProducerManagement from './ProducerManagement/ProducerManagement';
 import AdminManagement from './AdminManagement/AdminManagement';
 
+import VerifyToken from './VerifyToken/VerifyToken';
+
+
 const AdminPanel = () => {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('Dashboard');
@@ -16,10 +19,9 @@ const AdminPanel = () => {
 
   // Hook para obtener usuarios administradores o productores según la página activa
   useEffect(() => {
-    const token = localStorage.getItem('superadmin');
-    if (!token) {
-      navigate('/loginAdmin'); // Redirigir si no hay token
-    } else if (activePage === 'Users') {
+    const token = verifyToken(navigate);
+    if (!token) return;
+    if (activePage === 'Users') {
       console.log('[useEffect] Obteniendo usuarios administradores...', token);
 
       axios.get('https://www.imperioticket.com/api/adminUsers', {
@@ -40,7 +42,7 @@ const AdminPanel = () => {
       });
     } else if (activePage === 'Settings') {
       console.log('[useEffect] Obteniendo usuarios productores...', token);
-      
+
       axios.get('https://www.imperioticket.com/api/productorUsers', {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -59,6 +61,8 @@ const AdminPanel = () => {
       });
     }
   }, [activePage, navigate]);
+     
+
 
   const handleLogout = () => {
     localStorage.removeItem('superadmin');
