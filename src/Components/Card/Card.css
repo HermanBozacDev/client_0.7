@@ -3,11 +3,7 @@
     flex-flow: column nowrap;
     justify-content: space-around;
     align-items: end;
-   /*  border: 1px solid #ccc;
-    border-radius: 8px; */
-   /*  padding: 16px; */
     margin: 16px 16px 35px 16px;
-
     width: 80vmax;
     height: 37vmax;
     text-align: center;
@@ -18,25 +14,7 @@
     
 }
 
-/* .fotoBanda {
-    width:50%;
-    border-radius: 10px;
-  
-} */
 
-/* .description {
-    color: #000000;
-    font-size: 1.5vmax;
-    font-family: "Bebas Neue", system-ui;
-    
-  
-    
-} */
-
-/* .titulo {
-    margin-bottom: 0.2vmax;
-    color: black;
-} */
 
 .datosContainer {
     margin-right: 2%;
@@ -59,12 +37,7 @@
 }
 
 
-/* .contenedorBoton {
-    background-color: #ff00d4;
-    width: 80vmax;
-    height: 10vmax;
-    
-} */
+
 
 /* Estilos del botón */
 .buy-button {
