@@ -154,7 +154,7 @@ const AdminPanel = () => {
               <li key={index}>{user.username}</li>
             ))}
           </ul>
-          <Register />;
+          <Register />
         ) : (
           <p>No hay usuarios productores disponibles.</p>
         )}
