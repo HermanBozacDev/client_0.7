@@ -23,7 +23,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log('[handleRegister] Intentando registrar usuario:', { username, password });
+    console.log('[handleRegisterProductor] Intentando registrar usuario:', { username, password });
 
     try {
       const response = await axios.post('https://www.imperioticket.com/api/register', {
@@ -36,7 +36,7 @@ const Register = () => {
         },
       });
 
-      console.log('[handleRegister] Respuesta de la API:', response.data);
+      console.log('[handleRegisterProductor] Respuesta de la API:', response.data);
 
       if (response.status === 201) {
         console.log('[handleRegister] Registro exitoso');
@@ -44,11 +44,11 @@ const Register = () => {
         setUsername(''); // Limpiar el campo de username
         setPassword(''); // Limpiar el campo de password
       } else {
-        console.error('[handleRegister] Error en el registro:', response.data.message);
+        console.error('[handleRegisterProductor] Error en el registro:', response.data.message);
         alert(response.data.message);
       }
     } catch (error) {
-      console.error('[handleRegister] Error al registrar el usuario:', error.response?.data?.message || 'Error al registrar');
+      console.error('[handleRegisterProductor] Error al registrar el usuario:', error.response?.data?.message || 'Error al registrar');
       alert(error.response?.data?.message || 'Error al registrar');
     }
   };
