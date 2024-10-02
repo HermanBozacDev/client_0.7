@@ -43,7 +43,7 @@ const AdminPanel = () => {
       });
     }else if (activePage === 'Settings') {
       console.log('[useEffect] Obteniendo usuarios productores...', token);
-      axios.get('https://www.imperioticket.com/api/producerUsers', {
+      axios.get('https://www.imperioticket.com/api/productorUsers', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
