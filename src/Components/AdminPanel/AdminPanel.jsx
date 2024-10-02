@@ -3,60 +3,46 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
 
-
-
-import ProductorRegister from './ProductorRegister/ProductorRegister';
-import ProductorDelete from './ProductorDelete/ProductorDelete';
-
-import AdminManagement from './AdminManagement/AdminManagement'; 
-
-
+import ProducerManagement from './ProducerManagement/ProducerManagement';
+import AdminManagement from './AdminManagement/AdminManagement';
 
 const AdminPanel = () => {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState('Dashboard');
-  const [users, setUsers] = useState([]);
+  const [adminUsers, setAdminUsers] = useState([]);
   const [producerUsers, setProducerUsers] = useState([]);
-  const [newUser, setNewUser] = useState({ username: '', password: '' });
-  const [deleteUsername, setDeleteUsername] = useState('');
-  const [deleteAdminUsername, setDeleteAdminUsername] = useState('');
   
   console.log(localStorage.getItem('superadmin'));
 
-  // Hook para obtener usuarios cuando se selecciona la página de 'Users'
+  // Hook para obtener usuarios administradores o productores según la página activa
   useEffect(() => {
     const token = localStorage.getItem('superadmin');
     if (!token) {
       navigate('/loginAdmin'); // Redirigir si no hay token
     } else if (activePage === 'Users') {
-      console.log('[useEffect] Obteniendo usuarios...',token);
-      
-      // Realizar la solicitud GET para obtener usuarios
+      console.log('[useEffect] Obteniendo usuarios administradores...', token);
+
       axios.get('https://www.imperioticket.com/api/adminUsers', {
-        headers: {
-          Authorization: `Bearer ${token}`, // Incluir el token en las cabeceras
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
         console.log('[useEffect] Respuesta de la API:', response.data);
         if (Array.isArray(response.data)) {
-          console.log('[useEffect] Usuarios encontrados:', response.data.length);
-          setUsers(response.data); // Guardar los usuarios en el estado
+          setAdminUsers(response.data); // Guardar los usuarios administradores
         } else {
           console.error('[useEffect] Respuesta no válida:', response.data);
-          setUsers([]); // Limpiar el estado si no es un array
+          setAdminUsers([]); // Limpiar el estado si no es un array
         }
       })
       .catch(error => {
-        console.error('[useEffect] Error al obtener usuarios:', error);
-        setUsers([]); // Limpiar el estado en caso de error
+        console.error('[useEffect] Error al obtener usuarios administradores:', error);
+        setAdminUsers([]);
       });
-    }else if (activePage === 'Settings') {
+    } else if (activePage === 'Settings') {
       console.log('[useEffect] Obteniendo usuarios productores...', token);
+      
       axios.get('https://www.imperioticket.com/api/productorUsers', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then(response => {
         console.log('[useEffect] Respuesta de la API:', response.data);
@@ -68,59 +54,27 @@ const AdminPanel = () => {
         }
       })
       .catch(error => {
-        console.error('[useEffect] Error al obtener productores:', error);
+        console.error('[useEffect] Error al obtener usuarios productores:', error);
         setProducerUsers([]);
       });
     }
-    
   }, [activePage, navigate]);
- 
-  // Función para manejar el formulario de registro de un nuevo usuario
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    console.log(`[handleInputChange] Cambiando valor de ${name}:`, value);
-    setNewUser({ ...newUser, [name]: value });
-  };
 
-
-
-
-  const renderProducers = () => (
-    <div>
-      <h2>Lista de Usuarios Productores</h2>
-      {Array.isArray(producerUsers) && producerUsers.length > 0 ? (
-        <ul>
-          {producerUsers.map((user, index) => (
-            <li key={index}>{user.username}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No hay usuarios productores disponibles.</p>
-      )}
-      
-      {/* Usamos el subcomponente ProductorRegister */}
-      <ProductorRegister />
-      {/* Usamos el subcomponente ProductorDelete */}
-      <ProductorDelete producerUsers={producerUsers} setProducerUsers={setProducerUsers} /> 
-    </div>
-  );
-
-
-  
   const handleLogout = () => {
     localStorage.removeItem('superadmin');
     navigate('/loginAdmin');
   };
 
+  // Función para renderizar el contenido según la página activa
   const renderContent = () => {
     console.log('[renderContent] Renderizando página activa:', activePage);
     switch (activePage) {
       case 'Dashboard':
         return <h2>Dashboard</h2>;
       case 'Users':
-        return <AdminManagement users={users} setUsers={setUsers} />;
+        return <AdminManagement adminUsers={adminUsers} setAdminUsers={setAdminUsers} />;
       case 'Settings':
-        return renderProducers();
+        return <ProducerManagement producerUsers={producerUsers} setProducerUsers={setProducerUsers} />;
       default:
         return <h2>Dashboard</h2>;
     }
