@@ -22,9 +22,9 @@ const AdminPanel = () => {
   useEffect(() => {
     const token = VerifyToken(navigate);
     if (!token) return;
-    if (activePage === 'Users') {
+    if (activePage === 'AdminUsers') {
     AdminUsers(token, setAdminUsers); // Llamar la función para obtener admins
-    } else if (activePage === 'Settings') {
+    } else if (activePage === 'ProductorUsers') {
     ProductorUsers(token, setProducerUsers); // Llamar la función para obtener productores
     }
   }, [activePage, navigate]);
@@ -41,9 +41,9 @@ const AdminPanel = () => {
     switch (activePage) {
       case 'Dashboard':
         return <h2>Dashboard</h2>;
-      case 'Users':
+      case 'AdminUsers':
         return <AdminManagement adminUsers={adminUsers} setAdminUsers={setAdminUsers} />;
-      case 'Settings':
+      case 'ProductorUsers':
         return <ProducerManagement producerUsers={producerUsers} setProducerUsers={setProducerUsers} />;
       default:
         return <h2>Dashboard</h2>;
@@ -56,8 +56,8 @@ const AdminPanel = () => {
         <h2>Admin Panel</h2>
         <ul>
           <li onClick={() => setActivePage('Dashboard')}>Dashboard</li>
-          <li onClick={() => setActivePage('Users')}>Users</li>
-          <li onClick={() => setActivePage('Settings')}>Settings</li>
+          <li onClick={() => setActivePage('AdminUsers')}>AdminUsers</li>
+          <li onClick={() => setActivePage('ProductorUsers')}>ProductorUsers</li>
         </ul>
         <button className="logout-button" onClick={handleLogout}>Logout</button>
       </div>
