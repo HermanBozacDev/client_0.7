@@ -70,7 +70,12 @@
 
 @media screen and (max-width:1400px) {
     
-    
+    .tituloInformacionGuia {
+        display: flex;
+        flex-flow: row nowrap;
+        font-size: 2vmax;
+        justify-content: center;
+    }
 }
 
 
@@ -126,6 +131,8 @@
     /* h2 */
     .tituloInformacionGuia {
         font-size: 3.6vmax;
+        display: flex;
+        flex-flow: column wrap;
     }
 
     .tituloInformacionAdministrativa {
@@ -155,6 +162,7 @@
     /* h2 */
     .tituloInformacionGuia {
         font-size: 4vmax;
+        
     }
 
     .tituloInformacionAdministrativa {
@@ -199,7 +207,7 @@
 
     
     .tituloInformacionAdministrativa {
-        font-size: 2,4cqw;
+        font-size: 2,4vmax;
     }
 
     
