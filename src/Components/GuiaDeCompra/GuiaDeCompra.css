@@ -34,8 +34,8 @@
 .tituloInformacionAdministrativa {
     padding-top: 2vmax;
     padding-bottom: 1.4vmax;
-    font-family: "Pragati Narrow", sans-serif;
-    font-size: 2.2vmax;
+    font-family: "Poppins", system-ui;
+    font-size: 2vmax;
     font-weight: bold;
     color: rgb(240, 230, 230);
 
@@ -47,11 +47,11 @@
 
 
 .guiaDeCompraContainer p {
-    font-family: "Pragati Narrow", sans-serif;
+    font-family: "Poppins", system-ui;
     color: rgb(240, 230, 230);
-    font-size: 1.8vmax;
+    font-size: 1.4vmax;
     text-align: center;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 
@@ -93,12 +93,10 @@
     
    
     .guiaDeCompraContainer {
-        margin-top: 8vmax;    
+        margin-top: 8vmax;   
+        width: 70%; 
     }
 
-    .guiaDeCompraContainer {
-        width: 70%;
-    }
     
     /* h2 */
     .tituloInformacionGuia {
@@ -106,7 +104,7 @@
     }
 
     .tituloInformacionAdministrativa {
-        font-size: 2.4vmax;
+        font-size: 2.2vmax;
     }
     
 }
@@ -131,12 +129,12 @@
     }
 
     .tituloInformacionAdministrativa {
-        font-size: 3vmax;
+        font-size: 2.4vmax;
     }
 
     
     .guiaDeCompraContainer p {
-        font-size: 2.8vmax;
+        font-size: 2.2vmax;
     }
 
 }
@@ -160,20 +158,53 @@
     }
 
     .tituloInformacionAdministrativa {
-        font-size: 3.6vmax;
+        font-size: 2.8vmax;
     }
 
     
     .guiaDeCompraContainer p {
-        font-size: 3.4vmax;
+        font-size: 2.6vmax;
+    }
+
+
+}
+
+/* medida especial hasta 380 */
+
+@media screen and (max-width:380px) {
+
+    
+
+    .tituloInformacionGuia a {
+        padding: 1vmax;
+    }
+    
+    .tituloInformacionAdministrativa {
+        font-size: 2.6vmax;
+    }
+
+    
+    .guiaDeCompraContainer p {
+        font-size: 2.2vmax;
     }
 
 
 }
 
 
+
 /* ++++++++++++++++++++++++ media query  | pantalla xxsm |   ++++++++++++++++++++++++++++++++++*/
 
 @media screen and (max-width:320px) {
+
+    
+    .tituloInformacionAdministrativa {
+        font-size: 2,4cqw;
+    }
+
+    
+    .guiaDeCompraContainer p {
+        font-size: 2vmax;
+    }
    
 }
