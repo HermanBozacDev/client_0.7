@@ -29,6 +29,10 @@ const Register = () => {
         username,
         password,
         role: "productor",
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('superadmin')}`,
+        },
       });
 
       console.log('[handleRegister] Respuesta de la API:', response.data);
