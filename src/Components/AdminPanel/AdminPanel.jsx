@@ -6,6 +6,9 @@ import Register from '../Register/Register.jsx';
 import RegisterAdmin from '../RegisterAdmin/RegisterAdmin.jsx';
 
 import ProductorDelete from './ProductorDelete/ProductorDelete';
+import AdminDelete from './AdminDelete/AdminDelete';
+
+
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -121,30 +124,6 @@ const AdminPanel = () => {
   };
   
   
-
-
-
-  // Función para manejar la eliminación de un administrador
-  const handleAdminDelete = (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem('superadmin');
-
-    const body = { username: deleteAdminUsername }; // Cuerpo con el username del admin a eliminar
-
-    axios.delete('https://www.imperioticket.com/api/adminDelete', {
-      headers: { Authorization: `Bearer ${token}` },
-      data: body, // Enviar el username en el cuerpo
-    })
-    .then(response => {
-      console.log('[handleAdminDelete] Administrador eliminado con éxito:', response.data);
-      // Actualizar la lista de usuarios
-      setUsers(users.filter(user => user.username !== deleteAdminUsername));
-      setDeleteAdminUsername(''); // Limpiar el campo de entrada
-    })
-    .catch(error => {
-      console.error('[handleAdminDelete] Error al eliminar el administrador:', error);
-    });
-  };
   
   const renderUsers = () => (
     <div>
@@ -179,18 +158,9 @@ const AdminPanel = () => {
         />
         <button type="submit">Registrar Admin</button>
       </form>
-
-      <h2>Eliminar Admin *NO BORRAR TODAS LAS CUENTAS DE ADMIN SIEMPER TIENE QUE QUEDAR POR LO MENOS 1</h2>
-      <form onSubmit={handleAdminDelete}>
-        <input
-          type="text"
-          placeholder="Nombre del admin a eliminar"
-          value={deleteAdminUsername}
-          onChange={(e) => setDeleteAdminUsername(e.target.value)}
-          required
-        />
-        <button type="submit">Eliminar Admin</button>
-      </form>
+      {/* Usamos el subcomponente AdminDelete */}
+      <AdminDelete users={users} setUsers={setUsers} />
+  
     </div>
   );
 
