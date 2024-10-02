@@ -15,7 +15,6 @@ import Pending from './Components/Pending/Pending';
 import Notifications from './Components/Notifications/Notifications';
 import Banner from './Components/Banner/Banner';
 
-import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 import LoginAdmin from './Components/LoginAdmin/LoginAdmin';
 import PanelAdmin from './Components/AdminPanel/AdminPanel';
@@ -41,7 +40,6 @@ function App() {
           <Route path="/Error" element={<Error />} />
           <Route path="/Pending" element={<Pending />} />
           <Route path="/Notifications" element={<Notifications />} />
-          <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
 	  <Route path="/LoginAdmin" element={<LoginAdmin />} />
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
