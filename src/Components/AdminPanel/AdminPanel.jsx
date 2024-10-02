@@ -25,7 +25,7 @@ const AdminPanel = () => {
     if (activePage === 'Users') {
     AdminUsers(token, setAdminUsers); // Llamar la función para obtener admins
     } else if (activePage === 'Settings') {
-    ProducerUsers(token, setProducerUsers); // Llamar la función para obtener productores
+    ProductorUsers(token, setProducerUsers); // Llamar la función para obtener productores
     }
   }, [activePage, navigate]);
 
