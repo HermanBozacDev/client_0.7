@@ -19,7 +19,7 @@ const AdminPanel = () => {
 
   // Hook para obtener usuarios administradores o productores según la página activa
   useEffect(() => {
-    const token = verifyToken(navigate);
+    const token = VerifyToken(navigate);
     if (!token) return;
     if (activePage === 'Users') {
       console.log('[useEffect] Obteniendo usuarios administradores...', token);
