@@ -8,8 +8,7 @@ import './AdminPanel.css';
 import ProductorRegister from './ProductorRegister/ProductorRegister';
 import ProductorDelete from './ProductorDelete/ProductorDelete';
 
-import AdminRegister from './AdminRegister/AdminRegister';
-import AdminDelete from './AdminDelete/AdminDelete';
+import AdminManagement from './AdminManagement/AdminManagement'; 
 
 
 
@@ -83,27 +82,7 @@ const AdminPanel = () => {
     setNewUser({ ...newUser, [name]: value });
   };
 
-  const renderUsers = () => (
-    <div>
-      <h2>Lista de Usuarios</h2>
-      {Array.isArray(users) && users.length > 0 ? (
-        <ul>
-          {users.map((user, index) => (
-            <li key={index}>{user.username}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No hay usuarios disponibles.</p>
-      )}
-      
-      {/* Usamos el subcomponente AdminRegister */}
-      <AdminRegister users={users} setUsers={setUsers} />
 
-      {/* Usamos el subcomponente AdminDelete */}
-      <AdminDelete users={users} setUsers={setUsers} />
-  
-    </div>
-  );
 
 
   const renderProducers = () => (
@@ -139,7 +118,7 @@ const AdminPanel = () => {
       case 'Dashboard':
         return <h2>Dashboard</h2>;
       case 'Users':
-        return renderUsers();
+        return <AdminManagement users={users} setUsers={setUsers} />;
       case 'Settings':
         return renderProducers();
       default:
