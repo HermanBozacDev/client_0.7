@@ -11,6 +11,8 @@ const AdminPanel = () => {
   const [users, setUsers] = useState([]);
   const [producerUsers, setProducerUsers] = useState([]);
   const [newUser, setNewUser] = useState({ username: '', password: '' });
+  const [deleteUsername, setDeleteUsername] = useState('');
+  
   console.log(localStorage.getItem('superadmin'));
 
   // Hook para obtener usuarios cuando se selecciona la página de 'Users'
@@ -108,6 +110,27 @@ const AdminPanel = () => {
       });
   };
 
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('superadmin');
+    axios.delete(`https://www.imperioticket.com/api/deleteProducer/${deleteUsername}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(response => {
+      console.log('[handleDelete] Productor eliminado con éxito:', response.data);
+      // Actualizar la lista de productores
+      setProducerUsers(producerUsers.filter(user => user.username !== deleteUsername));
+      setDeleteUsername(''); // Limpiar el campo de entrada
+    })
+    .catch(error => {
+      console.error('[handleDelete] Error al eliminar el productor:', error);
+    });
+  };
+
+
+
+  
   const renderUsers = () => (
     <div>
       <h2>Lista de Usuarios</h2>
@@ -159,7 +182,19 @@ const AdminPanel = () => {
       )}
       
       <h2>Registrar Nuevo Productor</h2>
-      <Register /> {/* Instanciar el componente Register */}
+      <Register />
+      
+      <h2>Eliminar Productor</h2>
+      <form onSubmit={handleDelete}>
+        <input
+          type="text"
+          placeholder="Nombre del productor a eliminar"
+          value={deleteUsername}
+          onChange={(e) => setDeleteUsername(e.target.value)}
+          required
+        />
+        <button type="submit">Eliminar Productor</button>
+      </form>
     </div>
   );
 
