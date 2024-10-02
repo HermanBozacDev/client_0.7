@@ -198,7 +198,7 @@ const AdminPanel = () => {
         <button type="submit">Registrar Admin</button>
       </form>
 
-      <h2>Eliminar Admin</h2>
+      <h2>Eliminar Admin *NO BORRAR TODAS LAS CUENTAS DE ADMIN SIEMPER TIENE QUE QUEDAR POR LO MENOS 1</h2>
       <form onSubmit={handleAdminDelete}>
         <input
           type="text"
