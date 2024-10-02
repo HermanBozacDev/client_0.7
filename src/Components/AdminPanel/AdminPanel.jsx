@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminPanel.css';
-import Register from '../Register/Register.jsx';
-import RegisterAdmin from '../RegisterAdmin/RegisterAdmin.jsx';
 
+
+
+import ProductorRegister from './ProductorRegister/ProductorRegister';
 import ProductorDelete from './ProductorDelete/ProductorDelete';
 
 import AdminRegister from './AdminRegister/AdminRegister';
@@ -118,8 +119,8 @@ const AdminPanel = () => {
         <p>No hay usuarios productores disponibles.</p>
       )}
       
-      <h2>Registrar Nuevo Productor</h2>
-      <Register />
+      {/* Usamos el subcomponente ProductorRegister */}
+      <ProductorRegister />
       {/* Usamos el subcomponente ProductorDelete */}
       <ProductorDelete producerUsers={producerUsers} setProducerUsers={setProducerUsers} /> 
     </div>
