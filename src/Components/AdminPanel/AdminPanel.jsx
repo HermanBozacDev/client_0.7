@@ -144,6 +144,26 @@ const AdminPanel = () => {
     </div>
   );
 
+
+  const renderProducers = () => (
+      <div>
+        <h2>Lista de Usuarios Productores</h2>
+        {Array.isArray(producerUsers) && producerUsers.length > 0 ? (
+          <ul>
+            {producerUsers.map((user, index) => (
+              <li key={index}>{user.username}</li>
+            ))}
+          </ul>
+          <Register />;
+        ) : (
+          <p>No hay usuarios productores disponibles.</p>
+        )}
+      </div>
+    );
+
+
+
+  
   const handleLogout = () => {
     localStorage.removeItem('superadmin');
     navigate('/loginAdmin');
@@ -157,7 +177,7 @@ const AdminPanel = () => {
       case 'Users':
         return renderUsers();
       case 'Settings':
-        return <Register />;
+        return renderProducers();
       default:
         return <h2>Dashboard</h2>;
     }
