@@ -118,7 +118,7 @@ const AdminPanel = () => {
     // Cuerpo de la solicitud con el ID del productor a eliminar
     const body = { id: deleteUsername }; // Asumiendo que deleteUsername contiene el ID
   
-    axios.delete('https://www.imperioticket.com/api/deleteProducer', {
+    axios.delete('https://www.imperioticket.com/api/productorDelete', {
       headers: { Authorization: `Bearer ${token}` },
       data: body, // Enviar el ID en el cuerpo
     })
