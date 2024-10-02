@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
 // Función para obtener usuarios administradores
 const AdminUsers = (token, setAdminUsers) => {
   console.log('[AdminUsers] Obteniendo usuarios administradores...', token);
