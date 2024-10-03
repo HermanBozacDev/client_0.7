@@ -60,9 +60,23 @@ const Navbar = () => {
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             {/* hashLink hook scroll del nav al componente */}
-                        <HashLink smooth className="nav-link" to="/">
-                            Shows
-                        </HashLink>
+                        <HashLink
+                                smooth
+                                className="nav-link"
+                                to="/#ShowsScroll"
+                                onClick={(e) => {
+                                    if (window.location.pathname === '/') {
+                                        // Si ya estás en la página principal, solo hacemos scroll suave a la sección "Shows"
+                                        e.preventDefault();
+                                        const showsSection = document.getElementById('ShowsScroll');
+                                        if (showsSection) {
+                                            showsSection.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }
+                                }}
+                            >
+                                Shows
+                            </HashLink>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to='/GuiaCompra'>Guía de Compra</Link>
