@@ -7,6 +7,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Inicializa useNavigate
+  console.log("ASD")
 
   const handleLogin = async (e) => {
     e.preventDefault();
