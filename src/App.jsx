@@ -15,8 +15,8 @@ import Error from './Components/Error/Error';
 import Notifications from './Components/Notifications/Notifications';
 import Banner from './Components/Banner/Banner';
 
-import Login from './Components/Login/Login';
-import LoginAdmin from './Components/LoginAdmin/LoginAdmin';
+
+//import LoginAdmin from './Components/LoginAdmin/LoginAdmin';
 import PanelAdmin from './Components/AdminPanel/AdminPanel';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
 
@@ -24,6 +24,11 @@ import TicketDetail from './Components/TicketDetail/TicketDetail';
 import Success from './Components/mercadopago/Success/Success';
 import Pending from './Components/mercadopago/Pending/Pending';
 import Failure from './Components/mercadopago/Failure/Failure';
+//ADMINISTRACION
+import ProductorLogin from './Components/AdminPanel/ProductorLogin/ProductorLogin';
+
+
+
 
 
 function App() {
