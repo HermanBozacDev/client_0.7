@@ -21,7 +21,6 @@ import Success from './Components/MercadoPago/Success/Success';
 import Pending from './Components/MercadoPago/Pending/Pending';
 import Failure from './Components/MercadoPago/Failure/Failure';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
-
 //ADMINISTRACION
 import AdminLogin from './Components/AdminPanel/AdminLogin/AdminLogin';
 import ProductorLogin from './Components/AdminPanel/ProductorLogin/ProductorLogin';
