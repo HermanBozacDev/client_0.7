@@ -9,9 +9,9 @@ import PanelAdminEvento from './Components/PanelAdminEvento/PanelAdminEvento';
 import AtencionCliente from './Components/AtencionCliente/AtencionCliente';
 import Footer from './Components/Footer/Footer';
 import Navbar from './Components/Navbar/Navbar';
-import Success from './Components/Success/Success';
+
 import Error from './Components/Error/Error';
-import Pending from './Components/Pending/Pending';
+
 import Notifications from './Components/Notifications/Notifications';
 import Banner from './Components/Banner/Banner';
 
@@ -19,6 +19,11 @@ import Login from './Components/Login/Login';
 import LoginAdmin from './Components/LoginAdmin/LoginAdmin';
 import PanelAdmin from './Components/AdminPanel/AdminPanel';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
+
+//MERCADOPAGO
+import Success from './Components/mercadopago/Success/Success';
+import Pending from './Components/mercadopago/Pending/Pending';
+import Failure from './Components/mercadopago/Failure/Failure';
 
 
 function App() {
