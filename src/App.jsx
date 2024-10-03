@@ -1,36 +1,32 @@
 //HERMAN EDITO ACA
 import './App.css';
 import { BrowserRouter as BrowserRouter, Routes, Route } from 'react-router-dom';
+//NAVBAR
 import GuiaDeCompra from './Components/GuiaDeCompra/GuiaDeCompra';
 import AccesoProd from './Components/AccesoProd/AccesoProd';
-import CardContainer from './Components/CardContainer/CardContainer';
-import CardDetail from './Components/CardDetail/CardDetail';
-import PanelAdminEvento from './Components/PanelAdminEvento/PanelAdminEvento';
 import AtencionCliente from './Components/AtencionCliente/AtencionCliente';
+//ESTRUCTURALES
 import Footer from './Components/Footer/Footer';
 import Navbar from './Components/Navbar/Navbar';
-
+//ETC
+import CardContainer from './Components/CardContainer/CardContainer';
+import CardDetail from './Components/CardDetail/CardDetail';
 import Error from './Components/Error/Error';
-
 import Notifications from './Components/Notifications/Notifications';
-import Banner from './Components/Banner/Banner';
-
-
-
+//PANELES DE ADMINISTRACON
 import PanelAdmin from './Components/AdminPanel/AdminPanel';
-import TicketDetail from './Components/TicketDetail/TicketDetail';
-
+import PanelAdminEvento from './Components/PanelAdminEvento/PanelAdminEvento';
 //MERCADOPAGO
 import Success from './Components/MercadoPago/Success/Success';
 import Pending from './Components/MercadoPago/Pending/Pending';
 import Failure from './Components/MercadoPago/Failure/Failure';
+import TicketDetail from './Components/TicketDetail/TicketDetail';
 
-
-
+//ADMINISTRACION
 import AdminLogin from './Components/AdminPanel/AdminLogin/AdminLogin';
 import ProductorLogin from './Components/AdminPanel/ProductorLogin/ProductorLogin';
 
-
+//import Banner from './Components/Banner/Banner';
 
 function App() {
   /* const [count, setCount] = useState(0) */
