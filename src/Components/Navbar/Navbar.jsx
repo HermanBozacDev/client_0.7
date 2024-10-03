@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import '../Navbar/Navbar.css';
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { useLocation } from "react-router-dom";
 import logo from '../../assets/ImperioticketLogocompleto.png'
 
 const Navbar = () => {
 
+    const location = useLocation();
 
     useEffect(() => {
         // Selecciona todos los enlaces dentro del navbar
@@ -35,7 +37,18 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid xpander">
-                <Link className="navbar-brand" to='/'><img src={logo} alt="logo completo" className="logoCompleto" /></Link>
+                <HashLink
+                    smooth
+                    className="navbar-brand"
+                    to="/"
+                    onClick={(e) => {
+                        if (location.pathname === '/') {
+                            e.preventDefault(); // Evita el comportamiento por defecto
+                            window.scrollTo({ top: 0, behavior: 'smooth' }); // Hace scroll al inicio de la página
+                        }
+                    }}>
+                    <img src={logo} alt="logo completo" className="logoCompleto" />
+                </HashLink>
                 <button className="navbar-toggler iconoNavbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     
                         <span className="material-symbols-outlined iconColor">
