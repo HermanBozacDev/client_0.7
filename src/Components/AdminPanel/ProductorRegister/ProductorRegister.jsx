@@ -20,7 +20,7 @@ const ProductorRegister = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://www.imperioticket.com/api/register', {
+      const response = await axios.post('https://www.imperioticket.com/api/productorRegister', {
         username,
         password,
         role: "productor", // Especificamos el rol de productor
