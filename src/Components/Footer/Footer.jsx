@@ -11,7 +11,7 @@ export const Footer = () => {
       <div className='footer-container container-fuid'>
 
         {/* footer */}
-        <div className='row contenedorFooterPrincipal '>
+        <div className='row contenedorFooterPrincipal' id="ContactoFooter">
 
           <div className='col-lg-3 col-md-12 enlacesFooter'>
             <Link className='linkFooter' to='/GuiaCompra'>Guía de Compra</Link>
