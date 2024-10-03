@@ -53,7 +53,6 @@ function App() {
           <Route path="/Pending" element={<Pending />} />
           <Route path="/Notifications" element={<Notifications />} />
           <Route path="/ProductorLogin " element={<Login />} />
-	  <Route path="/LoginAdmin" element={<LoginAdmin />} />
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
 	  <Route path="/TicketDetail" element={<TicketDetail />} />
 
