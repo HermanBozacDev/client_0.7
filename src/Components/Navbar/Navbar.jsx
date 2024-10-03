@@ -79,10 +79,24 @@ const Navbar = () => {
                             </HashLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/GuiaCompra'>Guía de Compra</Link>
+                            <Link className="nav-link" to='/GuiaCompra' onClick={(e) => {
+                                if (window.location.pathname === '/GuiaCompra') {
+                                    // Si ya estamos en la página, prevenir la redirección y hacer scroll hacia el inicio
+                                    e.preventDefault();
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }
+                            }}>Guía de Compra
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/AtencionAlCliente'>Atención al Cliente</Link>
+                            <Link className="nav-link" to='/AtencionAlCliente' onClick={(e) => {
+                                if (window.location.pathname === '/AtencionAlCliente') {
+                                    // Si ya estamos en la página, prevenir la redirección y hacer scroll hacia el inicio
+                                    e.preventDefault();
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }
+                            }}>Atención al Cliente
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link"  to="/AccesoProductores">Acceso Productores</Link>
