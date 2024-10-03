@@ -16,7 +16,7 @@ import Notifications from './Components/Notifications/Notifications';
 import Banner from './Components/Banner/Banner';
 
 
-//import LoginAdmin from './Components/LoginAdmin/LoginAdmin';
+
 import PanelAdmin from './Components/AdminPanel/AdminPanel';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
 
@@ -27,8 +27,8 @@ import Failure from './Components/MercadoPago/Failure/Failure';
 
 
 
-
-
+import AdminLogin from './Components/AdminPanel/AdminLogin/AdminLogin';
+import ProductorLogin from './Components/AdminPanel/ProductorLogin/ProductorLogin';
 
 
 
@@ -51,6 +51,8 @@ function App() {
           <Route path="/Notifications" element={<Notifications />} />
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
 	  <Route path="/TicketDetail" element={<TicketDetail />} />
+	  <Route path="/AdminLogin" element={<AdminLogin />} />
+	  <Route path="/ProductorLogin" element={<ProductorLogin />} />
 
 
 
