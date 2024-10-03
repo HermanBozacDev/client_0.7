@@ -52,7 +52,7 @@ function App() {
           <Route path="/Error" element={<Error />} />
           <Route path="/Pending" element={<Pending />} />
           <Route path="/Notifications" element={<Notifications />} />
-          <Route path="/ProductorLogin " element={<Login />} />
+          <Route path="/ProductorLogin " element={<ProductorLogin />} />
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
 	  <Route path="/TicketDetail" element={<TicketDetail />} />
 
