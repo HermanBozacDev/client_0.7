@@ -61,7 +61,7 @@ const Navbar = () => {
                             <Link className="nav-link"  to="/AccesoProductores">Acceso Productores</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/'>Contacto</Link>
+                            <HashLink smooth className="nav-link" to='#ContactoFooter'>Contacto</HashLink>
                         </li>                      
 
 			<li className="nav-item">
