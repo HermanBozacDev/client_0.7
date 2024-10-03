@@ -26,8 +26,7 @@ import Pending from './Components/MercadoPago/Pending/Pending';
 import Failure from './Components/MercadoPago/Failure/Failure';
 
 
-//ADMINISTRACION
-import ProductorLogin from './Components/AdminPanel/ProductorLogin/ProductorLogin';
+
 
 
 
@@ -46,13 +45,10 @@ function App() {
           <Route path="/AccesoProductores" element={<AccesoProd />} />
           <Route path='/CardDetail' element={<CardDetail/>} />
           <Route path="/PanelAdminEvento" element={<PanelAdminEvento />} />
-
-
           <Route path="/Success" element={<Success />} />
           <Route path="/Error" element={<Error />} />
           <Route path="/Pending" element={<Pending />} />
           <Route path="/Notifications" element={<Notifications />} />
-          <Route path="/ProductorLogin " element={<ProductorLogin />} />
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
 	  <Route path="/TicketDetail" element={<TicketDetail />} />
 
