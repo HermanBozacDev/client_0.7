@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirigir
 
-const Login = () => {
+const ProductorLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Inicializa useNavigate
@@ -47,4 +47,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ProductorLogin;
