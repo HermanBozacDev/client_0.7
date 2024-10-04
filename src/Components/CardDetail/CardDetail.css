@@ -1,7 +1,52 @@
 .DetailContainer {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     margin-top: 10vmax;
 }
+
+.bannercito {
+    background-color: white;
+    width: 100%;
+    height:20vmax;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    text-align: left;
+}
+
+.imageBannercito {
+    width: 43vmax;
+    height: 19vmax;
+    margin-top: 2vmax;
+    margin-left: 1vmax;
+}
+
+.tituloDetail {
+    color: #000000;
+    font-size:8vmax;
+    font-family: "Bebas Neue", system-ui; 
+    font-weight: bold;
+
+}
+
+.descriptionDetail {
+    color: #000000;
+    font-size: 2vmax;
+    font-family: "Bebas Neue", system-ui; 
+    font-weight: bold;
+}
+
+
+.subtitleDetail {
+    color: #000000;
+    font-size: 3vmax;
+    font-family: "Bebas Neue", system-ui; 
+    font-weight: bold; 
+}
+
+
+
+
 
 .rowDetail {
     display: flex;
@@ -11,7 +56,7 @@
     border: none;
     padding: 1vmax;
     border-radius: 15px;
-    background-color: rgba(39, 38, 38, 0.719);
+    background-color: rgba(211, 211, 211, 0.719);
 }
 
 .imagenDetailContainer {
@@ -24,6 +69,13 @@
     width: 40vmax;
     border-radius: 10px;
 }
+
+
+
+
+
+
+
 
 .textoDetail {
     display: flex;
@@ -130,4 +182,282 @@ input::placeholder {
     font-style: italic; /* Puedes ponerlo en cursiva si lo deseas */
     font-size: 14px; /* Cambia el tamaño de fuente */
     padding-left: 1vmax;
+}
+
+
+
+
+
+
+
+/* ++++++++++++++++++++++++ media query |  pantalla gigante |   ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:2220px) {
+    
+    
+}
+
+
+/* ++++++++++++++++++++++++ media query | pantalla extra extra lg  |   ++++++++++++++++++++++++++++++++++*/
+
+
+
+@media screen and (max-width:1400px) {
+    
+    
+}
+
+
+
+/* ++++++++++++++++++++++++ media query | pantalla extra lg   |  ++++++++++++++++++++++++++++++++++*/
+
+
+@media screen and (max-width:1200px) {
+    
+
+    
+}
+
+
+
+/* ++++++++++++++++++++++++ media query | pantalla lg  | ++++++++++++++++++++++++++++++++++*/
+
+
+@media screen and (max-width:992px) {
+    
+   
+    .tituloDetail {
+        color: #000000;
+        font-size:7vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    
+    }
+    
+
+    
+}
+
+/* ++++++++++++++++++++++++ media query |  pantalla movile  | ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:850px) {
+
+    
+    
+    .tituloDetail {
+       
+        font-size:5vmax;
+       
+    
+    }
+
+    .descriptionDetail {
+       
+        font-size: 2vmax;
+        
+    }
+
+ 
+    
+
+}
+
+
+
+
+
+/* ++++++++++++++++++++++++ media query |  pantalla md   | ++++++++++++++++++++++++++++++++++*/
+
+
+
+@media screen and (max-width:768px) {
+
+    .bannercito {
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height:28vmax;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        text-align: left;
+    }
+    
+    .imageBannercito {
+        width: 31vmax;
+        height: 27vmax;
+       margin-bottom: 2vmax;
+        margin-left:2.5vmax;
+    }
+
+    .textosDetail {
+        margin-left: 4%;
+    }
+
+    .tituloDetail {
+        color: #000000;
+        font-size:6.5vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    
+    }
+    
+    .descriptionDetail {
+        color: #000000;
+        font-size: 2vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    }
+    
+
+}
+
+
+
+
+/* ++++++++++++++++++++++++ media query |  pantalla sm   | ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:601px) {
+
+    .imageBannercito {
+        width: 26vmax;
+        height: 22vmax;
+       margin-bottom: 2vmax;
+        margin-left:2.5vmax;
+    }
+    
+    .tituloDetail {
+        color: #000000;
+        font-size:5.5vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    
+    }
+
+    .textosDetail {
+        margin-left: 3%;
+    }
+
+    .descriptionDetail {
+        color: #000000;
+        font-size: 2vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    }
+}
+
+/* ++++++++++++++++++++++++ media query  | pantalla movile varios |   ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:500px) {
+
+    .bannercito {
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height:23vmax;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    .imageBannercito {
+        width: 27vmax;
+        height: 18vmax;
+       margin-bottom: 2vmax;
+        margin-left:1.2vmax;
+    }
+
+    .textosDetail {
+        margin-left: 2%;
+    }
+    
+    .tituloDetail {
+        color: #000000;
+        font-size:4.2vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    
+    }
+
+    .descriptionDetail {
+        color: #000000;
+        font-size: 2.5vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    }
+}
+
+/* ++++++++++++++++++++++++ media query  | pantalla movile varios |   ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:481px) {
+
+    .imageBannercito {
+        width: 37vmax;
+        height: 19vmax;
+       margin-bottom: 2vmax;
+        margin-left:1.2vmax;
+    }
+
+    .tituloDetail {
+        color: #000000;
+        font-size:4vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    
+    }
+
+    .descriptionDetail {
+        color: #000000;
+        font-size: 2.2vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    }
+}
+   
+
+
+
+/* ++++++++++++++++++++++++ media query  | pantalla movile varios |   ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:400px) {
+
+    .imageBannercito {
+        width: 34vmax;
+        height: 19vmax;
+       margin-bottom: 2vmax;
+        margin-left:1.2vmax;
+    }
+   
+}
+
+
+/* ++++++++++++++++++++++++ media query  | pantalla xxsm |   ++++++++++++++++++++++++++++++++++*/
+
+@media screen and (max-width:321px) {
+
+    .bannercito {
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height:26vmax;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        text-align: left;
+    }
+    .imageBannercito {
+        width: 38vmax;
+        height: 25vmax;
+       margin-bottom: 2vmax;
+        margin-left:1.2vmax;
+    }
+
+    .descriptionDetail {
+        color: #000000;
+        font-size: 2.9vmax;
+        font-family: "Bebas Neue", system-ui; 
+        font-weight: bold;
+    }
+   
 }
