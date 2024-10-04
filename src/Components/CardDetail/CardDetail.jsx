@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import EntradasCount from '../EntradasCount/EntradasCount'
 import { useLocation, Navigate } from 'react-router-dom';
-import '../CardDetail/CardDetail.css'
+import '../CardDetail/CardDetail.css';
 import Button from '../Button/Button'; // Importamos el componente del botón
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios"; // Importar axios para hacer solicitudes HTTP
-import MercadoPagoHandler from '../MercadoPago/MercadoPagoHandler/MercadoPagoHandler';
+import MercadoPagoHandler from '../MercadoPagoHandler/MercadoPagoHandler';
+
+
 
 const CardDetail = () => {
+
+  // Este useEffect asegura que la página se desplace hacia arriba al cargar el componente, me encanto!!
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // El array vacío indica que se ejecutará solo al montar el componente
 
   const location = useLocation();
   // Verificación para evitar errores
@@ -16,8 +23,11 @@ const CardDetail = () => {
     return <Navigate to="/" />; // Redirige a la página principal
   }
 
-  const { image, title, price } = location.state;
-  console.log({ image, title, price })
+  const { image, image2, imageDetail, title, price, description } = location.state;
+  console.log({ image, image2, imageDetail, title, price })
+
+  const [backgroundImage, setBackgroundImage] = useState(image); // Imagen por defecto
+
 
   /* contador */
   const [count, setCount] = useState(1); // Contador de entradas
@@ -35,7 +45,8 @@ const CardDetail = () => {
           setCount(count-1)
       }
   }
-    // Cálculo del total cada vez que cambian price o count
+
+  // Cálculo del total cada vez que cambian price o count
   useEffect(() => {
     const serviceCharge = price * 0.12;
     const newTotal = (price + serviceCharge) * count;
@@ -48,6 +59,32 @@ const CardDetail = () => {
     const newSubTotal = (price + serviceCharge) * count ;
     setSubTotal(newSubTotal); // Actualizamos el total
   }, [price, count]);
+
+  // hook para controlar cambio de imagen a movile
+  useEffect(() => {
+    const handleResize = () => {
+      // Cambia la imagen si el ancho de la pantalla es menor o igual a 768px
+      if (window.innerWidth <= 768) {
+        setBackgroundImage(imageDetail); // Imagen para móviles
+      } else {
+        setBackgroundImage(image);  // Imagen para pantallas grandes
+      }
+    };
+
+    // Ejecutamos al montar el componente
+    handleResize();
+
+    // Escuchamos cambios en el tamaño de la ventana
+    window.addEventListener('resize', handleResize);
+
+    // Limpiamos el listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [image, imageDetail]); // Se re-ejecuta si cambian las imágenes
+  ///////////////////////////////////////////////////////////////////
+
+
 
   // Definimos los estados para manejar los correos electrónicos
   const [email, setEmail] = useState(''); // Almacena el primer correo
@@ -65,7 +102,8 @@ const CardDetail = () => {
     setConfirmEmail(e.target.value);
     validarCorreos(email, e.target.value);
   };
-    // Función para validar si los correos son iguales y habilitar/deshabilitar el botón
+
+  // Función para validar si los correos son iguales y habilitar/deshabilitar el botón
   const validarCorreos = (email1, email2) => {
     if (email1 === email2 && email1 !== '') {
       setIsButtonDisabled(false); // Habilitamos el botón si los correos coinciden y no están vacíos
@@ -76,13 +114,6 @@ const CardDetail = () => {
     }
   };
 
-
-
-  // Función que se ejecutará al hacer clic en "Comprar Entrada"
-  const handleSubmit = () => {
-    alert('¡Compra iniciada! Procediendo al pago...');
-    // Aquí iría la lógica para conectar con la API del servicio de pagos
-  };
 
   const handleFeedback = async () => {
     try {
@@ -99,35 +130,47 @@ const CardDetail = () => {
 
   return (
     <div className='DetailContainer'>
+      <div className='bannercito'>
+        <div className='imageBannercito'
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover', // La imagen cubrirá todo el contenedor
+            backgroundPosition: 'center', // Centramos la imagen
+            backgroundRepeat: 'no-repeat', // Evitamos que la imagen se repita
+          }}
+        >
 
-      <div className='rowDetail'>
+        </div>
+       
+        <div className='textosDetail'>
 
-      <MercadoPagoHandler
-        count={count}
-        subTotal={subTotal}
-        image={image}
-        title={title}
+          <h2 className='tituloDetail'>{title}</h2>
+          <p className='descriptionDetail'>{description}</p>
 
-      />
-        <div className='imagenDetailContainer'>
-          <img className='imgDetail' src={image} alt="" />
         </div>
 
-        <div className='descripcionContainer'>
-          <div className='textoDetail'>
-            <h2>{title}</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, similique veniam! Voluptates!</p>
-          </div>
+      </div>
+      <div className='rowDetail'>
+     
+      
+       
 
+        <div className='descripcionContainer'>
+         
+          
+          <h3 className='subtitleDetail'>Datos de tu Compra</h3> 
 
           <div className='precioCountDiv'>
 
-            <p>Precio por Entrada: ${price}</p>
-            <p>Cargos por Servicio (12%): ${price * 0.12 } </p>
+            <p>Precio por Entrada: .................. ${price}</p>
+            <p>Cargos por Servicio (12%): ............. ${price * 0.12 } </p>
+            <p>Cuantas entradas queres?</p>
             <EntradasCount count={count} increment={increment} decrement={decrement} />
-            <p>Total: ${total}</p>
+            
 
           </div>
+
+          <p>Total: ${total}</p>
 
         </div>
 
@@ -136,17 +179,17 @@ const CardDetail = () => {
       {/* Sección de formulario para ingresar y confirmar el correo */}
       <div className='emailFormContainer'>
         <h3>Ingresa el Correo Electrónico, donde quieres recibir tus entradas:</h3>
-                <form className='formContainer'>
+        <form className='formContainer'>
           {/* Campo para el primer correo */}
           <div className='formGroup'>
             <label >Ingresa tu Email:</label>
-            <input
-              className='imput'
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Ingresa tu correo electrónico"
-              required
+            <input 
+              className='imput' 
+              type="email" 
+              value={email} 
+              onChange={handleEmailChange} 
+              placeholder="Ingresa tu correo electrónico" 
+              required 
             />
           </div>
 
@@ -154,32 +197,37 @@ const CardDetail = () => {
           <div className='formGroup'>
             <label>Confirma tu Email:</label>
             <input
-              className='imput'
-              type="email"
-              value={confirmEmail}
-              onChange={handleConfirmEmailChange}
-              placeholder="Confirma tu correo electrónico"
-              required
+              className='imput' 
+              type="email" 
+              value={confirmEmail} 
+              onChange={handleConfirmEmailChange} 
+              placeholder="Confirma tu correo electrónico" 
+              required 
             />
           </div>
 
           {/* Mensaje de error si los correos no coinciden */}
           {errorMessage && <p className='errorMessage' style={{ color: 'red' }}>{errorMessage}</p>}
 
-           {/* Aquí reemplazamos el botón original por el componente Button */}
+         
 
+           
+
+          <MercadoPagoHandler 
+            count={count} 
+            subTotal={subTotal} 
+            image={imageDetail} 
+            title={title} 
+          />  
+
+    
 
         </form>
       </div>
-
-
-
-
+      
     </div>
-
+    
   )
 }
 
 export default CardDetail
-
-
