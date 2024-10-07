@@ -426,8 +426,8 @@
 
 @media screen and (max-width:400px) {
     .card {
-        width: 48vmax; /* 996px traducido a vmax */
-        height: 41vmax; /* 888px traducido a vmax */
+         width: 43vmax; /* 996px traducido a vmax */
+        height: 38vmax; /* 888px traducido a vmax */
     }
 
     .texto {
