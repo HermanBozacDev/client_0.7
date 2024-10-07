@@ -5,7 +5,7 @@ import '../CardDetail/CardDetail.css';
 import Button from '../Button/Button'; // Importamos el componente del botón
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios"; // Importar axios para hacer solicitudes HTTP
-import MercadoPagoHandler from '../MercadoPagoHandler/MercadoPagoHandler';
+import MercadoPagoHandler from '../MercadoPago/MercadoPagoHandler/MercadoPagoHandler';
 
 
 
