@@ -1,63 +1,117 @@
 .DetailContainer {
     background-color: rgb(0, 0, 0);
     margin-top: 10vmax;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   
 }
 
 .bannercito {
-    background-color: white;
-    width: 100%;
-    height:20vmax;
+    background-color: rgb(0, 0, 0);
+   /* border: #ff78ed solid 4px; */
+    width: 80%;
+    height:35vmax;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
-    text-align: left;
+   /*  text-align: center; */
+    border-radius: 10px;
+}
+
+.fotoContainer {
+    width: 50%;
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end; */
 }
 
 .imageBannercito {
-    width: 43vmax;
-    height: 19vmax;
-    margin-top: 2vmax;
-    margin-left: 1vmax;
+    width: 85%;
+    
+}
+
+
+.infoDetail {
+    background-color: #000000;
+    height:26vmax;
+    width:45%;
+    
+}
+
+.introDetail {
+    color: #FE7247;
+    font-size:2.2vmax;
+    font-family: "Bebas Neue", system-ui; 
+    font-weight: bold;
+    margin-bottom: 0;
+    letter-spacing: 1px;
 }
 
 .tituloDetail {
-    color: #000000;
-    font-size:8vmax;
+    color: #F9D853;
+    font-size:4.6vmax;
     font-family: "Bebas Neue", system-ui; 
     font-weight: bold;
+    letter-spacing: 2px;
 
 }
 
-.descriptionDetail {
-    color: #000000;
-    font-size: 2vmax;
-    font-family: "Bebas Neue", system-ui; 
+
+.detailTexto {
+    color: #ffffff;
+    font-size: 1.2vmax;
+    /* font-family: monospace;  */
     font-weight: bold;
 }
+
+.icon {
+    font-size: 1.2vmax;
+}
+
+.importante {
+    font-size: 0.8vmax;
+    color: rgb(255, 117, 117);
+}
+
+
+
+
+/* detalles de entradas */
+
+
+
+/* count */
 
 
 .subtitleDetail {
-    color: #000000;
-    font-size: 3vmax;
+    color: #F9D853;
+    font-size:3vmax;
     font-family: "Bebas Neue", system-ui; 
-    font-weight: bold; 
+    font-weight: bold;
+    margin-bottom: 2vmax;
+    letter-spacing: 2px;
 }
-
-
-
 
 
 .rowDetail {
     display: flex;
     flex-flow: row nowrap;
     width: 85%;
-    margin: 5vmax auto;
+    margin: 2vmax auto;
     border: none;
     padding: 1vmax;
     border-radius: 15px;
-    background-color: rgba(211, 211, 211, 0.719);
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+    text-align: center;
 }
+
+
+
 
 .imagenDetailContainer {
     display: flex;
@@ -76,7 +130,7 @@
 
 
 
-
+/* 
 .textoDetail {
     display: flex;
     flex-flow: column wrap;
@@ -97,8 +151,18 @@
     color: white;
     text-align: center;
 }
+ */
 
 
+/* detalles count */
+
+
+
+.descripcionContainer {
+    display: flex;
+    flex-direction: column;
+   
+}
 
 
 .precioCountDiv {
@@ -109,7 +173,41 @@
     gap: 1vmax;
 }
 
+.detallesCount {
+    color: rgb(255, 255, 255);
+    font-size: 1.5vmax;
+   
+    
+}
+
+.detallesCountTotal {
+    color: rgb(255, 255, 255);
+    padding: 1vmax 2vmax;
+    background-color: #FE7247;
+    margin-top: 3vmax;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 3vmax;
+    font-family: "Bebas Neue", system-ui;
+    letter-spacing: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* formulario mail */
+
+
+.correoTitulo {
+    text-align: center;
+}
 
 .emailFormContainer {
     display: flex;
@@ -168,10 +266,14 @@
 
 .imput {
     width:40vmax; 
-    height: 3vmax;
-    border-radius: 10px;
+    height: 4vmax;
+    border-radius: 5px;
     border: none;
-
+    outline: none;
+    padding: 0 15px ;
+    font-size: 17px;
+    /* touch-action: manipulation; */
+    /* user-select: none; */
 }
 
 
@@ -179,9 +281,9 @@
 /* Estilos para el placeholder */
 input::placeholder {
     color: #888; /* Cambia el color del placeholder */
-    font-style: italic; /* Puedes ponerlo en cursiva si lo deseas */
-    font-size: 14px; /* Cambia el tamaño de fuente */
-    padding-left: 1vmax;
+   
+    font-size: 17px; /* Cambia el tamaño de fuente */
+    padding-left: 3px;
 }
 
 
@@ -213,7 +315,57 @@ input::placeholder {
 
 
 @media screen and (max-width:1200px) {
+    .infoDetail {
+      
+        height:26vmax;
+        width:45%;
+       
+    }
     
+    .introDetail {
+       
+        font-size:2.2vmax;
+       
+    }
+    
+    .tituloDetail {
+       
+        font-size:4vmax;
+       
+    
+    }
+    .icon {
+        font-size: 1.8vmax;
+       
+        
+      
+    }
+    
+    
+    .detailTexto {
+      
+        font-size: 1.4vmax;
+       
+       
+      
+    }
+    
+    .bannercito {
+        width: 85%;
+        height:35vmax;
+       
+    }
+   
+    .tituloDetail {
+        
+        font-size:4vmax;
+        
+    
+    }
+    
+    .detallesCount {
+        font-size: 1.4vmax;
+    }
 
     
 }
@@ -225,16 +377,43 @@ input::placeholder {
 
 @media screen and (max-width:992px) {
     
-   
-    .tituloDetail {
-        color: #000000;
-        font-size:7vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    
+    .infoDetail {
+        /* background-color: #ffffff; */
+        height:26vmax;
+        width:45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
     }
     
+    .introDetail {   
+        font-size:2vmax;   
+    }
+    
+   
+    .icon {
+        font-size: 1.8vmax;     
+    }
+    
+    .detailTexto {  
+        font-size: 1.4vmax;  
+    }
+    
+    .bannercito {
+        width: 85%;
+        height:35vmax;   
+    }
 
+    .imageBannercito {
+        width: 90%;    
+    }
+   
+    .tituloDetail {    
+        font-size:4vmax;
+    }
+    
+    
     
 }
 
@@ -242,19 +421,25 @@ input::placeholder {
 
 @media screen and (max-width:850px) {
 
-    
-    
-    .tituloDetail {
-       
-        font-size:5vmax;
-       
-    
+    .bannercito {
+        width: 85%;
+        height:35vmax;   
     }
 
-    .descriptionDetail {
-       
-        font-size: 2vmax;
-        
+    .introDetail {   
+        font-size:1.7vmax;   
+    }
+
+    .tituloDetail {   
+        font-size:3.7vmax;   
+    }
+    
+    .detailTexto {  
+        font-size: 1.1vmax;  
+    }
+
+    .imageBannercito {
+        width: 93%;    
     }
 
  
@@ -272,43 +457,15 @@ input::placeholder {
 
 @media screen and (max-width:768px) {
 
-    .bannercito {
-        background-color: rgb(255, 255, 255);
-        width: 100%;
-        height:28vmax;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-        text-align: left;
-    }
-    
-    .imageBannercito {
-        width: 31vmax;
-        height: 27vmax;
-       margin-bottom: 2vmax;
-        margin-left:2.5vmax;
+   
+    .tituloDetail {   
+        font-size:3.6vmax;   
     }
 
-    .textosDetail {
-        margin-left: 4%;
+    .detailTexto {  
+        font-size: 1.1vmax;
+        margin-bottom: 1vmax;  
     }
-
-    .tituloDetail {
-        color: #000000;
-        font-size:6.5vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    
-    }
-    
-    .descriptionDetail {
-        color: #000000;
-        font-size: 2vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    }
-    
 
 }
 
@@ -319,31 +476,7 @@ input::placeholder {
 
 @media screen and (max-width:601px) {
 
-    .imageBannercito {
-        width: 26vmax;
-        height: 22vmax;
-       margin-bottom: 2vmax;
-        margin-left:2.5vmax;
-    }
     
-    .tituloDetail {
-        color: #000000;
-        font-size:5.5vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    
-    }
-
-    .textosDetail {
-        margin-left: 3%;
-    }
-
-    .descriptionDetail {
-        color: #000000;
-        font-size: 2vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    }
 }
 
 /* ++++++++++++++++++++++++ media query  | pantalla movile varios |   ++++++++++++++++++++++++++++++++++*/
@@ -351,68 +484,57 @@ input::placeholder {
 @media screen and (max-width:500px) {
 
     .bannercito {
-        background-color: rgb(255, 255, 255);
-        width: 100%;
-        height:23vmax;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-        text-align: left;
+        background-color: rgb(0, 0, 0);
+       /* border: #ff78ed solid 4px; */
+        width: 150%;
+        height:70vmax;
+       
+        flex-direction:column;
+      
+        gap: 4vmax;
+        text-align: center;
     }
 
-    .imageBannercito {
-        width: 27vmax;
-        height: 18vmax;
-       margin-bottom: 2vmax;
-        margin-left:1.2vmax;
+    .introDetail {   
+        font-size:2vmax;   
     }
 
-    .textosDetail {
-        margin-left: 2%;
+    .tituloDetail {   
+        font-size:4.5vmax;   
     }
     
-    .tituloDetail {
-        color: #000000;
-        font-size:4.2vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    
+    .detailTexto {  
+        font-size: 1.8vmax;  
     }
 
-    .descriptionDetail {
-        color: #000000;
-        font-size: 2.5vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
+    .detallesCount {
+        font-size:1.6vmax;  
     }
+
+    
+    .imput {
+        width:35vmax; 
+        height: 6vmax;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 3.5vmax;
+        
+
+    }
+
+    .correoTitulo {
+        text-align: center;
+        font-size: 2.6vmax;
+    }
+
+    
 }
 
 /* ++++++++++++++++++++++++ media query  | pantalla movile varios |   ++++++++++++++++++++++++++++++++++*/
 
 @media screen and (max-width:481px) {
 
-    .imageBannercito {
-        width: 37vmax;
-        height: 19vmax;
-       margin-bottom: 2vmax;
-        margin-left:1.2vmax;
-    }
-
-    .tituloDetail {
-        color: #000000;
-        font-size:4vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    
-    }
-
-    .descriptionDetail {
-        color: #000000;
-        font-size: 2.2vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    }
 }
    
 
@@ -421,14 +543,19 @@ input::placeholder {
 /* ++++++++++++++++++++++++ media query  | pantalla movile varios |   ++++++++++++++++++++++++++++++++++*/
 
 @media screen and (max-width:400px) {
-
-    .imageBannercito {
-        width: 34vmax;
-        height: 19vmax;
-       margin-bottom: 2vmax;
-        margin-left:1.2vmax;
+    .bannercito {
+        background-color: rgb(0, 0, 0);
+       /* border: #ff78ed solid 4px; */
+        width: 150%;
+        height:70vmax;
+       
+        flex-direction:column;
+      
+        gap: 4vmax;
+        text-align: center;
+        margin-top: 3vmax;
     }
-   
+    
 }
 
 
@@ -436,28 +563,6 @@ input::placeholder {
 
 @media screen and (max-width:321px) {
 
-    .bannercito {
-        background-color: rgb(255, 255, 255);
-        width: 100%;
-        height:26vmax;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-        text-align: left;
-    }
-    .imageBannercito {
-        width: 38vmax;
-        height: 25vmax;
-       margin-bottom: 2vmax;
-        margin-left:1.2vmax;
-    }
-
-    .descriptionDetail {
-        color: #000000;
-        font-size: 2.9vmax;
-        font-family: "Bebas Neue", system-ui; 
-        font-weight: bold;
-    }
+    
    
 }
