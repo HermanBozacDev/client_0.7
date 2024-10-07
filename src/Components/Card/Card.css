@@ -454,7 +454,7 @@
 @media screen and (max-width:361px) {
 
     .card {
-        width: 41vmax; /* 996px traducido a vmax */
+         width: 38vmax; /* 996px traducido a vmax */
         height: 34vmax; /* 888px traducido a vmax */
     }
 
