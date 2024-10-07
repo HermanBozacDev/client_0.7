@@ -5,7 +5,7 @@ import '../CardDetail/CardDetail.css';
 import Button from '../Button/Button'; // Importamos el componente del botón
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios"; // Importar axios para hacer solicitudes HTTP
-import MercadoPagoHandler from '../MercadoPago/MercadoPagoHandler/MercadoPagoHandler';
+import MercadoPagoHandler from '../MercadoPagoHandler/MercadoPagoHandler';
 
 
 
@@ -23,10 +23,10 @@ const CardDetail = () => {
     return <Navigate to="/" />; // Redirige a la página principal
   }
 
-  const { image, image2, imageDetail, title, price, description } = location.state;
-  console.log({ image, image2, imageDetail, title, price })
+  const { image, image2, imageDetail, title, price, dia, fecha, hora, lugar, description, clasificacion } = location.state;
+  console.log({ image, image2, imageDetail, title, price, dia, fecha, hora, lugar, description, clasificacion })
 
-  const [backgroundImage, setBackgroundImage] = useState(image); // Imagen por defecto
+ 
 
 
   /* contador */
@@ -60,29 +60,7 @@ const CardDetail = () => {
     setSubTotal(newSubTotal); // Actualizamos el total
   }, [price, count]);
 
-  // hook para controlar cambio de imagen a movile
-  useEffect(() => {
-    const handleResize = () => {
-      // Cambia la imagen si el ancho de la pantalla es menor o igual a 768px
-      if (window.innerWidth <= 768) {
-        setBackgroundImage(imageDetail); // Imagen para móviles
-      } else {
-        setBackgroundImage(image);  // Imagen para pantallas grandes
-      }
-    };
-
-    // Ejecutamos al montar el componente
-    handleResize();
-
-    // Escuchamos cambios en el tamaño de la ventana
-    window.addEventListener('resize', handleResize);
-
-    // Limpiamos el listener cuando el componente se desmonta
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [image, imageDetail]); // Se re-ejecuta si cambian las imágenes
-  ///////////////////////////////////////////////////////////////////
+ 
 
 
 
@@ -108,11 +86,20 @@ const CardDetail = () => {
     if (email1 === email2 && email1 !== '') {
       setIsButtonDisabled(false); // Habilitamos el botón si los correos coinciden y no están vacíos
       setErrorMessage(''); // Limpiamos cualquier mensaje de error
+    } else if (email2 === '') {
+      setIsButtonDisabled(true); // Deshabilitamos el botón si no coinciden
     } else {
       setIsButtonDisabled(true); // Deshabilitamos el botón si no coinciden
       setErrorMessage('Los correos electrónicos no coinciden.'); // Mostramos un mensaje de error
     }
   };
+
+    
+
+
+
+
+
 
 
   const handleFeedback = async () => {
@@ -128,49 +115,56 @@ const CardDetail = () => {
   };
 
 
+
+
+  
+
+
+
+
+
+
+
+
   return (
     <div className='DetailContainer'>
       <div className='bannercito'>
-        <div className='imageBannercito'
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover', // La imagen cubrirá todo el contenedor
-            backgroundPosition: 'center', // Centramos la imagen
-            backgroundRepeat: 'no-repeat', // Evitamos que la imagen se repita
-          }}
-        >
-
+        <div className='fotoContainer'>
+          
+           <img src={imageDetail} alt="" className='imageBannercito' />
         </div>
        
-        <div className='textosDetail'>
-
+        <div className='infoDetail'>
+          <p className='introDetail'>Detalles del Evento</p>
           <h2 className='tituloDetail'>{title}</h2>
-          <p className='descriptionDetail'>{description}</p>
-
+          <p className='detailTexto'><span className="material-symbols-outlined icon">calendar_month</span> Fecha:  {dia} {fecha}</p>
+          <p className='detailTexto'> <span className="material-symbols-outlined icon">where_to_vote</span> Lugar: {lugar}</p>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">alarm_on</span> Hora: {hora}</p>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">verified_user</span> Clasificación: {clasificacion}</p>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">local_atm</span> Precio: ${price}</p>
+          <p className='importante'>Importante: al precio de tu entrada se le agregará el costo por servicio de venta digital.</p>
+          
         </div>
 
       </div>
+
       <div className='rowDetail'>
-     
-      
-       
 
         <div className='descripcionContainer'>
          
           
-          <h3 className='subtitleDetail'>Datos de tu Compra</h3> 
+          <h3 className='subtitleDetail'>Cuantas Entradas Querés?</h3> 
 
           <div className='precioCountDiv'>
 
-            <p>Precio por Entrada: .................. ${price}</p>
-            <p>Cargos por Servicio (12%): ............. ${price * 0.12 } </p>
-            <p>Cuantas entradas queres?</p>
             <EntradasCount count={count} increment={increment} decrement={decrement} />
+            <p className='detallesCount'>Precio por Entrada: .................................. ${price}</p>
+            <p className='detallesCount'>Cargos por Servicio (12%): ......................... ${price * 0.12 } </p>
             
-
           </div>
 
-          <p>Total: ${total}</p>
+          {/* <p className='detallesCountTotal'>Total: ${total}</p> */}
+          <p className='detallesCountTotal'>Total: ${total.toFixed(2)}</p>
 
         </div>
 
@@ -178,7 +172,7 @@ const CardDetail = () => {
 
       {/* Sección de formulario para ingresar y confirmar el correo */}
       <div className='emailFormContainer'>
-        <h3>Ingresa el Correo Electrónico, donde quieres recibir tus entradas:</h3>
+        <h3 className='correoTitulo'>Ingresa el Correo Electrónico <br />donde quieres recibir tus entradas:</h3>
         <form className='formContainer'>
           {/* Campo para el primer correo */}
           <div className='formGroup'>
@@ -218,12 +212,21 @@ const CardDetail = () => {
             subTotal={subTotal} 
             image={imageDetail} 
             title={title} 
+            
           />  
 
-    
+        
+
+        
+
+
+
 
         </form>
       </div>
+
+
+
       
     </div>
     
