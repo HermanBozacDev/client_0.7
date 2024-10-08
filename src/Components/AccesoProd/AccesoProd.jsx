@@ -28,8 +28,8 @@ const AccesoProd = () => {
 
           <form action="#">
             <div className="mb-2">
-                <label htmlFor="email" className="form-label">Correo Electrónico</label>
-                <input type="email" className="form-control" name="email" />
+                <label htmlFor="username" className="form-label">Username</label>
+                <input type="username" className="form-control" name="username" />
             </div>
 
             <div className="mb-2">
