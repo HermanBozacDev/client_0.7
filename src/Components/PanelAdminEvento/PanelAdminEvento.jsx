@@ -79,7 +79,7 @@ const PanelAdminEvento = () => {
     // Eliminar el token del localStorage
     localStorage.removeItem('token');
     // Redirigir al usuario a la página de login
-    navigate('/login');
+    navigate('/AccesoProductores');
   };
 
   return (
