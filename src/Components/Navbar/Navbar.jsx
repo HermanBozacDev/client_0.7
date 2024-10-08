@@ -103,14 +103,7 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item">
                             <HashLink smooth className="nav-link" to='#ContactoFooter'>Contacto</HashLink>
-                        </li>                      
-
-			<li className="nav-item">
-			    <Link className="nav-link" to="/ProductorLogin">ProductorLogin</Link>
-			</li>
-	
-
-			    
+                        </li>                      		    
                     </ul>
                 </div>
             </div>
