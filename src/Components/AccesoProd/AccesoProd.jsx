@@ -2,10 +2,7 @@ import React from 'react'
 import '../AccesoProd/AccesoProd.css'
 import logoFloat from '../../assets/logoblancoSinFondo.png'
 
-
 const AccesoProd = () => {
-
-
 
   return (
     <div className='accesoProdContainer'>
