@@ -20,8 +20,8 @@ const PanelAdminEvento = () => {
     // Verificar si el token está en localStorage
     const token = localStorage.getItem('token');
     if (!token) {
-      // Si no hay token, redirigir al usuario a la página de login
-      navigate('/login');
+      // Si no hay token, redirigir al usuario a la página de AccesoProductores
+      navigate('/AccesoProductores');
     } else {
       // Si hay token, obtener eventos
       obtenerEventos();
