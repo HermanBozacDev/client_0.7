@@ -23,7 +23,6 @@ import Failure from './Components/MercadoPago/Failure/Failure';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
 //ADMINISTRACION
 import AdminLogin from './Components/AdminPanel/AdminLogin/AdminLogin';
-import ProductorLogin from './Components/AdminPanel/ProductorLogin/ProductorLogin';
 
 //import Banner from './Components/Banner/Banner';
 
@@ -47,7 +46,6 @@ function App() {
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
 	  <Route path="/TicketDetail" element={<TicketDetail />} />
 	  <Route path="/AdminLogin" element={<AdminLogin />} />
-	  <Route path="/ProductorLogin" element={<ProductorLogin />} />
 
 
 
