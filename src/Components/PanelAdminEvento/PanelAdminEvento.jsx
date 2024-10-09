@@ -23,6 +23,7 @@ const PanelAdminEvento = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImage2, setSelectedImage2] = useState(null);
   const [imagesUploaded, setImagesUploaded] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const PanelAdminEvento = () => {
       setEventos(response.data);
     } catch (error) {
       console.error('Error al obtener eventos:', error);
+      setFeedbackMessage('Error al obtener eventos. Intenta de nuevo más tarde.');
     }
   };
 
@@ -48,16 +50,31 @@ const PanelAdminEvento = () => {
     navigate('/AccesoProductores');
   };
 
-  const handleImageUpload = () => {
+  const handleImageUpload = async () => {
     if (selectedImage1 && selectedImage2) {
-      setImagesUploaded(true);
+      const formData = new FormData();
+      formData.append('image', selectedImage1);
+      formData.append('image2', selectedImage2);
+
+      try {
+        const response = await axios.post('https://www.imperioticket.com/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        setFeedbackMessage(response.data.message); // Mostrar mensaje de éxito
+        setImagesUploaded(true);
+      } catch (error) {
+        console.error('Error al subir imágenes:', error);
+        setFeedbackMessage('Error al subir imágenes. Por favor, intenta de nuevo.');
+      }
     }
   };
 
   const crearEvento = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
+
     // Agregar las imágenes al FormData
     if (selectedImage1) {
       formData.append('image', selectedImage1);
@@ -66,31 +83,17 @@ const PanelAdminEvento = () => {
       formData.append('image2', selectedImage2);
     }
 
+    // Agregar los datos del nuevo evento al FormData
+    Object.keys(nuevoEvento).forEach(key => {
+      formData.append(key, nuevoEvento[key]);
+    });
+
     try {
-      // Primero, subir las imágenes
-      const uploadResponse1 = await axios.post('https://www.imperioticket.com/api/uploadImage', formData, {
+      await axios.post('https://www.imperioticket.com/api/eventos', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      const imagePath1 = uploadResponse1.data.filePath;
-
-      // Opcionalmente, puedes subir la segunda imagen
-      const uploadResponse2 = await axios.post('https://www.imperioticket.com/api/uploadImage', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      const imagePath2 = uploadResponse2.data.filePath;
-
-      // Ahora, crea el evento, incluyendo las rutas de las imágenes subidas
-      const eventoData = {
-        ...nuevoEvento,
-        image: imagePath1,
-        image2: imagePath2 // Agrega esta línea para la segunda imagen
-      };
-
-      await axios.post('https://www.imperioticket.com/api/eventos', eventoData);
       setNuevoEvento({
         clasificacion: '',
         description: '',
@@ -108,9 +111,11 @@ const PanelAdminEvento = () => {
       setSelectedImage1(null);
       setSelectedImage2(null);
       setImagesUploaded(false);
+      setFeedbackMessage('Evento creado con éxito.');
       obtenerEventos();
     } catch (error) {
       console.error('Error al crear evento:', error);
+      setFeedbackMessage('Error al crear evento. Por favor, intenta de nuevo.');
     }
   };
 
@@ -119,6 +124,7 @@ const PanelAdminEvento = () => {
     setImagesUploaded(false);
     setSelectedImage1(null);
     setSelectedImage2(null);
+    setFeedbackMessage(''); // Limpiar mensaje de feedback
   };
 
   return (
@@ -126,6 +132,9 @@ const PanelAdminEvento = () => {
       <h1>Panel de Administración de Eventos</h1>
       <button onClick={handleLogout}>Cerrar Sesión</button>
       <h3>Esta funcionando la base de datos, puedes crear eventos, eliminarlos, modificarlos, y buscar por día, descripción o nombre. Estamos trabajando para usted.</h3>
+
+      {/* Mensaje de feedback */}
+      {feedbackMessage && <p>{feedbackMessage}</p>}
 
       {/* Selección de acción */}
       <div>
@@ -145,7 +154,6 @@ const PanelAdminEvento = () => {
               accept="image/*"
               onChange={(e) => {
                 setSelectedImage1(e.target.files[0]);
-                handleImageUpload();
               }}
             />
             {selectedImage1 && <p>Imagen 1 seleccionada: {selectedImage1.name}</p>}
@@ -156,7 +164,6 @@ const PanelAdminEvento = () => {
               accept="image/*"
               onChange={(e) => {
                 setSelectedImage2(e.target.files[0]);
-                handleImageUpload();
               }}
             />
             {selectedImage2 && <p>Imagen 2 seleccionada: {selectedImage2.name}</p>}
@@ -164,7 +171,6 @@ const PanelAdminEvento = () => {
           <button onClick={handleImageUpload} disabled={!selectedImage1 || !selectedImage2}>
             Subir Imágenes
           </button>
-          {imagesUploaded && <p>Imágenes seleccionadas correctamente. Procede a completar el formulario.</p>}
         </div>
       )}
 
