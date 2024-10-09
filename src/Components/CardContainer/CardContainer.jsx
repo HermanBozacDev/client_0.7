@@ -1,52 +1,41 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // Importa Axios directamente
 import ItemCards from '../ItemCards/ItemCards.jsx';
-import '../CardContainer/CardContainer.css'
-import React, { useEffect, useState } from 'react'
-import { getDocs, collection } from "firebase/firestore"; 
-import { db } from "../../services/firebaseConfing.js";
+import '../CardContainer/CardContainer.css';
 import Header from '../Header/Header.jsx';
 
-
-
-
 const CardContainer = () => {
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    /* const handleBuyClick = (product) => {
-        console.log(`Compraste el producto: ${product}`);
-    }; */
-    const [productos, setProductos] = useState([]);
-    console.log(productos)
-  // Función asíncrona que obtiene los productos de Firestore
+  // Función asíncrona que obtiene los productos de la API
   const fetchProductos = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, "ListaBandas"));
-      const productosArray = [];
-      querySnapshot.forEach((doc) => {
-        productosArray.push({ id: doc.id, ...doc.data() });
-      });
-      setProductos(productosArray);
+      const response = await axios.get('http://tu-api-url/productos'); // Cambia 'http://tu-api-url' por tu URL real
+      setProductos(response.data);
     } catch (error) {
-      console.error("Error fetching productos: ", error);
+      setError("Error fetching productos: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   // useEffect para cargar los productos cuando el componente se monte
   useEffect(() => {
     fetchProductos(); // Llamamos a la función async dentro de useEffect
-    
   }, []);
 
-
+  if (loading) return <div>Cargando productos...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className='CardContainer'>
-     
       <Header />
       <div id='ShowsScroll'></div>
-      
-      <ItemCards productos={productos}/>
-
+      <ItemCards productos={productos} />
     </div>
-  )
-}
- 
-export default CardContainer
+  );
+};
+
+export default CardContainer;
