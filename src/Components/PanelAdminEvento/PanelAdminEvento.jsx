@@ -94,7 +94,7 @@ const PanelAdminEvento = () => {
 
     // Validar que todas las propiedades requeridas estén llenas
     const { title, clasificacion, description, dia, fecha, hora, image, image2, lugar, price, quantity } = nuevoEvento;
-    if (!title || !clasificacion || !description || !dia || !fecha || !hora || !image || !image2 || !lugar || !price || !quantity) {
+    if (!title || !clasificacion || !description || !dia || !fecha || !hora || !image || !image2 || !imageDetail || !lugar || !price || !quantity) {
       setFeedbackMessage('Por favor, completa todos los campos requeridos.');
       return;
     }
