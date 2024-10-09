@@ -56,8 +56,8 @@ const PanelAdminEvento = () => {
 
   const crearEvento = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
 
+    const formData = new FormData();
     // Agregar las imágenes al FormData
     if (selectedImage1) {
       formData.append('image', selectedImage1);
@@ -66,17 +66,31 @@ const PanelAdminEvento = () => {
       formData.append('image2', selectedImage2);
     }
 
-    // Agregar los datos del nuevo evento al FormData
-    Object.keys(nuevoEvento).forEach(key => {
-      formData.append(key, nuevoEvento[key]);
-    });
-
     try {
-      await axios.post('https://www.imperioticket.com/api/eventos', formData, {
+      // Primero, subir las imágenes
+      const uploadResponse1 = await axios.post('https://www.imperioticket.com/api/uploadImage', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
+      const imagePath1 = uploadResponse1.data.filePath;
+
+      // Opcionalmente, puedes subir la segunda imagen
+      const uploadResponse2 = await axios.post('https://www.imperioticket.com/api/uploadImage', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      const imagePath2 = uploadResponse2.data.filePath;
+
+      // Ahora, crea el evento, incluyendo las rutas de las imágenes subidas
+      const eventoData = {
+        ...nuevoEvento,
+        image: imagePath1,
+        image2: imagePath2 // Agrega esta línea para la segunda imagen
+      };
+
+      await axios.post('https://www.imperioticket.com/api/eventos', eventoData);
       setNuevoEvento({
         clasificacion: '',
         description: '',
