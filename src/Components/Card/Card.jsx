@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../Card/Card.css'; // Importamos los estilos
 import { Link } from 'react-router-dom';
 
+const baseURL = 'https://imperioticket.com/';
 const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, lugar, description, clasificacion }) => {
-  const [backgroundImage, setBackgroundImage] = useState(image); // Imagen por defecto
+  const [backgroundImage, setBackgroundImage] = useState(`${baseURL}${image}`); // Imagen por defecto
 
   useEffect(() => {
     const handleResize = () => {
