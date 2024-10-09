@@ -6,7 +6,7 @@ import '../PanelAdminEvento/PanelAdminEvento.css';
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
   const [eventos, setEventos] = useState([]);
-  const [nuevoEvento, setNuevoEvento] = useState({
+  const [evento, setEvento] = useState({
     clasificacion: '',
     description: '',
     dia: '',
@@ -25,6 +25,7 @@ const PanelAdminEvento = () => {
   const [imagesUploaded, setImagesUploaded] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
+  const [eventoSeleccionado, setEventoSeleccionado] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -62,7 +63,7 @@ const PanelAdminEvento = () => {
             'Content-Type': 'multipart/form-data'
           }
         });
-        setFeedbackMessage(response.data.message); // Mostrar mensaje de éxito
+        setFeedbackMessage(response.data.message);
         setImagesUploaded(true);
       } catch (error) {
         console.error('Error al subir imágenes:', error);
@@ -71,30 +72,30 @@ const PanelAdminEvento = () => {
     }
   };
 
-  const crearEvento = async (e) => {
+  const manejarSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
 
-    // Agregar las imágenes al FormData
-    if (selectedImage1) {
-      formData.append('image', selectedImage1);
-    }
-    if (selectedImage2) {
-      formData.append('image2', selectedImage2);
-    }
+    if (selectedImage1) formData.append('image', selectedImage1);
+    if (selectedImage2) formData.append('image2', selectedImage2);
 
-    // Agregar los datos del nuevo evento al FormData
-    Object.keys(nuevoEvento).forEach(key => {
-      formData.append(key, nuevoEvento[key]);
+    Object.keys(evento).forEach(key => {
+      formData.append(key, evento[key]);
     });
 
     try {
-      await axios.post('https://www.imperioticket.com/api/eventos', formData, {
+      const url = eventoSeleccionado ? 
+        `https://www.imperioticket.com/api/eventos/${eventoSeleccionado._id}` : 
+        'https://www.imperioticket.com/api/eventos';
+      const method = eventoSeleccionado ? 'put' : 'post';
+      
+      await axios[method](url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      setNuevoEvento({
+      
+      setEvento({
         clasificacion: '',
         description: '',
         dia: '',
@@ -111,27 +112,31 @@ const PanelAdminEvento = () => {
       setSelectedImage1(null);
       setSelectedImage2(null);
       setImagesUploaded(false);
-      setFeedbackMessage('Evento creado con éxito.');
+      setFeedbackMessage('Evento ' + (eventoSeleccionado ? 'editado' : 'creado') + ' con éxito.');
       obtenerEventos();
     } catch (error) {
-      console.error('Error al crear evento:', error);
-      setFeedbackMessage('Error al crear evento. Por favor, intenta de nuevo.');
+      console.error('Error al crear o editar evento:', error);
+      setFeedbackMessage('Error al ' + (eventoSeleccionado ? 'editar' : 'crear') + ' evento. Por favor, intenta de nuevo.');
     }
   };
 
-  const handleActionSelect = (action) => {
+  const handleActionSelect = (action, evento = null) => {
     setAccionSeleccionada(action);
+    setEventoSeleccionado(evento);
+    if (evento) {
+      setEvento(evento); // Cargar datos en el formulario si se edita
+    }
     setImagesUploaded(false);
     setSelectedImage1(null);
     setSelectedImage2(null);
-    setFeedbackMessage(''); // Limpiar mensaje de feedback
+    setFeedbackMessage('');
   };
 
   return (
     <div className="panelAdminEvento">
       <h1>Panel de Administración de Eventos</h1>
       <button onClick={handleLogout}>Cerrar Sesión</button>
-      <h3>Esta funcionando la base de datos, puedes crear eventos, eliminarlos, modificarlos, y buscar por día, descripción o nombre. Estamos trabajando para usted.</h3>
+      <h3>Administración de eventos</h3>
 
       {/* Mensaje de feedback */}
       {feedbackMessage && <p>{feedbackMessage}</p>}
@@ -140,21 +145,19 @@ const PanelAdminEvento = () => {
       <div>
         <h2>Seleccionar Acción</h2>
         <button onClick={() => handleActionSelect('crear')}>Crear Evento</button>
-        <button onClick={() => handleActionSelect('eliminar')}>Eliminar Evento</button>
         <button onClick={() => handleActionSelect('editar')}>Editar Evento</button>
+        <button onClick={() => handleActionSelect('eliminar')}>Eliminar Evento</button>
       </div>
 
-      {/* Formulario para subir imágenes si la acción es crear */}
-      {accionSeleccionada === 'crear' && !imagesUploaded && (
+      {/* Formulario para subir imágenes y crear/editar evento */}
+      {accionSeleccionada && (
         <div>
-          <h2>Subir Imágenes</h2>
+          <h2>{eventoSeleccionado ? 'Editar Evento' : 'Crear Nuevo Evento'}</h2>
           <div>
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => {
-                setSelectedImage1(e.target.files[0]);
-              }}
+              onChange={(e) => setSelectedImage1(e.target.files[0])}
             />
             {selectedImage1 && <p>Imagen 1 seleccionada: {selectedImage1.name}</p>}
           </div>
@@ -162,107 +165,89 @@ const PanelAdminEvento = () => {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => {
-                setSelectedImage2(e.target.files[0]);
-              }}
+              onChange={(e) => setSelectedImage2(e.target.files[0])}
             />
             {selectedImage2 && <p>Imagen 2 seleccionada: {selectedImage2.name}</p>}
           </div>
           <button onClick={handleImageUpload} disabled={!selectedImage1 || !selectedImage2}>
             Subir Imágenes
           </button>
-        </div>
-      )}
 
-      {/* Formulario para crear un nuevo evento */}
-      {accionSeleccionada === 'crear' && imagesUploaded && (
-        <form onSubmit={crearEvento}>
-          <h2>Crear Nuevo Evento</h2>
-          <input
-            type="text"
-            placeholder="Título"
-            value={nuevoEvento.title}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, title: e.target.value })}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Clasificación"
-            value={nuevoEvento.clasificacion}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, clasificacion: e.target.value })}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Descripción"
-            value={nuevoEvento.description}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, description: e.target.value })}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Día"
-            value={nuevoEvento.dia}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, dia: e.target.value })}
-            required
-          />
-          <input
-            type="date"
-            placeholder="Fecha"
-            value={nuevoEvento.fecha}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, fecha: e.target.value })}
-            required
-          />
-          <input
-            type="time"
-            placeholder="Hora"
-            value={nuevoEvento.hora}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, hora: e.target.value })}
-            required
-          />
-          <input
-            type="text"
-            placeholder="URL de Imagen Detallada (Opcional)"
-            value={nuevoEvento.imageDetail}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, imageDetail: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Lugar"
-            value={nuevoEvento.lugar}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, lugar: e.target.value })}
-            required
-          />
-          <input
-            type="number"
-            placeholder="Precio"
-            value={nuevoEvento.price}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, price: e.target.value })}
-            required
-          />
-          <input
-            type="number"
-            placeholder="Cantidad de Entradas"
-            value={nuevoEvento.quantity}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, quantity: e.target.value })}
-            required
-          />
-          <button type="submit">Crear Evento</button>
-        </form>
-      )}
-
-      {/* Aquí puedes agregar lógica para eliminar o editar eventos */}
-      {accionSeleccionada === 'eliminar' && (
-        <div>
-          <h2>Eliminar Evento</h2>
-          {/* Lógica para eliminar evento aquí */}
-        </div>
-      )}
-      
-      {accionSeleccionada === 'editar' && (
-        <div>
-          <h2>Editar Evento</h2>
-          {/* Lógica para editar evento aquí */}
+          {/* Formulario de creación/edición de evento */}
+          {imagesUploaded && (
+            <form onSubmit={manejarSubmit}>
+              <input
+                type="text"
+                placeholder="Título"
+                value={evento.title}
+                onChange={(e) => setEvento({ ...evento, title: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Clasificación"
+                value={evento.clasificacion}
+                onChange={(e) => setEvento({ ...evento, clasificacion: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Descripción"
+                value={evento.description}
+                onChange={(e) => setEvento({ ...evento, description: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Día"
+                value={evento.dia}
+                onChange={(e) => setEvento({ ...evento, dia: e.target.value })}
+                required
+              />
+              <input
+                type="date"
+                placeholder="Fecha"
+                value={evento.fecha}
+                onChange={(e) => setEvento({ ...evento, fecha: e.target.value })}
+                required
+              />
+              <input
+                type="time"
+                placeholder="Hora"
+                value={evento.hora}
+                onChange={(e) => setEvento({ ...evento, hora: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="URL de Imagen Detallada (Opcional)"
+                value={evento.imageDetail}
+                onChange={(e) => setEvento({ ...evento, imageDetail: e.target.value })}
+              />
+              <input
+                type="text"
+                placeholder="Lugar"
+                value={evento.lugar}
+                onChange={(e) => setEvento({ ...evento, lugar: e.target.value })}
+                required
+              />
+              <input
+                type="number"
+                placeholder="Precio"
+                value={evento.price}
+                onChange={(e) => setEvento({ ...evento, price: e.target.value })}
+                required
+              />
+              <input
+                type="number"
+                placeholder="Cantidad de Entradas"
+                value={evento.quantity}
+                onChange={(e) => setEvento({ ...evento, quantity: e.target.value })}
+                required
+              />
+              <button type="submit">{eventoSeleccionado ? 'Actualizar Evento' : 'Crear Evento'}</button>
+            </form>
+          )}
         </div>
       )}
     </div>
