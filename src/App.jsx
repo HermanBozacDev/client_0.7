@@ -12,6 +12,7 @@ import CardContainer from './Components/CardContainer/CardContainer';
 import CardDetail from './Components/CardDetail/CardDetail';
 import Error from './Components/Error/Error';
 import Notifications from './Components/Notifications/Notifications';
+import VentaFinal from './Components/VentaFinal/VentaFinal';
 //PANELES DE ADMINISTRACON
 import PanelAdmin from './Components/AdminPanel/AdminPanel';
 import PanelAdminEvento from './Components/PanelAdminEvento/PanelAdminEvento';
@@ -45,6 +46,7 @@ function App() {
 	  <Route path="/PanelAdmin" element={<PanelAdmin />} />
 	  <Route path="/TicketDetail" element={<TicketDetail />} />
 	  <Route path="/AdminLogin" element={<AdminLogin />} />
+	  <Route path="/VentaFinal" element={<VentaFinal />} />		
 
 
 
