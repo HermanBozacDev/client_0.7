@@ -12,7 +12,7 @@ const CardContainer = () => {
   // Función asíncrona que obtiene los productos de la API
   const fetchProductos = async () => {
     try {
-      const response = await axios.get('http://tu-api-url/productos'); // Cambia 'http://tu-api-url' por tu URL real
+      const response = await axios.get('https://www.imperioticket.com/api/eventos'); // Cambia 'http://tu-api-url' por tu URL real
       setProductos(response.data);
     } catch (error) {
       setError("Error fetching productos: " + error.message);
