@@ -64,7 +64,7 @@ const CardDetail = () => {
 
 
 
-  // Definimos los estados para manejar los correos electrónicos
+ // Definimos los estados para manejar los correos electrónicos
   const [email, setEmail] = useState(''); // Almacena el primer correo
   const [confirmEmail, setConfirmEmail] = useState(''); // Almacena la confirmación del correo
   const [isButtonDisabled, setIsButtonDisabled] = useState(true); // Controla si el botón "Comprar Entrada" está habilitado o no
