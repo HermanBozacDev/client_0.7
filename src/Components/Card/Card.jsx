@@ -10,7 +10,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchEventos = async () => {
       try {
-        const response = await axios.get('http://www.imperioticket.com/api/eventos'); // Cambia 'http://tu-api-url' por tu URL real
+        const response = await axios.get('https://www.imperioticket.com/api/eventos'); // Cambia 'http://tu-api-url' por tu URL real
         setEventos(response.data);
       } catch (err) {
         setError(err.message);
