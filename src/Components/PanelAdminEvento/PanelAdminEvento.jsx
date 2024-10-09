@@ -177,12 +177,24 @@ const PanelAdminEvento = () => {
             />
             {selectedImage2 && <p>Imagen 2 seleccionada: {selectedImage2.name}</p>}
           </div>
-          <button onClick={handleImageUpload} disabled={!selectedImage1 || !selectedImage2}>
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setSelectedImageDetail(e.target.files[0]); // Manejar imagen detallada
+              }}
+            />
+            {selectedImageDetail && <p>Imagen Detallada seleccionada: {selectedImageDetail.name}</p>}
+          </div>
+          <button
+            onClick={handleImageUpload}
+            disabled={!selectedImage1 || !selectedImage2 || !selectedImageDetail}
+          >
             Subir Imágenes
           </button>
         </div>
       )}
-
       {/* Formulario para crear un nuevo evento */}
       {accionSeleccionada === 'crear' && imagesUploaded && (
         <form onSubmit={crearEvento}>
