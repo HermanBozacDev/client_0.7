@@ -57,7 +57,7 @@ const PanelAdminEvento = () => {
       formData.append('image2', selectedImage2);
 
       try {
-        const response = await axios.post('https://www.imperioticket.com/api/upload', formData, {
+        const response = await axios.post('https://www.imperioticket.com/api/uploadImage', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
