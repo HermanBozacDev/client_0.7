@@ -203,17 +203,28 @@ const CardDetail = () => {
           {/* Mensaje de error si los correos no coinciden */}
           {errorMessage && <p className='errorMessage' style={{ color: 'red' }}>{errorMessage}</p>}
 
-         
+             {/* Link habilitado o deshabilitado según la validación de los correos */}
+              {isButtonDisabled ? (
+                // Si los correos no coinciden, mostramos un mensaje o botón inactivo
+                <button disabled className='buttonDisabled'>
+                  Comprar Entrada
+                </button>
+              ) : (
+                // Si los correos coinciden, mostramos el link activo
+                <Link 
+                  to={`/VentaFinal`}  
+                  state={{ imageDetail, title, price, count, total, email }}  
+                  className='botonComprarEntrada'
+                  >
+                  Comprar Entrada
+                </Link>
+              )}
+
+
+          <p className='importante2'>Una vez confirmado el email se activará el botón de pagar.</p> 
 
            
-
-          <MercadoPagoHandler 
-            count={count} 
-            subTotal={subTotal} 
-            image={imageDetail} 
-            title={title} 
-            
-          />  
+  
 
         
 
