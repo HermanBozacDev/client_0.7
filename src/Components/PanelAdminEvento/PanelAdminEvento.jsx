@@ -125,25 +125,32 @@ const PanelAdminEvento = () => {
       {accionSeleccionada === 'crear' && !imagesUploaded && (
         <div>
           <h2>Subir Imágenes</h2>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              setSelectedImage1(e.target.files[0]);
-              handleImageUpload();
-            }}
-          />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              setSelectedImage2(e.target.files[0]);
-              handleImageUpload();
-            }}
-          />
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setSelectedImage1(e.target.files[0]);
+                handleImageUpload();
+              }}
+            />
+            {selectedImage1 && <p>Imagen 1 seleccionada: {selectedImage1.name}</p>}
+          </div>
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setSelectedImage2(e.target.files[0]);
+                handleImageUpload();
+              }}
+            />
+            {selectedImage2 && <p>Imagen 2 seleccionada: {selectedImage2.name}</p>}
+          </div>
           <button onClick={handleImageUpload} disabled={!selectedImage1 || !selectedImage2}>
             Subir Imágenes
           </button>
+          {imagesUploaded && <p>Imágenes seleccionadas correctamente. Procede a completar el formulario.</p>}
         </div>
       )}
 
