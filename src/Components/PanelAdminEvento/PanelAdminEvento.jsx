@@ -78,9 +78,9 @@ const PanelAdminEvento = () => {
 
   const crearEvento = async (e) => {
     e.preventDefault();
+    // Verificar los datos que se van a enviar
+    console.log('Creando evento con datos:', JSON.stringify(nuevoEvento, null, 2));
 
-    // Agregar un console.log para verificar los datos que se van a enviar
-    console.log('Creando evento con datos:', nuevoEvento);
 
     // Validar que todas las propiedades requeridas estén llenas
     const { title, clasificacion, description, dia, fecha, hora, image, image2, lugar, price, quantity } = nuevoEvento;
