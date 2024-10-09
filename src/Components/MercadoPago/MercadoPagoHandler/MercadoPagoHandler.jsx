@@ -76,7 +76,7 @@ const MercadoPagoHandler = ({ onPreferenceIdReady, count, subTotal, image, title
 
   return (
     <div>
-      <button onClick={handleBuy}>Comprar</button>
+      <button onClick={handleBuy} className='botonComprarEntrada2'>Pagar</button>
       <div id="wallet_container"></div>
       {preferenceId && (<Wallet initialization={{ preferenceId: preferenceId }} />
       )}
