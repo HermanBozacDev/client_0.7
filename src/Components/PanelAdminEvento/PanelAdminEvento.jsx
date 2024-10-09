@@ -49,6 +49,11 @@ const PanelAdminEvento = () => {
     }
   };
 
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/AccesoProductores');
+  };
   const crearEvento = async (e) => {
     e.preventDefault(); // Prevenir la recarga de la página
     const formData = new FormData();
