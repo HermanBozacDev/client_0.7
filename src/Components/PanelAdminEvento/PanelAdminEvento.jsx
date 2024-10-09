@@ -23,7 +23,7 @@ const PanelAdminEvento = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImage2, setSelectedImage2] = useState(null);
   const [imagesUploaded, setImagesUploaded] = useState(false);
-  const [accionSeleccionada, setAccionSeleccionada] = useState(''); // Estado para la acción seleccionada
+  const [accionSeleccionada, setAccionSeleccionada] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -55,7 +55,7 @@ const PanelAdminEvento = () => {
   };
 
   const crearEvento = async (e) => {
-    e.preventDefault(); // Prevenir la recarga de la página
+    e.preventDefault();
     const formData = new FormData();
 
     // Agregar las imágenes al FormData
@@ -93,7 +93,7 @@ const PanelAdminEvento = () => {
       });
       setSelectedImage1(null);
       setSelectedImage2(null);
-      setImagesUploaded(false); // Reiniciar el estado de imágenes subidas
+      setImagesUploaded(false);
       obtenerEventos();
     } catch (error) {
       console.error('Error al crear evento:', error);
@@ -102,7 +102,7 @@ const PanelAdminEvento = () => {
 
   const handleActionSelect = (action) => {
     setAccionSeleccionada(action);
-    setImagesUploaded(false); // Reiniciar la carga de imágenes
+    setImagesUploaded(false);
     setSelectedImage1(null);
     setSelectedImage2(null);
   };
@@ -163,36 +163,42 @@ const PanelAdminEvento = () => {
             placeholder="Título"
             value={nuevoEvento.title}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, title: e.target.value })}
+            required
           />
           <input
             type="text"
             placeholder="Clasificación"
             value={nuevoEvento.clasificacion}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, clasificacion: e.target.value })}
+            required
           />
           <input
             type="text"
             placeholder="Descripción"
             value={nuevoEvento.description}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, description: e.target.value })}
+            required
           />
           <input
             type="text"
             placeholder="Día"
             value={nuevoEvento.dia}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, dia: e.target.value })}
+            required
           />
           <input
             type="date"
             placeholder="Fecha"
             value={nuevoEvento.fecha}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, fecha: e.target.value })}
+            required
           />
           <input
             type="time"
             placeholder="Hora"
             value={nuevoEvento.hora}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, hora: e.target.value })}
+            required
           />
           <input
             type="text"
@@ -205,18 +211,21 @@ const PanelAdminEvento = () => {
             placeholder="Lugar"
             value={nuevoEvento.lugar}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, lugar: e.target.value })}
+            required
           />
           <input
             type="number"
             placeholder="Precio"
             value={nuevoEvento.price}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, price: e.target.value })}
+            required
           />
           <input
             type="number"
             placeholder="Cantidad de Entradas"
             value={nuevoEvento.quantity}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, quantity: e.target.value })}
+            required
           />
           <button type="submit">Crear Evento</button>
         </form>
