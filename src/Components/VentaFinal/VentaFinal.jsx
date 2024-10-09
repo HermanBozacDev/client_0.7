@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../VentaFinal/VentaFinal.css'
 import { useLocation, Navigate } from 'react-router-dom';
-import MercadoPagoHandler from '../MercadoPagoHandler/MercadoPagoHandler';
+import MercadoPagoHandler from '../MercadoPago/MercadoPagoHandler/MercadoPagoHandler';
 
 
 
