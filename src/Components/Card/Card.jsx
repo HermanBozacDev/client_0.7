@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../axiosConfig'; // Asegúrate de que la ruta sea correcta
+import axios from 'axios'; // Importa Axios directamente
 import Card from '../Card/Card'; // Importa el componente Card
 
 const EventList = () => {
@@ -10,7 +10,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchEventos = async () => {
       try {
-        const response = await axios.get('/eventos'); // Asegúrate de que la ruta sea correcta
+        const response = await axios.get('http://tu-api-url/eventos'); // Cambia 'http://tu-api-url' por tu URL real
         setEventos(response.data);
       } catch (err) {
         setError(err.message);
