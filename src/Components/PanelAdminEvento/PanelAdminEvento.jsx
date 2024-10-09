@@ -20,15 +20,12 @@ const PanelAdminEvento = () => {
     quantity: '',
     title: ''
   });
-  const [editarEvento, setEditarEvento] = useState(null);
-  
-  // Estado para la imagen seleccionada
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([null, null]); // Array para las dos imágenes seleccionadas
 
   // Estados para las búsquedas
   const [busquedaNombre, setBusquedaNombre] = useState('');
   const [busquedaFecha, setBusquedaFecha] = useState('');
-  const [busquedaDescripcion, setBusquedaDescripcion] = useState('');
+  const [busquedaDescripcion, setBusquedaDescripcion] = useState([]);
   const [busquedaResultado, setBusquedaResultado] = useState([]);
 
   useEffect(() => {
@@ -49,24 +46,26 @@ const PanelAdminEvento = () => {
     }
   };
 
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/AccesoProductores');
   };
+
   const crearEvento = async (e) => {
     e.preventDefault(); // Prevenir la recarga de la página
     const formData = new FormData();
-    
+
     // Agregar los datos del nuevo evento al FormData
     Object.keys(nuevoEvento).forEach(key => {
       formData.append(key, nuevoEvento[key]);
     });
 
-    // Si se ha seleccionado una imagen, agregarla al FormData
-    if (selectedImage) {
-      formData.append('image', selectedImage);
-    }
+    // Si se han seleccionado imágenes, agregarlas al FormData
+    selectedImages.forEach((image, index) => {
+      if (image) {
+        formData.append(`image${index + 1}`, image); // Agregar imágenes como image1 y image2
+      }
+    });
 
     try {
       await axios.post('https://www.imperioticket.com/api/eventos', formData, {
@@ -88,23 +87,18 @@ const PanelAdminEvento = () => {
         quantity: '',
         title: ''
       });
-      setSelectedImage(null); // Limpiar la imagen seleccionada
+      setSelectedImages([null, null]); // Limpiar las imágenes seleccionadas
       obtenerEventos();
     } catch (error) {
       console.error('Error al crear evento:', error);
     }
   };
 
-  // ... (el resto de tu código permanece igual)
-
   return (
     <div className="panelAdminEvento">
       <h1>Panel de Administración de Eventos</h1>
       <button onClick={handleLogout}>Cerrar Sesión</button>
       <h3>Esta funcionando la base de datos, puedes crear eventos, eliminarlos, modificarlos, y buscar por día, descripción o nombre. Estamos trabajando para usted.</h3>
-      
-      {/* Sección de Búsqueda */}
-      {/* ... (código de búsqueda) */}
 
       {/* Crear Nuevo Evento */}
       <h2>Crear Nuevo Evento</h2>
@@ -145,11 +139,29 @@ const PanelAdminEvento = () => {
           value={nuevoEvento.hora}
           onChange={(e) => setNuevoEvento({ ...nuevoEvento, hora: e.target.value })}
         />
+
+        {/* Primer campo para imagen */}
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setSelectedImage(e.target.files[0])} // Capturar el archivo seleccionado
+          onChange={(e) => {
+            const file = e.target.files[0];
+            setSelectedImages(prev => [file, prev[1]]); // Guardar la primera imagen
+          }}
         />
+        {selectedImages[0] && <p>Imagen 1 seleccionada: {selectedImages[0].name}</p>}
+
+        {/* Segundo campo para imagen */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            setSelectedImages(prev => [prev[0], file]); // Guardar la segunda imagen
+          }}
+        />
+        {selectedImages[1] && <p>Imagen 2 seleccionada: {selectedImages[1].name}</p>}
+
         <input
           type="text"
           placeholder="URL de Segunda Imagen (Opcional)"
@@ -182,15 +194,6 @@ const PanelAdminEvento = () => {
         />
         <button type="submit">Crear Evento</button>
       </form>
-
-      {/* Resultados de la Búsqueda */}
-      {/* ... (código para mostrar resultados) */}
-
-      {/* Eventos Existentes */}
-      {/* ... (código para mostrar eventos existentes) */}
-
-      {/* Editar Evento */}
-      {/* ... (código para editar eventos) */}
     </div>
   );
 };
