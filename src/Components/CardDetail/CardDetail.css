@@ -5,6 +5,7 @@
     flex-direction: column;
    align-items: center;
    overflow: hidden;
+   
 }
 
 .bannercito {
@@ -77,6 +78,12 @@
     color: rgb(255, 117, 117);
 }
 
+.importante2 {
+    font-size: 0.8vmax;
+    color: rgb(255, 117, 117);
+    margin-top: 2vmax;
+}
+
 
 
 
@@ -130,31 +137,7 @@
 
 
 
-/* 
-.textoDetail {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 2vmax;
-    margin-top: 1vmax;
-}
 
-.textoDetail h2 {
-    font-size: 3vmax;
-    color: white;
-    margin-bottom: 1vmax;
-}
-
-.textoDetail p {
-    font-size: 1.4vmax;
-    color: white;
-    text-align: center;
-}
- */
-
-
-/* detalles count */
 
 
 
@@ -182,12 +165,11 @@
 
 .detallesCountTotal {
     color: rgb(255, 255, 255);
-    padding: 1vmax 2vmax;
     background-color: #FE7247;
     margin-top: 3vmax;
     border-radius: 10px;
     text-align: center;
-    font-size: 3vmax;
+    font-size: 2.3vmax;
     font-family: "Bebas Neue", system-ui;
     letter-spacing: 2px;
 }
@@ -284,6 +266,49 @@ input::placeholder {
    
     font-size: 17px; /* Cambia el tamaño de fuente */
     padding-left: 3px;
+}
+
+/* botones finales */
+
+.botonComprarEntrada {
+    margin-top: 3vmax;
+    background-color: #fc5623;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    width:18vmax;
+}
+
+.botonComprarEntrada:hover {
+    background-color: #FE7247;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    width:18vmax;
+}
+
+
+
+
+/* boton no habilitado */
+
+.buttonDisabled {
+    margin-top: 3vmax;
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width:18vmax;
 }
 
 
@@ -467,6 +492,32 @@ input::placeholder {
         margin-bottom: 1vmax;  
     }
 
+    
+.botonComprarEntrada {
+    width:26vmax;
+}
+
+.botonComprarEntrada:hover {
+    width:26vmax;
+}
+
+
+
+
+/* boton no habilitado */
+
+.buttonDisabled {
+    margin-top: 3vmax;
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width:24vmax;
+}
+
 }
 
 
@@ -475,7 +526,10 @@ input::placeholder {
 /* ++++++++++++++++++++++++ media query |  pantalla sm   | ++++++++++++++++++++++++++++++++++*/
 
 @media screen and (max-width:601px) {
-
+    .importante2 {
+        font-size: 1.5vmax;
+      
+    }
     
 }
 
@@ -511,10 +565,23 @@ input::placeholder {
         font-size:1.6vmax;  
     }
 
+    
     .importante {
         font-size:1.5vmax;
        
     }
+
+    
+    .importante2 {
+        font-size: 1.5vmax;
+      
+    }
+
+
+    .infoDetail {
+        margin-top: 3vmax;
+    }
+
 
     
     .imput {
@@ -523,7 +590,7 @@ input::placeholder {
         border-radius: 5px;
         border: none;
         outline: none;
-        font-size: 3.5vmax;
+        font-size: 2.5vmax;
         
 
     }
@@ -532,6 +599,53 @@ input::placeholder {
         text-align: center;
         font-size: 2.6vmax;
     }
+
+
+    /* botones finales */
+
+    .botonComprarEntrada {
+        margin-top: 3vmax;
+        background-color: #fc5623;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        width:24vmax;
+    }
+
+    .botonComprarEntrada:hover {
+        background-color: #FE7247;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        width:24vmax;
+    }
+
+
+
+
+/* boton no habilitado */
+
+.buttonDisabled {
+    margin-top: 3vmax;
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    width:24vmax;
+}
+
+
+    
 
     
 }
@@ -552,7 +666,7 @@ input::placeholder {
         background-color: rgb(0, 0, 0);
        /* border: #ff78ed solid 4px; */
         width: 150%;
-        height:70vmax;
+        height:75vmax;
        
         flex-direction:column;
       
