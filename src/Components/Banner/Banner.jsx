@@ -7,9 +7,9 @@ export const Banner = () => {
     
         <div className='row'>
           <div className='contenedorTextoBanner'>
-            <h3>Quieres Vender Las Entradas de tu Evento con un Clic?</h3>
+            <h3>Puedes Adquirir en Nuestro Sitio, las entradas para el evento que Deseas!</h3>
             <p>Somos el Mejor Servicio Digital</p>
-            <a href="#">CREAR EVENTO GRATIS</a>
+            <a href="#">Compra los Tickets para el Show!</a>
             <p>Fácil - Inmediato - Seguro</p>
           </div>
         </div>

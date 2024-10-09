@@ -39,8 +39,10 @@ const CardContainer = () => {
 
   return (
     <div className='CardContainer'>
+     
       <Header />
-
+      <div id='ShowsScroll'></div>
+      
       <ItemCards productos={productos}/>
 
     </div>

@@ -11,16 +11,16 @@ export const Footer = () => {
       <div className='footer-container container-fuid'>
 
         {/* footer */}
-        <div className='row contenedorFooterPrincipal '>
+        <div className='row contenedorFooterPrincipal ' id="ContactoFooter">
 
           <div className='col-lg-3 col-md-12 enlacesFooter'>
             <Link className='linkFooter' to='/GuiaCompra'>Guía de Compra</Link>
             <Link className='linkFooter' to='/GuiaCompra'>Medios de Pago</Link>
             <Link className='linkFooter' to='/AtencionAlCliente'>Atención al Cliente</Link>
             <Link className='linkFooter' to='/AtencionAlCliente'>Preguntas Frecuentes</Link>
-            <Link className='linkFooter' to='/GuiaCompra'>Términos y Condiciones</Link>
+            <Link className='linkFooter' to='/GuiaCompra#terminosCondiciones'>Términos y Condiciones</Link>
           </div>
-
+      
 
           <div className='col-lg-6 col-md-12 colCentralFooter'>
             <img className='logoPalabraFooter' src={logoPalabra} alt="logo de imperio ticket" /> 
