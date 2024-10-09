@@ -23,6 +23,7 @@ const PanelAdminEvento = () => {
   const [selectedImage1, setSelectedImage1] = useState(null);
   const [selectedImage2, setSelectedImage2] = useState(null);
   const [imagesUploaded, setImagesUploaded] = useState(false);
+  const [accionSeleccionada, setAccionSeleccionada] = useState(''); // Estado para la acción seleccionada
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -99,14 +100,29 @@ const PanelAdminEvento = () => {
     }
   };
 
+  const handleActionSelect = (action) => {
+    setAccionSeleccionada(action);
+    setImagesUploaded(false); // Reiniciar la carga de imágenes
+    setSelectedImage1(null);
+    setSelectedImage2(null);
+  };
+
   return (
     <div className="panelAdminEvento">
       <h1>Panel de Administración de Eventos</h1>
       <button onClick={handleLogout}>Cerrar Sesión</button>
       <h3>Esta funcionando la base de datos, puedes crear eventos, eliminarlos, modificarlos, y buscar por día, descripción o nombre. Estamos trabajando para usted.</h3>
 
-      {/* Formulario para subir imágenes */}
-      {!imagesUploaded ? (
+      {/* Selección de acción */}
+      <div>
+        <h2>Seleccionar Acción</h2>
+        <button onClick={() => handleActionSelect('crear')}>Crear Evento</button>
+        <button onClick={() => handleActionSelect('eliminar')}>Eliminar Evento</button>
+        <button onClick={() => handleActionSelect('editar')}>Editar Evento</button>
+      </div>
+
+      {/* Formulario para subir imágenes si la acción es crear */}
+      {accionSeleccionada === 'crear' && !imagesUploaded && (
         <div>
           <h2>Subir Imágenes</h2>
           <input
@@ -129,7 +145,10 @@ const PanelAdminEvento = () => {
             Subir Imágenes
           </button>
         </div>
-      ) : (
+      )}
+
+      {/* Formulario para crear un nuevo evento */}
+      {accionSeleccionada === 'crear' && imagesUploaded && (
         <form onSubmit={crearEvento}>
           <h2>Crear Nuevo Evento</h2>
           <input
@@ -194,6 +213,21 @@ const PanelAdminEvento = () => {
           />
           <button type="submit">Crear Evento</button>
         </form>
+      )}
+
+      {/* Aquí puedes agregar lógica para eliminar o editar eventos */}
+      {accionSeleccionada === 'eliminar' && (
+        <div>
+          <h2>Eliminar Evento</h2>
+          {/* Lógica para eliminar evento aquí */}
+        </div>
+      )}
+      
+      {accionSeleccionada === 'editar' && (
+        <div>
+          <h2>Editar Evento</h2>
+          {/* Lógica para editar evento aquí */}
+        </div>
       )}
     </div>
   );
