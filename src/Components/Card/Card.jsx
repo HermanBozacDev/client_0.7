@@ -50,7 +50,25 @@ const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, luga
         </div>
         <p className='lugar texto'>{lugar}</p>
       </div>
-      <Link to={/CardDetail}  state={{ image, image2, imageDetail, title, price, dia, fecha, hora, lugar, description, clasificacion }}  className='buy-button'>Comprar Entrada</Link>
+      <Link 
+      to="/CardDetail"
+      state={{
+        image: evento.image,
+        image2: evento.image2,
+        imageDetail: evento.imageDetail,
+        title: evento.title,
+        price: evento.price,
+        dia: evento.dia,
+        fecha: evento.fecha,
+        hora: evento.hora,
+        lugar: evento.lugar,
+        description: evento.description,
+        clasificacion: evento.clasificacion
+      }} 
+      className='buy-button'
+    >
+      Comprar Entrada
+    </Link>
 
       
         
