@@ -1,9 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
-import Button from '../Button/Button'; // Importamos el componente del botón
 import '../Card/Card.css'; // Importamos los estilos
 import { Link } from 'react-router-dom';
-
 
 const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, lugar, description, clasificacion }) => {
   const [backgroundImage, setBackgroundImage] = useState(image); // Imagen por defecto
@@ -32,16 +29,13 @@ const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, luga
 
   return (
     <div className="card"
-    style={{
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundSize: 'cover', // La imagen cubrirá todo el contenedor
-      backgroundPosition: 'center', // Centramos la imagen
-      backgroundRepeat: 'no-repeat', // Evitamos que la imagen se repita
-    }}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover', // La imagen cubrirá todo el contenedor
+        backgroundPosition: 'center', // Centramos la imagen
+        backgroundRepeat: 'no-repeat', // Evitamos que la imagen se repita
+      }}
     >
-
-      
-     
       <div className='datosContainer'>
         <div className='renglon'>
           <p className='dia texto'>{dia}</p>
@@ -51,29 +45,24 @@ const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, luga
         <p className='lugar texto'>{lugar}</p>
       </div>
       <Link 
-      to="/CardDetail"
-      state={{
-        image: evento.image,
-        image2: evento.image2,
-        imageDetail: evento.imageDetail,
-        title: evento.title,
-        price: evento.price,
-        dia: evento.dia,
-        fecha: evento.fecha,
-        hora: evento.hora,
-        lugar: evento.lugar,
-        description: evento.description,
-        clasificacion: evento.clasificacion
-      }} 
-      className='buy-button'
-    >
-      Comprar Entrada
-    </Link>
-
-      
-        
-      
-      
+        to="/CardDetail"
+        state={{
+          image,
+          image2,
+          imageDetail,
+          title,
+          price,
+          dia,
+          fecha,
+          hora,
+          lugar,
+          description,
+          clasificacion
+        }} 
+        className='buy-button'
+      >
+        Comprar Entrada
+      </Link>
     </div>
   );
 };
