@@ -220,12 +220,6 @@ const PanelAdminEvento = () => {
               />
               <input
                 type="text"
-                placeholder="URL de Imagen Detallada (Opcional)"
-                value={evento.imageDetail}
-                onChange={(e) => setEvento({ ...evento, imageDetail: e.target.value })}
-              />
-              <input
-                type="text"
                 placeholder="Lugar"
                 value={evento.lugar}
                 onChange={(e) => setEvento({ ...evento, lugar: e.target.value })}
