@@ -10,9 +10,9 @@ const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, luga
     const handleResize = () => {
       // Cambia la imagen si el ancho de la pantalla es menor o igual a 768px
       if (window.innerWidth <= 768) {
-        setBackgroundImage(image2); // Imagen para móviles
+        setBackgroundImage(`${baseURL}${image2}`); // Imagen para móviles
       } else {
-        setBackgroundImage(image);  // Imagen para pantallas grandes
+        setBackgroundImage(`${baseURL}${image}`);  // Imagen para pantallas grandes
       }
     };
 
