@@ -13,7 +13,7 @@ export const GuiaDeCompra = () => {
 
       {/* Enlaces de navegación */}
       <h2 className='tituloInformacionGuia'>
-        <a href="#guiaDeCompra">Guía de Compra</a> 
+        <a href="#guiaDeCompra">Guía de Compra</a>  
         <a href="#metodosDePago">Métodos de Pago</a>
         <a href="#terminosCondiciones">Términos y Condiciones</a>
       </h2>

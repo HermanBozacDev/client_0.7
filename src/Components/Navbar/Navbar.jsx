@@ -37,8 +37,6 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid xpander">
-                {/* <HashLink smooth className="navbar-brand" to='/'><img src={logo} alt="logo completo" className="logoCompleto" /></HashLink> */}
-
                 <HashLink
                     smooth
                     className="navbar-brand"
@@ -48,10 +46,9 @@ const Navbar = () => {
                             e.preventDefault(); // Evita el comportamiento por defecto
                             window.scrollTo({ top: 0, behavior: 'smooth' }); // Hace scroll al inicio de la página
                         }
-                    }} >
+                    }}>
                     <img src={logo} alt="logo completo" className="logoCompleto" />
                 </HashLink>
-
                 <button className="navbar-toggler iconoNavbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     
                         <span className="material-symbols-outlined iconColor">
@@ -63,7 +60,7 @@ const Navbar = () => {
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             {/* hashLink hook scroll del nav al componente */}
-                            <HashLink
+                        <HashLink
                                 smooth
                                 className="nav-link"
                                 to="/#ShowsScroll"
@@ -106,16 +103,7 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item">
                             <HashLink smooth className="nav-link" to='#ContactoFooter'>Contacto</HashLink>
-                        </li>                      
-
-			<li className="nav-item">
-			    <Link className="nav-link" to="/register">Register</Link>
-			</li>
-			<li className="nav-item">
-			    <Link className="nav-link" to="/login">Login</Link>
-			</li>    
-
-			    
+                        </li>                      		    
                     </ul>
                 </div>
             </div>
@@ -125,5 +113,3 @@ const Navbar = () => {
 
 
 export default Navbar;
-
-

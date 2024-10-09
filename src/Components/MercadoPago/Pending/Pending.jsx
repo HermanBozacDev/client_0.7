@@ -1,5 +1,5 @@
+
 import React from 'react'
-import '../Pending/Pending.css'
 
 export const Pending = () => {
   return (

@@ -1,6 +1,5 @@
-import React from 'react'
-import '../Success/Success.css'
 
+import React from 'react'
 
 export const Success = () => {
   return (

@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import EntradasCount from '../EntradasCount/EntradasCount'
 import { useLocation, Navigate } from 'react-router-dom';
-import '../CardDetail/CardDetail.css'
+import '../CardDetail/CardDetail.css';
 import Button from '../Button/Button'; // Importamos el componente del botón
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios"; // Importar axios para hacer solicitudes HTTP
-import MercadoPagoHandler from '../MercadoPagoHandler/MercadoPagoHandler';
+import MercadoPagoHandler from '../MercadoPago/MercadoPagoHandler/MercadoPagoHandler';
+
+
 
 const CardDetail = () => {
+
+  // Este useEffect asegura que la página se desplace hacia arriba al cargar el componente, me encanto!!
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // El array vacío indica que se ejecutará solo al montar el componente
 
   const location = useLocation();
   // Verificación para evitar errores
@@ -16,8 +23,11 @@ const CardDetail = () => {
     return <Navigate to="/" />; // Redirige a la página principal
   }
 
-  const { image, title, price } = location.state;
-  console.log({ image, title, price })
+  const { image, image2, imageDetail, title, price, dia, fecha, hora, lugar, description, clasificacion } = location.state;
+  console.log({ image, image2, imageDetail, title, price, dia, fecha, hora, lugar, description, clasificacion })
+
+ 
+
 
   /* contador */
   const [count, setCount] = useState(1); // Contador de entradas
@@ -35,7 +45,8 @@ const CardDetail = () => {
           setCount(count-1)
       }
   }
-    // Cálculo del total cada vez que cambian price o count
+
+  // Cálculo del total cada vez que cambian price o count
   useEffect(() => {
     const serviceCharge = price * 0.12;
     const newTotal = (price + serviceCharge) * count;
@@ -48,6 +59,10 @@ const CardDetail = () => {
     const newSubTotal = (price + serviceCharge) * count ;
     setSubTotal(newSubTotal); // Actualizamos el total
   }, [price, count]);
+
+ 
+
+
 
   // Definimos los estados para manejar los correos electrónicos
   const [email, setEmail] = useState(''); // Almacena el primer correo
@@ -65,24 +80,27 @@ const CardDetail = () => {
     setConfirmEmail(e.target.value);
     validarCorreos(email, e.target.value);
   };
-    // Función para validar si los correos son iguales y habilitar/deshabilitar el botón
+
+  // Función para validar si los correos son iguales y habilitar/deshabilitar el botón
   const validarCorreos = (email1, email2) => {
     if (email1 === email2 && email1 !== '') {
       setIsButtonDisabled(false); // Habilitamos el botón si los correos coinciden y no están vacíos
       setErrorMessage(''); // Limpiamos cualquier mensaje de error
+    } else if (email2 === '') {
+      setIsButtonDisabled(true); // Deshabilitamos el botón si no coinciden
     } else {
       setIsButtonDisabled(true); // Deshabilitamos el botón si no coinciden
       setErrorMessage('Los correos electrónicos no coinciden.'); // Mostramos un mensaje de error
     }
   };
 
+    
 
 
-  // Función que se ejecutará al hacer clic en "Comprar Entrada"
-  const handleSubmit = () => {
-    alert('¡Compra iniciada! Procediendo al pago...');
-    // Aquí iría la lógica para conectar con la API del servicio de pagos
-  };
+
+
+
+
 
   const handleFeedback = async () => {
     try {
@@ -97,37 +115,56 @@ const CardDetail = () => {
   };
 
 
+
+
+  
+
+
+
+
+
+
+
+
   return (
     <div className='DetailContainer'>
+      <div className='bannercito'>
+        <div className='fotoContainer'>
+          
+           <img src={imageDetail} alt="" className='imageBannercito' />
+        </div>
+       
+        <div className='infoDetail'>
+          <p className='introDetail'>Detalles del Evento</p>
+          <h2 className='tituloDetail'>{title}</h2>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">calendar_month</span> Fecha:  {dia} {fecha}</p>
+          <p className='detailTexto'> <span className="material-symbols-outlined icon">where_to_vote</span> Lugar: {lugar}</p>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">alarm_on</span> Hora: {hora}</p>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">verified_user</span> Clasificación: {clasificacion}</p>
+          <p className='detailTexto'><span className="material-symbols-outlined icon">local_atm</span> Precio: ${price}</p>
+          <p className='importante'>Importante: al precio de tu entrada se le agregará el costo por servicio de venta digital.</p>
+          
+        </div>
+
+      </div>
 
       <div className='rowDetail'>
 
-      <MercadoPagoHandler
-        count={count}
-        subTotal={subTotal}
-        image={image}
-        title={title}
-
-      />
-        <div className='imagenDetailContainer'>
-          <img className='imgDetail' src={image} alt="" />
-        </div>
-
         <div className='descripcionContainer'>
-          <div className='textoDetail'>
-            <h2>{title}</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, similique veniam! Voluptates!</p>
-          </div>
-
+         
+          
+          <h3 className='subtitleDetail'>Cuantas Entradas Querés?</h3> 
 
           <div className='precioCountDiv'>
 
-            <p>Precio por Entrada: ${price}</p>
-            <p>Cargos por Servicio (12%): ${price * 0.12 } </p>
             <EntradasCount count={count} increment={increment} decrement={decrement} />
-            <p>Total: ${total}</p>
-
+            <p className='detallesCount'>Precio por Entrada: .................................. ${price}</p>
+            <p className='detallesCount'>Cargos por Servicio (12%): ......................... ${price * 0.12 } </p>
+            
           </div>
+
+          {/* <p className='detallesCountTotal'>Total: ${total}</p> */}
+          <p className='detallesCountTotal'>Total: ${total.toFixed(2)}</p>
 
         </div>
 
@@ -135,18 +172,18 @@ const CardDetail = () => {
 
       {/* Sección de formulario para ingresar y confirmar el correo */}
       <div className='emailFormContainer'>
-        <h3>Ingresa el Correo Electrónico, donde quieres recibir tus entradas:</h3>
-                <form className='formContainer'>
+        <h3 className='correoTitulo'>Ingresa el Correo Electrónico <br />donde quieres recibir tus entradas:</h3>
+        <form className='formContainer'>
           {/* Campo para el primer correo */}
           <div className='formGroup'>
             <label >Ingresa tu Email:</label>
-            <input
-              className='imput'
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Ingresa tu correo electrónico"
-              required
+            <input 
+              className='imput' 
+              type="email" 
+              value={email} 
+              onChange={handleEmailChange} 
+              placeholder="Ingresa tu correo electrónico" 
+              required 
             />
           </div>
 
@@ -154,19 +191,35 @@ const CardDetail = () => {
           <div className='formGroup'>
             <label>Confirma tu Email:</label>
             <input
-              className='imput'
-              type="email"
-              value={confirmEmail}
-              onChange={handleConfirmEmailChange}
-              placeholder="Confirma tu correo electrónico"
-              required
+              className='imput' 
+              type="email" 
+              value={confirmEmail} 
+              onChange={handleConfirmEmailChange} 
+              placeholder="Confirma tu correo electrónico" 
+              required 
             />
           </div>
 
           {/* Mensaje de error si los correos no coinciden */}
           {errorMessage && <p className='errorMessage' style={{ color: 'red' }}>{errorMessage}</p>}
 
-           {/* Aquí reemplazamos el botón original por el componente Button */}
+         
+
+           
+
+          <MercadoPagoHandler 
+            count={count} 
+            subTotal={subTotal} 
+            image={imageDetail} 
+            title={title} 
+            
+          />  
+
+        
+
+        
+
+
 
 
         </form>
@@ -174,12 +227,10 @@ const CardDetail = () => {
 
 
 
-
+      
     </div>
-
+    
   )
 }
 
 export default CardDetail
-
-

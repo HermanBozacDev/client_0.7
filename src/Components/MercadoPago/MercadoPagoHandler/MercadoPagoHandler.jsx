@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from 'axios';

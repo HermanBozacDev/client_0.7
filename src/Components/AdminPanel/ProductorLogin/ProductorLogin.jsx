@@ -1,9 +1,11 @@
+// DEPRECATED, ACTUALMENTE EN DESHUZO HASTA REFAZCTORIZACION
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirigir
-import '../Login/Login.css'; // Importamos los estilos
+import './ProductorLogin.css'; // Importamos los estilos
 
-const Login = () => {
+const ProductorLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Inicializa useNavigate
@@ -11,7 +13,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://www.imperioticket.com/api/login', {
+      const response = await axios.post('https://www.imperioticket.com/api/productorLogin', {
         username,
         password,
       });
@@ -48,5 +50,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-
+export default ProductorLogin;

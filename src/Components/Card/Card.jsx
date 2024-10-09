@@ -4,7 +4,7 @@ import '../Card/Card.css'; // Importamos los estilos
 import { Link } from 'react-router-dom';
 
 
-const Card = ({ title, price, image, image2, dia, fecha, hora, lugar, description }) => {
+const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, lugar, description, clasificacion }) => {
   const [backgroundImage, setBackgroundImage] = useState(image); // Imagen por defecto
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Card = ({ title, price, image, image2, dia, fecha, hora, lugar, descriptio
         </div>
         <p className='lugar texto'>{lugar}</p>
       </div>
-      <Link to={`/CardDetail`}  state={{ image, image2, title, price, dia, fecha, hora, lugar, description }}  className='buy-button'>Comprar Entrada</Link>
+      <Link to={`/CardDetail`}  state={{ image, image2, imageDetail, title, price, dia, fecha, hora, lugar, description, clasificacion }}  className='buy-button'>Comprar Entrada</Link>
 
       
         
