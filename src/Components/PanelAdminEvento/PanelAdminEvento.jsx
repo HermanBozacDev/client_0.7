@@ -52,16 +52,6 @@ const PanelAdminEvento = () => {
 
 
 
-  const eliminarEvento = async (id) => {
-    try {
-      await axios.delete(`https://www.imperioticket.com/api/eventos/${id}`);
-      setFeedbackMessage('Evento eliminado con éxito.');
-      obtenerEventos(); // Recargar eventos después de eliminar
-    } catch (error) {
-      console.error('Error al eliminar el evento:', error);
-      setFeedbackMessage('Error al eliminar el evento. Por favor, intenta de nuevo.');
-    }
-  };
 
   
   const handleLogout = () => {
