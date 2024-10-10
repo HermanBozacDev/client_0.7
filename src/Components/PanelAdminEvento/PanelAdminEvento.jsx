@@ -4,8 +4,9 @@ import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
 import UseEventos from './UseEventos/UseEventos';
 import DeleteEventos from './DeleteEventos/DeleteEventos';
-
 import CreateEventos from './CreateEventos/CreateEventos';
+import UploadImages from './UploadImages/UploadImages';
+
 
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
@@ -60,40 +61,15 @@ const PanelAdminEvento = () => {
   };
 
   const handleImageUpload = async () => {
-    if (selectedImage1 && selectedImage2 && selectedImageDetail) { // Verificar las tres imágenes
-      const formData = new FormData();
-      formData.append('image', selectedImage1);
-      formData.append('image2', selectedImage2);
-      formData.append('imageDetail', selectedImageDetail); // Añadir la tercera imagen
-  
-      try {
-        const response = await axios.post('https://www.imperioticket.com/api/uploadImage', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
-  
-        console.log('Respuesta de la subida de imágenes:', response.data);
-  
-        setFeedbackMessage(response.data.message); // Mostrar mensaje de éxito
-  
-        setNuevoEvento({
-          ...nuevoEvento,
-          image: response.data.filePath1,          // Ruta de la primera imagen
-          image2: response.data.filePath2,         // Ruta de la segunda imagen
-          imageDetail: response.data.filePathDetail // Ruta de la tercera imagen detallada
-        });
-  
-        setImagesUploaded(true);
-      } catch (error) {
-        console.error('Error al subir imágenes:', error);
-        setFeedbackMessage('Error al subir imágenes. Por favor, intenta de nuevo.');
-      }
-    } else {
-      setFeedbackMessage('Por favor, selecciona las tres imágenes antes de subir.');
+    const selectedImages = { image: selectedImage1, image2: selectedImage2, imageDetail: selectedImageDetail };
+    
+    // Llamar a la función UploadImages y pasar las funciones de estado necesarias
+    const uploadSuccess = await UploadImages(selectedImages, setFeedbackMessage, setNuevoEvento, nuevoEvento);
+
+    if (uploadSuccess) {
+      setImagesUploaded(true);
     }
   };
-
  
 
   const handleActionSelect = (action) => {
