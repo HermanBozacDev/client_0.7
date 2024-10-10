@@ -11,3 +11,4 @@ const EventList = ({ eventos, onDelete }) => (
     </ul>
   </div>
 );
+export default EventList
