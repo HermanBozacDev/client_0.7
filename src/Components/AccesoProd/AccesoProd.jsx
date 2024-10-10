@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../AccesoProd/AccesoProd.css'; // Mantén el CSS original
 import logoFloat from '../../assets/logoblancoSinFondo.png';
 
 const AccesoProd = () => {
+
+    // Este useEffect asegura que la página se desplace hacia arriba al cargar el componente, me encanto!!
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []); // El array vacío indica que se ejecutará solo al montar el componente
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
