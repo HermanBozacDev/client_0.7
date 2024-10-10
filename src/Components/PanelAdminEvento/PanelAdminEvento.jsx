@@ -50,10 +50,6 @@ const PanelAdminEvento = () => {
     }
   }, [navigate]);
 
-
-
-
-
   
   const handleLogout = () => {
     localStorage.removeItem('token');
