@@ -6,3 +6,4 @@ const ActionSelector = ({ onSelect }) => (
     <button onClick={() => onSelect('editar')}>Editar Evento</button>
   </div>
 );
+export default ActionSelector
