@@ -88,15 +88,10 @@ const PanelAdminEvento = () => {
 
   const crearEvento = async (e) => {
     e.preventDefault();
-    // Verificar los datos que se van a enviar
-    console.log('Creando evento con datos:', JSON.stringify(nuevoEvento, null, 2));
-
-
     // Validar que todas las propiedades requeridas estén llenas
     const { title, clasificacion, description, dia, fecha, hora, image, image2, imageDetail, lugar, price, quantity } = nuevoEvento;
     if (!title || !clasificacion || !description || !dia || !fecha || !hora || !image || !image2 || !imageDetail || !lugar || !price || !quantity) {
       setFeedbackMessage('Por favor, completa todos los campos requeridos.');
-      console.log("salida")
       return;
     }
 
@@ -244,13 +239,6 @@ const PanelAdminEvento = () => {
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, hora: e.target.value })}
             required
           />
-          {/* Se eliminan los campos de URL de imagen detallada */}
-          {/* <input
-            type="text"
-            placeholder="URL de Imagen Detallada (Opcional)"
-            value={nuevoEvento.imageDetail}
-            onChange={(e) => setNuevoEvento({ ...nuevoEvento, imageDetail: e.target.value })}
-          /> */}
           <input
             type="text"
             placeholder="Lugar"
@@ -276,20 +264,23 @@ const PanelAdminEvento = () => {
         </form>
       )}
 
-      {/* Aquí puedes agregar lógica para eliminar o editar eventos */}
-      {accionSeleccionada === 'eliminar' && (
-        <div>
-          <h2>Eliminar Evento</h2>
-          {/* Lógica para eliminar evento aquí */}
-        </div>
-      )}
-      
-      {accionSeleccionada === 'editar' && (
-        <div>
-          <h2>Editar Evento</h2>
-          {/* Lógica para editar evento aquí */}
-        </div>
-      )}
+      {/* Mostrar la lista de eventos */}
+      <div>
+        <h2>Lista de Eventos</h2>
+        {eventos.length > 0 ? (
+          <ul>
+            {eventos.map((evento) => (
+              <li key={evento._id}>
+                <h3>{evento.title}</h3>
+                <p>{evento.description}</p>
+                <img src={evento.image} alt={evento.title} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No hay eventos disponibles.</p>
+        )}
+      </div>
     </div>
   );
 };
