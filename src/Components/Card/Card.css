@@ -40,7 +40,7 @@
 
 
 /* Estilos del botón */
-.buy-button {
+.buy-button2 {
     background-color: #f01b23;
     color: white;
     border: none;
@@ -58,7 +58,7 @@
     
 }
   
-.buy-button:hover {
+.buy-button2:hover {
     background-color: #F0E541;
     color: #f01b23;;
 }
@@ -220,7 +220,7 @@
     
    
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         background-color: #f01b23;
         color: white;
         border: none;
@@ -262,7 +262,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 4vmax;
         
     }
@@ -289,7 +289,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 3vmax;
         padding: 8px 12px;
         
@@ -318,7 +318,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 3vmax;
         width: 48%;
     }
@@ -361,7 +361,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 2.6vmax;
         padding: 6px 12px;
         font-size: 1.7vmax;
@@ -390,7 +390,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 2.7vmax;
         
     }
@@ -416,7 +416,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 2.7vmax;
         padding: 6px 12px;
     }
@@ -442,7 +442,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 2.7vmax;
         padding: 6px 12px;
     }
@@ -470,7 +470,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 1.4vmax;
         padding: 6px 12px;
     }
@@ -496,7 +496,7 @@
     }
 
     /* Estilos del botón */
-    .buy-button {
+    .buy-button2 {
         margin-bottom: 4.5vmax;
         padding: 6px 12px;
     }
