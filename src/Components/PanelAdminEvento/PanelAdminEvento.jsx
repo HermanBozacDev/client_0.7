@@ -29,7 +29,16 @@ const PanelAdminEvento = () => {
   const [selectedImageDetail, setSelectedImageDetail] = useState(null); 
   const [imagesUploaded, setImagesUploaded] = useState(false);
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
-
+  const { crearEvento } = useCrearEvento(
+    nuevoEvento,
+    setNuevoEvento,
+    setSelectedImage1,
+    setSelectedImage2,
+    setImagesUploaded,
+    setFeedbackMessage,
+    obtenerEventos
+  );
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
