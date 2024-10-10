@@ -1,7 +1,6 @@
-
 import axios from 'axios';
 
-const useCrearEvento = (
+const CreateEventos = (
   nuevoEvento,
   setNuevoEvento,
   setSelectedImage1,
@@ -10,7 +9,7 @@ const useCrearEvento = (
   setFeedbackMessage,
   obtenerEventos
 ) => {
-  const CreateEventos  = async (e) => {
+  const crearEvento = async (e) => {
     e.preventDefault();
     const { title, clasificacion, description, dia, fecha, hora, image, image2, imageDetail, lugar, price, quantity } = nuevoEvento;
     if (!title || !clasificacion || !description || !dia || !fecha || !hora || !image || !image2 || !imageDetail || !lugar || !price || !quantity) {
@@ -52,4 +51,4 @@ const useCrearEvento = (
   return { crearEvento };
 };
 
-export default CreateEventos ;
+export default CreateEventos;
