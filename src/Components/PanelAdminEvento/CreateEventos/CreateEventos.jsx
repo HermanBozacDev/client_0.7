@@ -10,7 +10,7 @@ const useCrearEvento = (
   setFeedbackMessage,
   obtenerEventos
 ) => {
-  const crearEvento = async (e) => {
+  const CreateEventos  = async (e) => {
     e.preventDefault();
     const { title, clasificacion, description, dia, fecha, hora, image, image2, imageDetail, lugar, price, quantity } = nuevoEvento;
     if (!title || !clasificacion || !description || !dia || !fecha || !hora || !image || !image2 || !imageDetail || !lugar || !price || !quantity) {
