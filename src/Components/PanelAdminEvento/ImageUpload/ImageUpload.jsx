@@ -41,3 +41,4 @@ const ImageUpload = ({
     </button>
   </div>
 );
+export default ImageUpload
