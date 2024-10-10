@@ -26,7 +26,6 @@ const PanelAdminEvento = () => {
   const [selectedImage2, setSelectedImage2] = useState(null);
   const [selectedImageDetail, setSelectedImageDetail] = useState(null); 
   const [imagesUploaded, setImagesUploaded] = useState(false);
-  const [feedbackMessage, setFeedbackMessage] = useState('');
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
 
   useEffect(() => {
