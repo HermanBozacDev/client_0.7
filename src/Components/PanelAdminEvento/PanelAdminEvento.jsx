@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
-import UseEventos from '../UseEventos/UseEventos';
+import UseEventos from './UseEventos/UseEventos';
 
 
 const PanelAdminEvento = () => {
