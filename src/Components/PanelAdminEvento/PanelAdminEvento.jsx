@@ -240,7 +240,7 @@ const PanelAdminEvento = () => {
         {eventos.map((evento) => (
           <li key={evento._id}>
             <h3>{evento.title}</h3>
-            <button onClick={() => DeleteEventos(evento._id)}>Eliminar Evento</button>
+            <button onClick={() => DeleteEventos(evento._id, setFeedbackMessage, obtenerEventos)}>Eliminar Evento</button>
           </li>
         ))}
       </ul>
