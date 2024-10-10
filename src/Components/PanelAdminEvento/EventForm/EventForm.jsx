@@ -14,3 +14,4 @@ const EventForm = ({ nuevoEvento, setNuevoEvento, crearEvento }) => (
     <button type="submit">Crear Evento</button>
   </form>
 );
+export default EventForm
