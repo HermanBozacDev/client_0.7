@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
+import UseEventos from './UseEventos/UseEventos';
+
 
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
-  const [eventos, setEventos] = useState([]);
+  const { eventos, feedbackMessage, obtenerEventos } = useEventos();
   const [nuevoEvento, setNuevoEvento] = useState({
     clasificacion: '',
     description: '',
