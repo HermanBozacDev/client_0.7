@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
 import UseEventos from './UseEventos/UseEventos';
 import DeleteEventos from './DeleteEventos/DeleteEventos';
-import useCrearEvento from './useCrearEvento/useCrearEvento'; 
+import CreateEventos from './CreateEventos/CreateEventos'; 
 
 
 const PanelAdminEvento = () => {
@@ -29,7 +29,7 @@ const PanelAdminEvento = () => {
   const [selectedImageDetail, setSelectedImageDetail] = useState(null); 
   const [imagesUploaded, setImagesUploaded] = useState(false);
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
-  const { crearEvento } = useCrearEvento(
+  const { CreateEventos } = CreateEventos(
     nuevoEvento,
     setNuevoEvento,
     setSelectedImage1,
