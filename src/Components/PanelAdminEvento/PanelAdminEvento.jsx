@@ -273,7 +273,6 @@ const PanelAdminEvento = () => {
               <li key={evento._id}>
                 <h3>{evento.title}</h3>
                 <p>{evento.description}</p>
-                <img src={evento.image} alt={evento.title} />
               </li>
             ))}
           </ul>
