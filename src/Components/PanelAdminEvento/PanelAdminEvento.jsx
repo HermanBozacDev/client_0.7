@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
 import UseEventos from './UseEventos/UseEventos';
-//import DeleteEventos from './DeleteEventos/DeleteEventos';
+import DeleteEventos from './DeleteEventos/DeleteEventos';
 import CreateEventos from './CreateEventos/CreateEventos'; 
 
+import CreateEventos from './CreateEventos/CreateEventos';
 
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
@@ -29,7 +30,9 @@ const PanelAdminEvento = () => {
   const [selectedImageDetail, setSelectedImageDetail] = useState(null); 
   const [imagesUploaded, setImagesUploaded] = useState(false);
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
-  const { CreateEventos } = CreateEventos(
+  
+  // Llamada correcta a la función de creación de eventos
+  const { crearEvento } = CreateEventos(
     nuevoEvento,
     setNuevoEvento,
     setSelectedImage1,
@@ -38,7 +41,6 @@ const PanelAdminEvento = () => {
     setFeedbackMessage,
     obtenerEventos
   );
-  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
