@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
 import UseEventos from './UseEventos/UseEventos';
-
+import DeleteEventos from './DeleteEventos/DeleteEventos';
 
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
@@ -276,7 +276,7 @@ const PanelAdminEvento = () => {
         {eventos.map((evento) => (
           <li key={evento._id}>
             <h3>{evento.title}</h3>
-            <button onClick={() => eliminarEvento(evento._id)}>Eliminar Evento</button>
+            <button onClick={() => DeleteEventos(evento._id)}>Eliminar Evento</button>
           </li>
         ))}
       </ul>
