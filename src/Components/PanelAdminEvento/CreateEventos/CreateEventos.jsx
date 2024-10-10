@@ -52,4 +52,4 @@ const useCrearEvento = (
   return { crearEvento };
 };
 
-export default useCrearEvento;
+export default CreateEventos ;
