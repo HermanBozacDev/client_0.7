@@ -7,7 +7,7 @@ import UseEventos from './UseEventos/UseEventos';
 
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
-  const { eventos, feedbackMessage, obtenerEventos } = useEventos();
+  const { eventos, feedbackMessage, obtenerEventos } = UseEventos();
   const [nuevoEvento, setNuevoEvento] = useState({
     clasificacion: '',
     description: '',
