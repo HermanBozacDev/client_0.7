@@ -60,7 +60,7 @@ const Card = ({ title, price, image, image2, imageDetail, dia, fecha, hora, luga
           description,
           clasificacion
         }} 
-        className='buy-button'
+        className='buy-button2'
       >
         Comprar Entrada
       </Link>
