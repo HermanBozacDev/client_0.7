@@ -29,7 +29,7 @@ const PanelAdminEvento = () => {
   const [selectedImageDetail, setSelectedImageDetail] = useState(null); 
   const [imagesUploaded, setImagesUploaded] = useState(false);
   const [accionSeleccionada, setAccionSeleccionada] = useState('');
-  
+  const [feedbackMessage, setFeedbackMessage] = useState('');
   // Llamada correcta a la función de creación de eventos
   const { crearEvento } = CreateEventos(
     nuevoEvento,
