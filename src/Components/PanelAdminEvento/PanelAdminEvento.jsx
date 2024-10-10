@@ -269,7 +269,7 @@ const PanelAdminEvento = () => {
           />
           <input
             type="number"
-            placeholder="Cantidad de Entradas"
+            placeholder="Cantidad"
             value={nuevoEvento.quantity}
             onChange={(e) => setNuevoEvento({ ...nuevoEvento, quantity: e.target.value })}
             required
@@ -278,22 +278,16 @@ const PanelAdminEvento = () => {
         </form>
       )}
 
-      {/* Mostrar la lista de eventos */}
-      <div>
-        <h2>Lista de Eventos</h2>
-        {eventos.length > 0 ? (
-          <ul>
-            {eventos.map((evento) => (
-              <li key={evento._id}>
-                <h3>{evento.title}</h3>
-                <p>{evento.description}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No hay eventos disponibles.</p>
-        )}
-      </div>
+      {/* Listado de eventos con botón de eliminación */}
+      <h2>Eventos Existentes</h2>
+      <ul>
+        {eventos.map((evento) => (
+          <li key={evento._id}>
+            <h3>{evento.title}</h3>
+            <button onClick={() => eliminarEvento(evento._id)}>Eliminar Evento</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
