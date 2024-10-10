@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
 import UseEventos from './UseEventos/UseEventos';
 import DeleteEventos from './DeleteEventos/DeleteEventos';
+import useCrearEvento from './useCrearEvento/useCrearEvento'; 
+
 
 const PanelAdminEvento = () => {
   const navigate = useNavigate();
@@ -92,45 +94,7 @@ const PanelAdminEvento = () => {
     }
   };
 
-  const crearEvento = async (e) => {
-    e.preventDefault();
-    // Validar que todas las propiedades requeridas estén llenas
-    const { title, clasificacion, description, dia, fecha, hora, image, image2, imageDetail, lugar, price, quantity } = nuevoEvento;
-    if (!title || !clasificacion || !description || !dia || !fecha || !hora || !image || !image2 || !imageDetail || !lugar || !price || !quantity) {
-      setFeedbackMessage('Por favor, completa todos los campos requeridos.');
-      return;
-    }
-
-    try {
-      await axios.post('https://www.imperioticket.com/api/eventos', nuevoEvento, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      setNuevoEvento({
-        clasificacion: '',
-        description: '',
-        dia: '',
-        fecha: '',
-        hora: '',
-        image: '',
-        image2: '',
-        imageDetail: '',
-        lugar: '',
-        price: '',
-        quantity: '',
-        title: ''
-      });
-      setSelectedImage1(null);
-      setSelectedImage2(null);
-      setImagesUploaded(false);
-      setFeedbackMessage('Evento creado con éxito.');
-      obtenerEventos();
-    } catch (error) {
-      console.error('Error al crear evento:', error);
-      setFeedbackMessage('Error al crear evento. Por favor, intenta de nuevo.');
-    }
-  };
+ 
 
   const handleActionSelect = (action) => {
     setAccionSeleccionada(action);
