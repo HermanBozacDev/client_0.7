@@ -5,3 +5,4 @@ const HeaderPanel = ({ onLogout }) => (
     <h3>Esta funcionando la base de datos, puedes crear eventos, eliminarlos, modificarlos, y buscar por día, descripción o nombre. Estamos trabajando para usted.</h3>
   </div>
 );
+export default HeaderPanel
