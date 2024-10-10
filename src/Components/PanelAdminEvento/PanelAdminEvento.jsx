@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../PanelAdminEvento/PanelAdminEvento.css';
 import UseEventos from './UseEventos/UseEventos';
-import DeleteEventos from './DeleteEventos/DeleteEventos';
+//import DeleteEventos from './DeleteEventos/DeleteEventos';
 import CreateEventos from './CreateEventos/CreateEventos'; 
 
 
