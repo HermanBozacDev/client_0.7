@@ -9,7 +9,7 @@ const MercadoPagoHandler = ({ onPreferenceIdReady, count, subTotal, image, title
 
   useEffect(() => {
     console.log("Inicializando Mercado Pago...");
-    initMercadoPago("APP_USR-a10b7367-f4d9-4fcd-b209-6b498100cf0c", {
+    initMercadoPago("", {
       locale: "es-AR",
     });
     console.log("Mercado Pago inicializado.");
